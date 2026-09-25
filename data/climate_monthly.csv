@@ -1,0 +1,1201 @@
+city,country,month,avg_temp_c,std_temp_c,n_years,latitude,longitude,precip_mm
+Algiers,Algeria,1,8.2,1.04,11,36.17N,3.98E,81.4
+Algiers,Algeria,2,8.71,1.83,11,36.17N,3.98E,72.7
+Algiers,Algeria,3,12.37,0.64,11,36.17N,3.98E,55.0
+Algiers,Algeria,4,15.36,1.29,11,36.17N,3.98E,58.4
+Algiers,Algeria,5,19.55,1.71,11,36.17N,3.98E,41.9
+Algiers,Algeria,6,25.1,1.4,11,36.17N,3.98E,8.5
+Algiers,Algeria,7,29.25,0.95,11,36.17N,3.98E,4.5
+Algiers,Algeria,8,28.7,1.05,11,36.17N,3.98E,8.2
+Algiers,Algeria,9,23.59,0.75,10,36.17N,3.98E,28.3
+Algiers,Algeria,10,18.93,1.12,10,36.17N,3.98E,58.8
+Algiers,Algeria,11,12.86,1.27,10,36.17N,3.98E,89.6
+Algiers,Algeria,12,8.98,0.87,10,36.17N,3.98E,91.0
+Melbourne,Australia,1,20.09,1.02,11,37.78S,144.41E,39.3
+Melbourne,Australia,2,19.91,1.44,11,37.78S,144.41E,41.4
+Melbourne,Australia,3,18.02,1.14,11,37.78S,144.41E,37.5
+Melbourne,Australia,4,14.67,1.09,11,37.78S,144.41E,42.1
+Melbourne,Australia,5,11.61,0.93,11,37.78S,144.41E,34.3
+Melbourne,Australia,6,9.33,0.76,11,37.78S,144.41E,41.5
+Melbourne,Australia,7,8.8,0.5,11,37.78S,144.41E,32.8
+Melbourne,Australia,8,9.71,0.8,11,37.78S,144.41E,39.3
+Melbourne,Australia,9,11.37,0.62,10,37.78S,144.41E,46.1
+Melbourne,Australia,10,13.33,0.9,10,37.78S,144.41E,48.5
+Melbourne,Australia,11,16.67,1.18,10,37.78S,144.41E,60.1
+Melbourne,Australia,12,18.1,0.92,10,37.78S,144.41E,52.5
+Perth,Australia,1,22.3,1.21,11,31.35S,114.97E,17.8
+Perth,Australia,2,23.09,1.26,11,31.35S,114.97E,13.9
+Perth,Australia,3,22.49,1.01,11,31.35S,114.97E,19.9
+Perth,Australia,4,20.28,1.3,11,31.35S,114.97E,36.7
+Perth,Australia,5,18.92,0.99,11,31.35S,114.97E,88.5
+Perth,Australia,6,17.24,0.57,11,31.35S,114.97E,124.0
+Perth,Australia,7,16.06,0.66,11,31.35S,114.97E,147.1
+Perth,Australia,8,16.13,0.8,11,31.35S,114.97E,123.8
+Perth,Australia,9,15.89,0.56,10,31.35S,114.97E,81.8
+Perth,Australia,10,17.05,0.91,10,31.35S,114.97E,40.9
+Perth,Australia,11,18.93,1.29,10,31.35S,114.97E,25.0
+Perth,Australia,12,20.42,1.54,10,31.35S,114.97E,10.2
+Sydney,Australia,1,20.61,0.42,11,34.56S,151.78E,91.1
+Sydney,Australia,2,20.59,0.81,11,34.56S,151.78E,131.5
+Sydney,Australia,3,20.01,0.71,11,34.56S,151.78E,117.5
+Sydney,Australia,4,18.53,0.7,11,34.56S,151.78E,114.1
+Sydney,Australia,5,16.96,0.68,11,34.56S,151.78E,100.8
+Sydney,Australia,6,15.65,0.65,11,34.56S,151.78E,142.0
+Sydney,Australia,7,14.84,0.43,11,34.56S,151.78E,80.3
+Sydney,Australia,8,15.25,0.79,11,34.56S,151.78E,75.1
+Sydney,Australia,9,16.46,0.49,10,34.56S,151.78E,63.4
+Sydney,Australia,10,17.08,0.81,10,34.56S,151.78E,67.7
+Sydney,Australia,11,18.56,0.8,10,34.56S,151.78E,90.6
+Sydney,Australia,12,19.23,0.92,10,34.56S,151.78E,73.0
+Vienna,Austria,1,-1.87,2.67,11,49.03N,17.14E,42.1
+Vienna,Austria,2,-1.02,2.44,11,49.03N,17.14E,38.1
+Vienna,Austria,3,3.81,1.84,11,49.03N,17.14E,51.6
+Vienna,Austria,4,10.25,1.3,11,49.03N,17.14E,41.8
+Vienna,Austria,5,14.56,1.14,11,49.03N,17.14E,78.9
+Vienna,Austria,6,18.11,1.22,11,49.03N,17.14E,70.0
+Vienna,Austria,7,19.99,1.23,11,49.03N,17.14E,77.7
+Vienna,Austria,8,19.25,1.31,11,49.03N,17.14E,69.1
+Vienna,Austria,9,14.72,1.49,10,49.03N,17.14E,64.1
+Vienna,Austria,10,8.63,1.55,10,49.03N,17.14E,46.9
+Vienna,Austria,11,4.61,1.66,10,49.03N,17.14E,46.0
+Vienna,Austria,12,-0.44,1.85,10,49.03N,17.14E,46.8
+Dhaka,Bangladesh,1,18.41,0.86,11,23.31N,90.00E,
+Dhaka,Bangladesh,2,22.4,1.05,11,23.31N,90.00E,
+Dhaka,Bangladesh,3,26.88,0.92,11,23.31N,90.00E,
+Dhaka,Bangladesh,4,28.98,0.79,11,23.31N,90.00E,
+Dhaka,Bangladesh,5,29.42,0.58,11,23.31N,90.00E,
+Dhaka,Bangladesh,6,29.28,0.65,11,23.31N,90.00E,
+Dhaka,Bangladesh,7,28.95,0.5,11,23.31N,90.00E,
+Dhaka,Bangladesh,8,29.14,0.37,11,23.31N,90.00E,
+Dhaka,Bangladesh,9,28.97,0.3,10,23.31N,90.00E,
+Dhaka,Bangladesh,10,27.56,0.45,10,23.31N,90.00E,
+Dhaka,Bangladesh,11,24.21,0.47,10,23.31N,90.00E,
+Dhaka,Bangladesh,12,20.03,0.52,10,23.31N,90.00E,
+Brussels,Belgium,1,3.39,2.29,11,50.63N,3.80E,75.2
+Brussels,Belgium,2,3.67,1.84,11,50.63N,3.80E,61.6
+Brussels,Belgium,3,6.9,1.57,11,50.63N,3.80E,69.5
+Brussels,Belgium,4,10.76,1.79,11,50.63N,3.80E,51.0
+Brussels,Belgium,5,14.02,1.43,11,50.63N,3.80E,65.1
+Brussels,Belgium,6,17.07,1.04,11,50.63N,3.80E,72.1
+Brussels,Belgium,7,18.89,1.74,11,50.63N,3.80E,73.6
+Brussels,Belgium,8,18.4,1.19,11,50.63N,3.80E,76.8
+Brussels,Belgium,9,15.84,1.37,10,50.63N,3.80E,69.6
+Brussels,Belgium,10,11.43,1.77,10,50.63N,3.80E,75.0
+Brussels,Belgium,11,7.46,1.17,10,50.63N,3.80E,77.0
+Brussels,Belgium,12,3.48,1.93,10,50.63N,3.80E,81.4
+Rio de Janeiro,Brazil,1,26.17,0.85,11,23.31S,42.82W,137.1
+Rio de Janeiro,Brazil,2,27.33,0.89,11,23.31S,42.82W,130.4
+Rio de Janeiro,Brazil,3,26.89,0.51,11,23.31S,42.82W,135.8
+Rio de Janeiro,Brazil,4,25.94,0.45,11,23.31S,42.82W,94.9
+Rio de Janeiro,Brazil,5,24.41,0.54,11,23.31S,42.82W,69.8
+Rio de Janeiro,Brazil,6,24.04,0.78,11,23.31S,42.82W,42.7
+Rio de Janeiro,Brazil,7,23.47,0.4,11,23.31S,42.82W,41.9
+Rio de Janeiro,Brazil,8,23.23,0.56,11,23.31S,42.82W,44.5
+Rio de Janeiro,Brazil,9,22.76,0.71,10,23.31S,42.82W,53.6
+Rio de Janeiro,Brazil,10,23.0,0.56,10,23.31S,42.82W,86.5
+Rio de Janeiro,Brazil,11,23.69,1.06,10,23.31S,42.82W,97.8
+Rio de Janeiro,Brazil,12,25.03,0.75,10,23.31S,42.82W,134.2
+Salvador,Brazil,1,26.95,0.38,11,13.66S,38.81W,138.0
+Salvador,Brazil,2,27.28,0.53,11,13.66S,38.81W,142.0
+Salvador,Brazil,3,27.38,0.48,11,13.66S,38.81W,151.6
+Salvador,Brazil,4,26.48,0.31,11,13.66S,38.81W,309.7
+Salvador,Brazil,5,25.52,0.33,11,13.66S,38.81W,359.9
+Salvador,Brazil,6,24.59,0.37,11,13.66S,38.81W,243.7
+Salvador,Brazil,7,23.88,0.44,11,13.66S,38.81W,175.0
+Salvador,Brazil,8,23.81,0.34,11,13.66S,38.81W,127.4
+Salvador,Brazil,9,24.28,0.51,10,13.66S,38.81W,102.0
+Salvador,Brazil,10,25.02,0.44,10,13.66S,38.81W,114.9
+Salvador,Brazil,11,25.74,0.48,10,13.66S,38.81W,137.1
+Salvador,Brazil,12,26.38,0.45,10,13.66S,38.81W,142.8
+Sofia,Bulgaria,1,-0.7,2.01,11,42.59N,24.00E,35.0
+Sofia,Bulgaria,2,-0.39,2.5,11,42.59N,24.00E,36.0
+Sofia,Bulgaria,3,3.92,1.21,11,42.59N,24.00E,45.0
+Sofia,Bulgaria,4,8.56,1.1,11,42.59N,24.00E,52.0
+Sofia,Bulgaria,5,13.7,1.33,11,42.59N,24.00E,73.0
+Sofia,Bulgaria,6,17.38,1.2,11,42.59N,24.00E,79.0
+Sofia,Bulgaria,7,19.73,1.3,11,42.59N,24.00E,64.0
+Sofia,Bulgaria,8,20.02,1.21,11,42.59N,24.00E,55.0
+Sofia,Bulgaria,9,15.22,1.39,10,42.59N,24.00E,53.0
+Sofia,Bulgaria,10,10.08,1.54,10,42.59N,24.00E,54.0
+Sofia,Bulgaria,11,5.66,2.06,10,42.59N,24.00E,38.0
+Sofia,Bulgaria,12,1.05,1.03,10,42.59N,24.00E,40.0
+Montreal,Canada,1,-10.87,3.4,11,45.81N,72.69W,77.2
+Montreal,Canada,2,-9.03,2.18,11,45.81N,72.69W,62.7
+Montreal,Canada,3,-2.46,2.41,11,45.81N,72.69W,69.1
+Montreal,Canada,4,5.52,1.4,11,45.81N,72.69W,82.2
+Montreal,Canada,5,12.78,1.33,11,45.81N,72.69W,81.2
+Montreal,Canada,6,17.88,1.02,11,45.81N,72.69W,87.0
+Montreal,Canada,7,20.5,1.06,11,45.81N,72.69W,89.3
+Montreal,Canada,8,19.22,0.92,11,45.81N,72.69W,94.1
+Montreal,Canada,9,15.08,0.86,10,45.81N,72.69W,83.1
+Montreal,Canada,10,7.79,1.42,10,45.81N,72.69W,91.3
+Montreal,Canada,11,1.8,1.63,10,45.81N,72.69W,96.4
+Montreal,Canada,12,-6.39,1.91,10,45.81N,72.69W,86.8
+Toronto,Canada,1,-7.07,3.15,11,44.20N,80.50W,
+Toronto,Canada,2,-6.75,2.02,11,44.20N,80.50W,
+Toronto,Canada,3,-1.0,2.66,11,44.20N,80.50W,
+Toronto,Canada,4,5.93,1.6,11,44.20N,80.50W,
+Toronto,Canada,5,12.63,1.55,11,44.20N,80.50W,
+Toronto,Canada,6,17.73,1.38,11,44.20N,80.50W,
+Toronto,Canada,7,20.33,1.48,11,44.20N,80.50W,
+Toronto,Canada,8,19.41,0.97,11,44.20N,80.50W,
+Toronto,Canada,9,15.68,1.02,10,44.20N,80.50W,
+Toronto,Canada,10,8.84,1.66,10,44.20N,80.50W,
+Toronto,Canada,11,3.18,1.34,10,44.20N,80.50W,
+Toronto,Canada,12,-3.49,2.04,10,44.20N,80.50W,
+Vancouver,Canada,1,1.33,1.59,11,49.03N,122.45W,168.4
+Vancouver,Canada,2,2.7,1.09,11,49.03N,122.45W,104.6
+Vancouver,Canada,3,4.51,1.21,11,49.03N,122.45W,113.9
+Vancouver,Canada,4,6.88,1.27,11,49.03N,122.45W,88.5
+Vancouver,Canada,5,10.62,0.97,11,49.03N,122.45W,65.0
+Vancouver,Canada,6,13.31,1.23,11,49.03N,122.45W,53.8
+Vancouver,Canada,7,16.21,1.01,11,49.03N,122.45W,35.6
+Vancouver,Canada,8,15.97,0.63,11,49.03N,122.45W,36.7
+Vancouver,Canada,9,12.9,0.84,10,49.03N,122.45W,50.9
+Vancouver,Canada,10,7.97,0.68,10,49.03N,122.45W,120.8
+Vancouver,Canada,11,3.35,1.14,10,49.03N,122.45W,188.9
+Vancouver,Canada,12,0.83,1.28,10,49.03N,122.45W,161.9
+Santiago,Chile,1,13.33,0.39,11,32.95S,69.89W,0.6
+Santiago,Chile,2,12.35,0.57,11,32.95S,69.89W,1.3
+Santiago,Chile,3,10.68,0.85,11,32.95S,69.89W,6.1
+Santiago,Chile,4,6.7,0.77,11,32.95S,69.89W,16.3
+Santiago,Chile,5,2.7,0.98,11,32.95S,69.89W,55.5
+Santiago,Chile,6,0.22,1.08,11,32.95S,69.89W,83.3
+Santiago,Chile,7,-0.8,1.05,11,32.95S,69.89W,75.9
+Santiago,Chile,8,0.75,1.16,11,32.95S,69.89W,55.1
+Santiago,Chile,9,3.39,0.98,10,32.95S,69.89W,27.2
+Santiago,Chile,10,6.32,0.75,10,32.95S,69.89W,12.9
+Santiago,Chile,11,9.67,0.73,10,32.95S,69.89W,6.2
+Santiago,Chile,12,11.83,0.49,10,32.95S,69.89W,1.5
+Beijing,China,1,-3.88,1.13,11,39.38N,116.53E,2.2
+Beijing,China,2,0.09,2.07,11,39.38N,116.53E,5.8
+Beijing,China,3,6.72,1.26,11,39.38N,116.53E,8.6
+Beijing,China,4,14.63,1.7,11,39.38N,116.53E,21.7
+Beijing,China,5,21.42,0.91,11,39.38N,116.53E,36.1
+Beijing,China,6,25.21,0.87,11,39.38N,116.53E,72.4
+Beijing,China,7,26.84,0.76,11,39.38N,116.53E,169.7
+Beijing,China,8,25.77,0.63,11,39.38N,116.53E,113.4
+Beijing,China,9,21.06,0.66,10,39.38N,116.53E,53.7
+Beijing,China,10,14.12,0.96,10,39.38N,116.53E,28.7
+Beijing,China,11,5.09,1.73,10,39.38N,116.53E,13.5
+Beijing,China,12,-2.2,1.48,10,39.38N,116.53E,2.2
+Shanghai,China,1,3.52,1.18,11,31.35N,120.63E,70.4
+Shanghai,China,2,6.13,1.96,11,31.35N,120.63E,65.4
+Shanghai,China,3,10.19,0.95,11,31.35N,120.63E,95.4
+Shanghai,China,4,15.93,1.31,11,31.35N,120.63E,82.5
+Shanghai,China,5,21.29,0.69,11,31.35N,120.63E,93.2
+Shanghai,China,6,25.02,0.85,11,31.35N,120.63E,207.3
+Shanghai,China,7,29.3,0.55,11,31.35N,120.63E,148.0
+Shanghai,China,8,28.76,0.99,11,31.35N,120.63E,187.1
+Shanghai,China,9,24.48,0.99,10,31.35N,120.63E,118.1
+Shanghai,China,10,19.08,1.05,10,31.35N,120.63E,68.4
+Shanghai,China,11,13.3,1.51,10,31.35N,120.63E,59.4
+Shanghai,China,12,6.37,1.18,10,31.35N,120.63E,50.3
+Bogota,Colombia,1,20.77,0.59,11,4.02N,74.73W,28.4
+Bogota,Colombia,2,21.09,0.75,11,4.02N,74.73W,45.0
+Bogota,Colombia,3,20.93,0.68,11,4.02N,74.73W,72.8
+Bogota,Colombia,4,20.55,0.35,11,4.02N,74.73W,110.7
+Bogota,Colombia,5,20.76,0.31,11,4.02N,74.73W,107.7
+Bogota,Colombia,6,20.76,0.42,11,4.02N,74.73W,58.7
+Bogota,Colombia,7,21.01,0.34,11,4.02N,74.73W,46.2
+Bogota,Colombia,8,21.55,0.42,11,4.02N,74.73W,44.7
+Bogota,Colombia,9,21.38,0.4,10,4.02N,74.73W,64.4
+Bogota,Colombia,10,20.39,0.38,10,4.02N,74.73W,111.2
+Bogota,Colombia,11,20.09,0.32,10,4.02N,74.73W,93.3
+Bogota,Colombia,12,20.12,0.46,10,4.02N,74.73W,58.2
+Zagreb,Croatia,1,0.12,1.96,11,45.81N,15.00E,43.2
+Zagreb,Croatia,2,0.85,2.38,11,45.81N,15.00E,38.9
+Zagreb,Croatia,3,5.52,1.62,11,45.81N,15.00E,52.6
+Zagreb,Croatia,4,10.79,1.25,11,45.81N,15.00E,59.3
+Zagreb,Croatia,5,15.41,1.27,11,45.81N,15.00E,72.6
+Zagreb,Croatia,6,19.37,1.27,11,45.81N,15.00E,95.3
+Zagreb,Croatia,7,21.34,0.91,11,45.81N,15.00E,77.4
+Zagreb,Croatia,8,20.6,1.86,11,45.81N,15.00E,92.3
+Zagreb,Croatia,9,15.93,1.54,10,45.81N,15.00E,85.8
+Zagreb,Croatia,10,10.51,1.48,10,45.81N,15.00E,82.9
+Zagreb,Croatia,11,6.21,1.5,10,45.81N,15.00E,80.1
+Zagreb,Croatia,12,1.2,1.29,10,45.81N,15.00E,59.6
+Prague,Czech Republic,1,-0.54,2.86,11,50.63N,13.94E,34.0
+Prague,Czech Republic,2,-0.15,2.5,11,50.63N,13.94E,30.0
+Prague,Czech Republic,3,4.02,2.11,11,50.63N,13.94E,40.0
+Prague,Czech Republic,4,9.84,1.53,11,50.63N,13.94E,34.0
+Prague,Czech Republic,5,14.15,1.27,11,50.63N,13.94E,63.0
+Prague,Czech Republic,6,17.62,1.3,11,50.63N,13.94E,70.0
+Prague,Czech Republic,7,19.66,1.59,11,50.63N,13.94E,82.0
+Prague,Czech Republic,8,18.88,1.36,11,50.63N,13.94E,75.0
+Prague,Czech Republic,9,14.86,1.53,10,50.63N,13.94E,47.0
+Prague,Czech Republic,10,8.9,1.63,10,50.63N,13.94E,34.0
+Prague,Czech Republic,11,4.94,1.36,10,50.63N,13.94E,40.0
+Prague,Czech Republic,12,0.6,2.32,10,50.63N,13.94E,38.0
+Copenhagen,Denmark,1,0.76,2.38,11,55.45N,11.34E,53.0
+Copenhagen,Denmark,2,0.51,1.78,11,55.45N,11.34E,36.9
+Copenhagen,Denmark,3,3.11,2.12,11,55.45N,11.34E,42.3
+Copenhagen,Denmark,4,7.82,1.31,11,55.45N,11.34E,35.8
+Copenhagen,Denmark,5,12.43,0.81,11,55.45N,11.34E,47.2
+Copenhagen,Denmark,6,15.8,1.07,11,55.45N,11.34E,63.9
+Copenhagen,Denmark,7,18.55,1.47,11,55.45N,11.34E,60.9
+Copenhagen,Denmark,8,17.89,0.72,11,55.45N,11.34E,67.5
+Copenhagen,Denmark,9,14.64,1.01,10,55.45N,11.34E,61.0
+Copenhagen,Denmark,10,9.47,1.58,10,55.45N,11.34E,63.3
+Copenhagen,Denmark,11,5.87,1.16,10,55.45N,11.34E,56.4
+Copenhagen,Denmark,12,2.13,2.79,10,55.45N,11.34E,57.4
+Quito,Ecuador,1,17.61,0.49,11,0.80S,77.95W,82.5
+Quito,Ecuador,2,17.46,0.58,11,0.80S,77.95W,111.0
+Quito,Ecuador,3,17.49,0.47,11,0.80S,77.95W,146.6
+Quito,Ecuador,4,17.48,0.35,11,0.80S,77.95W,171.2
+Quito,Ecuador,5,17.68,0.3,11,0.80S,77.95W,105.5
+Quito,Ecuador,6,17.34,0.31,11,0.80S,77.95W,39.5
+Quito,Ecuador,7,17.18,0.23,11,0.80S,77.95W,21.5
+Quito,Ecuador,8,17.48,0.32,11,0.80S,77.95W,27.7
+Quito,Ecuador,9,17.81,0.31,10,0.80S,77.95W,68.9
+Quito,Ecuador,10,17.81,0.37,10,0.80S,77.95W,114.9
+Quito,Ecuador,11,17.91,0.37,10,0.80S,77.95W,108.5
+Quito,Ecuador,12,17.59,0.41,10,0.80S,77.95W,100.4
+Cairo,Egypt,1,13.89,1.13,11,29.74N,31.38E,4.8
+Cairo,Egypt,2,15.25,1.24,11,29.74N,31.38E,4.1
+Cairo,Egypt,3,18.22,1.44,11,29.74N,31.38E,5.7
+Cairo,Egypt,4,21.83,0.59,11,29.74N,31.38E,1.1
+Cairo,Egypt,5,25.89,0.78,11,29.74N,31.38E,0.4
+Cairo,Egypt,6,28.6,0.73,11,29.74N,31.38E,0.1
+Cairo,Egypt,7,29.48,0.57,11,29.74N,31.38E,0.0
+Cairo,Egypt,8,29.31,0.63,11,29.74N,31.38E,0.0
+Cairo,Egypt,9,27.36,0.54,10,29.74N,31.38E,0.0
+Cairo,Egypt,10,24.26,0.93,10,29.74N,31.38E,0.4
+Cairo,Egypt,11,19.58,1.25,10,29.74N,31.38E,3.7
+Cairo,Egypt,12,15.36,0.85,10,29.74N,31.38E,4.5
+Addis Ababa,Ethiopia,1,18.22,0.67,11,8.84N,38.11E,
+Addis Ababa,Ethiopia,2,19.47,0.54,11,8.84N,38.11E,
+Addis Ababa,Ethiopia,3,20.11,0.72,11,8.84N,38.11E,
+Addis Ababa,Ethiopia,4,20.05,0.58,11,8.84N,38.11E,
+Addis Ababa,Ethiopia,5,19.79,0.34,11,8.84N,38.11E,
+Addis Ababa,Ethiopia,6,18.56,0.74,11,8.84N,38.11E,
+Addis Ababa,Ethiopia,7,17.32,0.56,11,8.84N,38.11E,
+Addis Ababa,Ethiopia,8,17.54,0.75,11,8.84N,38.11E,
+Addis Ababa,Ethiopia,9,17.65,0.32,10,8.84N,38.11E,
+Addis Ababa,Ethiopia,10,17.48,0.39,10,8.84N,38.11E,
+Addis Ababa,Ethiopia,11,17.5,0.38,10,8.84N,38.11E,
+Addis Ababa,Ethiopia,12,17.37,0.47,10,8.84N,38.11E,
+Helsinki,Finland,1,-4.71,3.43,11,60.27N,25.95E,52.0
+Helsinki,Finland,2,-6.42,3.38,11,60.27N,25.95E,36.0
+Helsinki,Finland,3,-2.8,2.92,11,60.27N,25.95E,38.0
+Helsinki,Finland,4,2.9,1.07,11,60.27N,25.95E,32.0
+Helsinki,Finland,5,9.34,0.94,11,60.27N,25.95E,37.0
+Helsinki,Finland,6,13.7,1.47,11,60.27N,25.95E,57.0
+Helsinki,Finland,7,18.09,1.67,11,60.27N,25.95E,63.0
+Helsinki,Finland,8,16.79,1.01,11,60.27N,25.95E,80.0
+Helsinki,Finland,9,12.42,0.98,10,60.27N,25.95E,56.0
+Helsinki,Finland,10,6.81,1.57,10,60.27N,25.95E,76.0
+Helsinki,Finland,11,2.94,1.71,10,60.27N,25.95E,70.0
+Helsinki,Finland,12,-1.04,3.95,10,60.27N,25.95E,58.0
+Lyon,France,1,0.34,1.62,11,45.81N,5.77E,47.2
+Lyon,France,2,0.74,2.19,11,45.81N,5.77E,44.1
+Lyon,France,3,5.25,1.33,11,45.81N,5.77E,50.4
+Lyon,France,4,9.69,1.62,11,45.81N,5.77E,74.9
+Lyon,France,5,13.6,1.58,11,45.81N,5.77E,90.8
+Lyon,France,6,17.62,1.63,11,45.81N,5.77E,75.6
+Lyon,France,7,19.42,1.64,11,45.81N,5.77E,63.7
+Lyon,France,8,18.66,1.92,11,45.81N,5.77E,62.0
+Lyon,France,9,14.83,1.35,10,45.81N,5.77E,87.5
+Lyon,France,10,10.04,1.51,10,45.81N,5.77E,98.6
+Lyon,France,11,5.01,1.31,10,45.81N,5.77E,81.9
+Lyon,France,12,0.81,1.35,10,45.81N,5.77E,55.2
+Marseille,France,1,10.57,1.07,11,42.59N,6.55E,47.1
+Marseille,France,2,9.71,1.37,11,42.59N,6.55E,29.8
+Marseille,France,3,11.65,0.66,11,42.59N,6.55E,29.5
+Marseille,France,4,14.02,0.78,11,42.59N,6.55E,51.6
+Marseille,France,5,17.36,1.14,11,42.59N,6.55E,37.7
+Marseille,France,6,20.96,1.17,11,42.59N,6.55E,27.9
+Marseille,France,7,23.52,1.14,11,42.59N,6.55E,10.8
+Marseille,France,8,23.92,1.37,11,42.59N,6.55E,25.8
+Marseille,France,9,21.23,0.73,10,42.59N,6.55E,82.0
+Marseille,France,10,18.0,0.85,10,42.59N,6.55E,73.3
+Marseille,France,11,14.58,1.12,10,42.59N,6.55E,75.9
+Marseille,France,12,11.53,1.14,10,42.59N,6.55E,40.9
+Paris,France,1,3.89,2.17,11,49.03N,2.45E,51.0
+Paris,France,2,4.15,1.86,11,49.03N,2.45E,41.2
+Paris,France,3,7.43,1.53,11,49.03N,2.45E,47.6
+Paris,France,4,11.06,1.77,11,49.03N,2.45E,51.8
+Paris,France,5,14.31,1.34,11,49.03N,2.45E,63.2
+Paris,France,6,17.69,1.21,11,49.03N,2.45E,49.6
+Paris,France,7,19.62,1.74,11,49.03N,2.45E,62.3
+Paris,France,8,19.14,1.62,11,49.03N,2.45E,52.7
+Paris,France,9,16.24,1.39,10,49.03N,2.45E,47.6
+Paris,France,10,11.88,1.72,10,49.03N,2.45E,61.5
+Paris,France,11,7.8,1.19,10,49.03N,2.45E,51.1
+Paris,France,12,3.92,1.83,10,49.03N,2.45E,57.8
+Berlin,Germany,1,0.49,3.15,11,52.24N,13.14E,37.2
+Berlin,Germany,2,0.95,2.22,11,52.24N,13.14E,30.1
+Berlin,Germany,3,4.78,2.35,11,52.24N,13.14E,39.3
+Berlin,Germany,4,10.27,1.55,11,52.24N,13.14E,33.7
+Berlin,Germany,5,14.51,1.3,11,52.24N,13.14E,52.6
+Berlin,Germany,6,17.77,1.3,11,52.24N,13.14E,60.2
+Berlin,Germany,7,20.08,1.79,11,52.24N,13.14E,52.5
+Berlin,Germany,8,19.1,1.08,11,52.24N,13.14E,53.0
+Berlin,Germany,9,15.38,1.44,10,52.24N,13.14E,39.5
+Berlin,Germany,10,9.67,1.83,10,52.24N,13.14E,32.2
+Berlin,Germany,11,5.85,1.32,10,52.24N,13.14E,37.8
+Berlin,Germany,12,1.75,2.7,10,52.24N,13.14E,46.1
+Frankfurt,Germany,1,0.29,2.48,11,50.63N,8.87E,44.0
+Frankfurt,Germany,2,0.56,2.1,11,50.63N,8.87E,38.6
+Frankfurt,Germany,3,4.63,1.99,11,50.63N,8.87E,38.7
+Frankfurt,Germany,4,9.67,1.82,11,50.63N,8.87E,36.6
+Frankfurt,Germany,5,13.41,1.54,11,50.63N,8.87E,60.4
+Frankfurt,Germany,6,16.74,1.28,11,50.63N,8.87E,55.4
+Frankfurt,Germany,7,18.72,1.82,11,50.63N,8.87E,63.5
+Frankfurt,Germany,8,17.98,1.63,11,50.63N,8.87E,61.4
+Frankfurt,Germany,9,14.33,1.63,10,50.63N,8.87E,47.7
+Frankfurt,Germany,10,9.03,1.76,10,50.63N,8.87E,50.4
+Frankfurt,Germany,11,5.09,1.26,10,50.63N,8.87E,47.3
+Frankfurt,Germany,12,0.87,2.13,10,50.63N,8.87E,54.5
+Hamburg,Germany,1,1.1,2.58,11,53.84N,9.55E,70.7
+Hamburg,Germany,2,1.24,1.88,11,53.84N,9.55E,57.7
+Hamburg,Germany,3,4.37,2.19,11,53.84N,9.55E,56.7
+Hamburg,Germany,4,9.23,1.57,11,53.84N,9.55E,39.3
+Hamburg,Germany,5,13.13,1.1,11,53.84N,9.55E,55.8
+Hamburg,Germany,6,16.2,1.1,11,53.84N,9.55E,72.0
+Hamburg,Germany,7,18.63,1.64,11,53.84N,9.55E,83.2
+Hamburg,Germany,8,17.89,0.95,11,53.84N,9.55E,79.2
+Hamburg,Germany,9,14.77,1.23,10,53.84N,9.55E,62.1
+Hamburg,Germany,10,9.6,1.76,10,53.84N,9.55E,62.5
+Hamburg,Germany,11,5.79,1.17,10,53.84N,9.55E,59.7
+Hamburg,Germany,12,1.92,2.66,10,53.84N,9.55E,77.7
+Munich,Germany,1,-3.91,1.99,11,47.42N,10.66E,
+Munich,Germany,2,-3.62,2.66,11,47.42N,10.66E,
+Munich,Germany,3,0.95,1.61,11,47.42N,10.66E,
+Munich,Germany,4,5.99,1.59,11,47.42N,10.66E,
+Munich,Germany,5,10.18,1.46,11,47.42N,10.66E,
+Munich,Germany,6,13.9,1.5,11,47.42N,10.66E,
+Munich,Germany,7,15.4,1.44,11,47.42N,10.66E,
+Munich,Germany,8,14.81,1.93,11,47.42N,10.66E,
+Munich,Germany,9,11.05,1.54,10,47.42N,10.66E,
+Munich,Germany,10,6.1,1.69,10,47.42N,10.66E,
+Munich,Germany,11,1.28,1.46,10,47.42N,10.66E,
+Munich,Germany,12,-3.21,1.46,10,47.42N,10.66E,
+Accra,Ghana,1,27.43,0.53,11,5.63N,0.00W,11.8
+Accra,Ghana,2,28.39,0.47,11,5.63N,0.00W,25.5
+Accra,Ghana,3,28.73,0.26,11,5.63N,0.00W,61.1
+Accra,Ghana,4,28.35,0.43,11,5.63N,0.00W,87.8
+Accra,Ghana,5,27.9,0.37,11,5.63N,0.00W,151.4
+Accra,Ghana,6,26.52,0.3,11,5.63N,0.00W,189.6
+Accra,Ghana,7,25.46,0.27,11,5.63N,0.00W,63.0
+Accra,Ghana,8,25.06,0.33,11,5.63N,0.00W,21.0
+Accra,Ghana,9,25.83,0.1,10,5.63N,0.00W,42.9
+Accra,Ghana,10,26.48,0.21,10,5.63N,0.00W,80.0
+Accra,Ghana,11,27.61,0.13,10,5.63N,0.00W,37.2
+Accra,Ghana,12,27.61,0.46,10,5.63N,0.00W,27.2
+Athens,Greece,1,10.68,1.49,11,37.78N,24.41E,55.6
+Athens,Greece,2,10.39,1.51,11,37.78N,24.41E,44.4
+Athens,Greece,3,12.76,1.18,11,37.78N,24.41E,45.6
+Athens,Greece,4,15.63,1.12,11,37.78N,24.41E,27.6
+Athens,Greece,5,20.43,0.9,11,37.78N,24.41E,20.7
+Athens,Greece,6,24.88,0.79,11,37.78N,24.41E,11.6
+Athens,Greece,7,27.36,0.92,11,37.78N,24.41E,10.7
+Athens,Greece,8,27.52,0.79,11,37.78N,24.41E,5.4
+Athens,Greece,9,23.58,0.75,10,37.78N,24.41E,25.8
+Athens,Greece,10,19.46,1.28,10,37.78N,24.41E,38.6
+Athens,Greece,11,15.46,1.66,10,37.78N,24.41E,70.8
+Athens,Greece,12,12.34,1.08,10,37.78N,24.41E,76.3
+Budapest,Hungary,1,-0.77,2.11,11,47.42N,20.13E,37.0
+Budapest,Hungary,2,-0.12,2.98,11,47.42N,20.13E,29.0
+Budapest,Hungary,3,5.48,1.62,11,47.42N,20.13E,30.0
+Budapest,Hungary,4,12.0,1.12,11,47.42N,20.13E,42.0
+Budapest,Hungary,5,16.78,1.3,11,47.42N,20.13E,62.0
+Budapest,Hungary,6,20.33,1.18,11,47.42N,20.13E,63.0
+Budapest,Hungary,7,22.31,1.0,11,47.42N,20.13E,45.0
+Budapest,Hungary,8,21.63,1.36,11,47.42N,20.13E,49.0
+Budapest,Hungary,9,16.68,1.74,10,47.42N,20.13E,40.0
+Budapest,Hungary,10,10.39,1.48,10,47.42N,20.13E,39.0
+Budapest,Hungary,11,5.72,1.89,10,47.42N,20.13E,53.0
+Budapest,Hungary,12,0.6,1.49,10,47.42N,20.13E,43.0
+Reykjavik,Iceland,1,-2.85,1.11,11,65.09N,21.06W,83.0
+Reykjavik,Iceland,2,-2.0,1.47,11,65.09N,21.06W,85.9
+Reykjavik,Iceland,3,-1.08,1.65,11,65.09N,21.06W,81.4
+Reykjavik,Iceland,4,1.28,1.49,11,65.09N,21.06W,56.0
+Reykjavik,Iceland,5,4.97,0.93,11,65.09N,21.06W,52.8
+Reykjavik,Iceland,6,9.33,0.93,11,65.09N,21.06W,43.8
+Reykjavik,Iceland,7,11.16,0.48,11,65.09N,21.06W,52.3
+Reykjavik,Iceland,8,10.08,0.97,11,65.09N,21.06W,67.3
+Reykjavik,Iceland,9,6.19,1.31,10,65.09N,21.06W,73.5
+Reykjavik,Iceland,10,0.94,1.1,10,65.09N,21.06W,74.4
+Reykjavik,Iceland,11,-2.07,1.12,10,65.09N,21.06W,78.8
+Reykjavik,Iceland,12,-3.5,1.25,10,65.09N,21.06W,94.1
+Delhi,India,1,14.38,0.89,11,28.13N,77.27E,19.2
+Delhi,India,2,18.52,1.46,11,28.13N,77.27E,21.5
+Delhi,India,3,24.53,1.35,11,28.13N,77.27E,19.1
+Delhi,India,4,30.31,1.18,11,28.13N,77.27E,12.5
+Delhi,India,5,34.06,0.85,11,28.13N,77.27E,29.4
+Delhi,India,6,34.11,1.57,11,28.13N,77.27E,80.6
+Delhi,India,7,31.48,0.76,11,28.13N,77.27E,195.8
+Delhi,India,8,30.39,0.61,11,28.13N,77.27E,226.8
+Delhi,India,9,29.71,0.57,10,28.13N,77.27E,128.0
+Delhi,India,10,26.76,0.64,10,28.13N,77.27E,14.1
+Delhi,India,11,21.57,0.47,10,28.13N,77.27E,4.1
+Delhi,India,12,16.32,0.75,10,28.13N,77.27E,8.0
+Mumbai,India,1,24.92,0.79,11,18.48N,72.68E,0.6
+Mumbai,India,2,25.13,0.72,11,18.48N,72.68E,0.4
+Mumbai,India,3,26.62,0.6,11,18.48N,72.68E,0.7
+Mumbai,India,4,28.14,0.56,11,18.48N,72.68E,0.2
+Mumbai,India,5,29.66,0.39,11,18.48N,72.68E,15.9
+Mumbai,India,6,28.63,0.49,11,18.48N,72.68E,506.0
+Mumbai,India,7,27.45,0.4,11,18.48N,72.68E,768.5
+Mumbai,India,8,27.17,0.35,11,18.48N,72.68E,471.9
+Mumbai,India,9,27.52,0.31,10,18.48N,72.68E,355.6
+Mumbai,India,10,28.6,0.34,10,18.48N,72.68E,81.7
+Mumbai,India,11,28.4,0.57,10,18.48N,72.68E,8.5
+Mumbai,India,12,26.53,0.64,10,18.48N,72.68E,3.4
+Jakarta,Indonesia,1,26.87,0.41,11,5.63S,106.55E,
+Jakarta,Indonesia,2,27.05,0.35,11,5.63S,106.55E,
+Jakarta,Indonesia,3,27.56,0.27,11,5.63S,106.55E,
+Jakarta,Indonesia,4,27.82,0.37,11,5.63S,106.55E,
+Jakarta,Indonesia,5,28.06,0.22,11,5.63S,106.55E,
+Jakarta,Indonesia,6,27.62,0.27,11,5.63S,106.55E,
+Jakarta,Indonesia,7,27.12,0.2,11,5.63S,106.55E,
+Jakarta,Indonesia,8,27.04,0.2,11,5.63S,106.55E,
+Jakarta,Indonesia,9,27.16,0.38,10,5.63S,106.55E,
+Jakarta,Indonesia,10,27.12,0.44,10,5.63S,106.55E,
+Jakarta,Indonesia,11,27.19,0.38,10,5.63S,106.55E,
+Jakarta,Indonesia,12,26.84,0.33,10,5.63S,106.55E,
+Baghdad,Iraq,1,10.21,1.79,11,32.95N,45.00E,24.6
+Baghdad,Iraq,2,13.09,1.25,11,32.95N,45.00E,16.6
+Baghdad,Iraq,3,17.79,1.74,11,32.95N,45.00E,15.7
+Baghdad,Iraq,4,23.13,1.14,11,32.95N,45.00E,16.2
+Baghdad,Iraq,5,29.78,0.86,11,32.95N,45.00E,3.3
+Baghdad,Iraq,6,34.65,0.81,11,32.95N,45.00E,0.0
+Baghdad,Iraq,7,36.49,0.72,11,32.95N,45.00E,0.0
+Baghdad,Iraq,8,36.27,0.89,11,32.95N,45.00E,0.0
+Baghdad,Iraq,9,32.06,0.94,10,32.95N,45.00E,0.1
+Baghdad,Iraq,10,26.14,0.98,10,32.95N,45.00E,7.6
+Baghdad,Iraq,11,16.92,1.37,10,32.95N,45.00E,23.6
+Baghdad,Iraq,12,11.62,1.88,10,32.95N,45.00E,17.0
+Dublin,Ireland,1,4.68,1.38,11,53.84N,6.82W,62.6
+Dublin,Ireland,2,4.97,1.14,11,53.84N,6.82W,48.8
+Dublin,Ireland,3,6.32,1.35,11,53.84N,6.82W,52.7
+Dublin,Ireland,4,8.51,1.3,11,53.84N,6.82W,54.1
+Dublin,Ireland,5,11.05,0.75,11,53.84N,6.82W,59.5
+Dublin,Ireland,6,13.92,0.88,11,53.84N,6.82W,66.7
+Dublin,Ireland,7,15.34,1.1,11,53.84N,6.82W,56.2
+Dublin,Ireland,8,14.96,0.71,11,53.84N,6.82W,73.3
+Dublin,Ireland,9,13.24,0.74,10,53.84N,6.82W,59.5
+Dublin,Ireland,10,9.92,1.3,10,53.84N,6.82W,79.0
+Dublin,Ireland,11,7.08,1.26,10,53.84N,6.82W,72.9
+Dublin,Ireland,12,4.52,1.85,10,53.84N,6.82W,72.7
+Milan,Italy,1,-1.64,1.52,11,45.81N,8.08E,
+Milan,Italy,2,-1.13,2.03,11,45.81N,8.08E,
+Milan,Italy,3,3.28,1.47,11,45.81N,8.08E,
+Milan,Italy,4,7.53,1.65,11,45.81N,8.08E,
+Milan,Italy,5,11.81,1.46,11,45.81N,8.08E,
+Milan,Italy,6,15.91,1.35,11,45.81N,8.08E,
+Milan,Italy,7,17.82,1.28,11,45.81N,8.08E,
+Milan,Italy,8,17.25,1.75,11,45.81N,8.08E,
+Milan,Italy,9,13.63,1.23,10,45.81N,8.08E,
+Milan,Italy,10,8.48,1.2,10,45.81N,8.08E,
+Milan,Italy,11,3.44,1.05,10,45.81N,8.08E,
+Milan,Italy,12,-1.06,1.32,10,45.81N,8.08E,
+Naples,Italy,1,6.42,1.04,11,40.99N,14.91E,92.1
+Naples,Italy,2,6.33,1.58,11,40.99N,14.91E,95.3
+Naples,Italy,3,9.61,0.84,11,40.99N,14.91E,77.9
+Naples,Italy,4,13.27,0.73,11,40.99N,14.91E,98.6
+Naples,Italy,5,17.95,1.24,11,40.99N,14.91E,59.0
+Naples,Italy,6,22.36,1.19,11,40.99N,14.91E,32.8
+Naples,Italy,7,25.26,0.69,11,40.99N,14.91E,28.5
+Naples,Italy,8,25.14,1.26,11,40.99N,14.91E,35.5
+Naples,Italy,9,20.58,1.02,10,40.99N,14.91E,88.9
+Naples,Italy,10,15.89,1.11,10,40.99N,14.91E,135.5
+Naples,Italy,11,11.36,0.99,10,40.99N,14.91E,152.1
+Naples,Italy,12,7.44,1.03,10,40.99N,14.91E,112.0
+Rome,Italy,1,3.76,1.15,11,42.59N,13.09E,69.5
+Rome,Italy,2,4.14,1.67,11,42.59N,13.09E,75.8
+Rome,Italy,3,7.87,1.0,11,42.59N,13.09E,59.0
+Rome,Italy,4,11.61,0.94,11,42.59N,13.09E,76.2
+Rome,Italy,5,16.15,1.4,11,42.59N,13.09E,49.1
+Rome,Italy,6,20.54,1.31,11,42.59N,13.09E,40.7
+Rome,Italy,7,23.54,0.81,11,42.59N,13.09E,21.0
+Rome,Italy,8,23.15,1.56,11,42.59N,13.09E,34.1
+Rome,Italy,9,18.54,1.11,10,42.59N,13.09E,71.8
+Rome,Italy,10,13.68,1.03,10,42.59N,13.09E,107.0
+Rome,Italy,11,8.86,0.96,10,42.59N,13.09E,109.9
+Rome,Italy,12,4.63,0.98,10,42.59N,13.09E,84.4
+Turin,Italy,1,-1.64,1.52,11,45.81N,8.08E,47.8
+Turin,Italy,2,-1.13,2.03,11,45.81N,8.08E,47.1
+Turin,Italy,3,3.28,1.47,11,45.81N,8.08E,72.5
+Turin,Italy,4,7.53,1.65,11,45.81N,8.08E,113.3
+Turin,Italy,5,11.81,1.46,11,45.81N,8.08E,145.3
+Turin,Italy,6,15.91,1.35,11,45.81N,8.08E,104.3
+Turin,Italy,7,17.82,1.28,11,45.81N,8.08E,70.5
+Turin,Italy,8,17.25,1.75,11,45.81N,8.08E,76.1
+Turin,Italy,9,13.63,1.23,10,45.81N,8.08E,83.8
+Turin,Italy,10,8.48,1.2,10,45.81N,8.08E,106.1
+Turin,Italy,11,3.44,1.05,10,45.81N,8.08E,69.1
+Turin,Italy,12,-1.06,1.32,10,45.81N,8.08E,45.1
+Venice,Italy,1,2.53,1.49,11,45.81N,12.69E,
+Venice,Italy,2,3.18,1.74,11,45.81N,12.69E,
+Venice,Italy,3,7.51,1.41,11,45.81N,12.69E,
+Venice,Italy,4,12.18,1.41,11,45.81N,12.69E,
+Venice,Italy,5,16.87,1.34,11,45.81N,12.69E,
+Venice,Italy,6,20.9,1.14,11,45.81N,12.69E,
+Venice,Italy,7,23.04,1.01,11,45.81N,12.69E,
+Venice,Italy,8,22.54,1.85,11,45.81N,12.69E,
+Venice,Italy,9,18.21,1.46,10,45.81N,12.69E,
+Venice,Italy,10,12.85,1.28,10,45.81N,12.69E,
+Venice,Italy,11,8.27,1.11,10,45.81N,12.69E,
+Venice,Italy,12,3.6,1.11,10,45.81N,12.69E,
+Tokyo,Japan,1,1.76,0.86,11,36.17N,139.23E,
+Tokyo,Japan,2,3.14,1.1,11,36.17N,139.23E,
+Tokyo,Japan,3,6.28,1.01,11,36.17N,139.23E,
+Tokyo,Japan,4,11.52,1.01,11,36.17N,139.23E,
+Tokyo,Japan,5,16.57,0.6,11,36.17N,139.23E,
+Tokyo,Japan,6,20.68,0.76,11,36.17N,139.23E,
+Tokyo,Japan,7,24.02,1.54,11,36.17N,139.23E,
+Tokyo,Japan,8,25.45,1.13,11,36.17N,139.23E,
+Tokyo,Japan,9,21.86,0.9,10,36.17N,139.23E,
+Tokyo,Japan,10,15.37,0.7,10,36.17N,139.23E,
+Tokyo,Japan,11,9.93,0.97,10,36.17N,139.23E,
+Tokyo,Japan,12,4.4,1.35,10,36.17N,139.23E,
+Nairobi,Kenya,1,17.66,0.36,11,0.80S,36.16E,
+Nairobi,Kenya,2,18.4,0.55,11,0.80S,36.16E,
+Nairobi,Kenya,3,18.47,0.53,11,0.80S,36.16E,
+Nairobi,Kenya,4,17.42,0.51,11,0.80S,36.16E,
+Nairobi,Kenya,5,16.82,0.29,11,0.80S,36.16E,
+Nairobi,Kenya,6,15.86,0.4,11,0.80S,36.16E,
+Nairobi,Kenya,7,15.24,0.32,11,0.80S,36.16E,
+Nairobi,Kenya,8,15.63,0.34,11,0.80S,36.16E,
+Nairobi,Kenya,9,16.51,0.42,10,0.80S,36.16E,
+Nairobi,Kenya,10,16.9,0.24,10,0.80S,36.16E,
+Nairobi,Kenya,11,16.84,0.35,10,0.80S,36.16E,
+Nairobi,Kenya,12,17.18,0.51,10,0.80S,36.16E,
+Vilnius,Lithuania,1,-4.72,3.5,11,55.45N,25.51E,
+Vilnius,Lithuania,2,-5.44,3.34,11,55.45N,25.51E,
+Vilnius,Lithuania,3,-0.42,3.06,11,55.45N,25.51E,
+Vilnius,Lithuania,4,6.68,1.24,11,55.45N,25.51E,
+Vilnius,Lithuania,5,12.77,1.42,11,55.45N,25.51E,
+Vilnius,Lithuania,6,15.9,1.41,11,55.45N,25.51E,
+Vilnius,Lithuania,7,18.78,1.56,11,55.45N,25.51E,
+Vilnius,Lithuania,8,17.28,1.07,11,55.45N,25.51E,
+Vilnius,Lithuania,9,12.68,0.95,10,55.45N,25.51E,
+Vilnius,Lithuania,10,6.6,1.63,10,55.45N,25.51E,
+Vilnius,Lithuania,11,2.72,1.25,10,55.45N,25.51E,
+Vilnius,Lithuania,12,-1.3,3.27,10,55.45N,25.51E,
+Kuala Lumpur,Malaysia,1,26.99,0.35,11,2.41N,102.05E,
+Kuala Lumpur,Malaysia,2,27.54,0.5,11,2.41N,102.05E,
+Kuala Lumpur,Malaysia,3,27.7,0.54,11,2.41N,102.05E,
+Kuala Lumpur,Malaysia,4,27.64,0.34,11,2.41N,102.05E,
+Kuala Lumpur,Malaysia,5,28.1,0.29,11,2.41N,102.05E,
+Kuala Lumpur,Malaysia,6,27.94,0.39,11,2.41N,102.05E,
+Kuala Lumpur,Malaysia,7,27.4,0.34,11,2.41N,102.05E,
+Kuala Lumpur,Malaysia,8,27.45,0.17,11,2.41N,102.05E,
+Kuala Lumpur,Malaysia,9,27.28,0.26,10,2.41N,102.05E,
+Kuala Lumpur,Malaysia,10,27.0,0.3,10,2.41N,102.05E,
+Kuala Lumpur,Malaysia,11,26.91,0.13,10,2.41N,102.05E,
+Kuala Lumpur,Malaysia,12,26.7,0.12,10,2.41N,102.05E,
+Mexico City,Mexico,1,12.84,0.52,11,20.09N,98.96W,
+Mexico City,Mexico,2,14.54,0.92,11,20.09N,98.96W,
+Mexico City,Mexico,3,16.55,0.4,11,20.09N,98.96W,
+Mexico City,Mexico,4,18.49,0.65,11,20.09N,98.96W,
+Mexico City,Mexico,5,19.45,0.84,11,20.09N,98.96W,
+Mexico City,Mexico,6,18.84,0.71,11,20.09N,98.96W,
+Mexico City,Mexico,7,17.91,0.44,11,20.09N,98.96W,
+Mexico City,Mexico,8,18.01,0.27,11,20.09N,98.96W,
+Mexico City,Mexico,9,17.33,0.31,10,20.09N,98.96W,
+Mexico City,Mexico,10,16.12,0.83,10,20.09N,98.96W,
+Mexico City,Mexico,11,14.2,0.63,10,20.09N,98.96W,
+Mexico City,Mexico,12,12.79,0.84,10,20.09N,98.96W,
+Casablanca,Morocco,1,9.88,1.04,11,32.95N,6.70W,
+Casablanca,Morocco,2,11.28,1.55,11,32.95N,6.70W,
+Casablanca,Morocco,3,14.36,0.77,11,32.95N,6.70W,
+Casablanca,Morocco,4,16.38,1.3,11,32.95N,6.70W,
+Casablanca,Morocco,5,20.1,1.41,11,32.95N,6.70W,
+Casablanca,Morocco,6,24.25,0.98,11,32.95N,6.70W,
+Casablanca,Morocco,7,27.18,0.65,11,32.95N,6.70W,
+Casablanca,Morocco,8,27.1,0.68,11,32.95N,6.70W,
+Casablanca,Morocco,9,23.75,0.75,10,32.95N,6.70W,
+Casablanca,Morocco,10,19.74,1.09,10,32.95N,6.70W,
+Casablanca,Morocco,11,14.46,1.31,10,32.95N,6.70W,
+Casablanca,Morocco,12,11.01,1.32,10,32.95N,6.70W,
+Marrakech,Morocco,1,9.12,1.11,11,31.35N,7.54W,
+Marrakech,Morocco,2,11.14,1.53,11,31.35N,7.54W,
+Marrakech,Morocco,3,14.98,0.69,11,31.35N,7.54W,
+Marrakech,Morocco,4,17.46,1.3,11,31.35N,7.54W,
+Marrakech,Morocco,5,21.06,1.25,11,31.35N,7.54W,
+Marrakech,Morocco,6,25.31,0.88,11,31.35N,7.54W,
+Marrakech,Morocco,7,28.64,0.7,11,31.35N,7.54W,
+Marrakech,Morocco,8,28.11,0.66,11,31.35N,7.54W,
+Marrakech,Morocco,9,24.32,0.84,10,31.35N,7.54W,
+Marrakech,Morocco,10,19.59,1.04,10,31.35N,7.54W,
+Marrakech,Morocco,11,13.93,1.28,10,31.35N,7.54W,
+Marrakech,Morocco,12,10.05,1.46,10,31.35N,7.54W,
+Amsterdam,Netherlands,1,2.91,2.4,11,52.24N,5.26E,66.6
+Amsterdam,Netherlands,2,2.95,1.75,11,52.24N,5.26E,50.6
+Amsterdam,Netherlands,3,5.85,1.67,11,52.24N,5.26E,60.6
+Amsterdam,Netherlands,4,9.87,1.72,11,52.24N,5.26E,40.9
+Amsterdam,Netherlands,5,13.22,1.44,11,52.24N,5.26E,55.6
+Amsterdam,Netherlands,6,16.19,0.92,11,52.24N,5.26E,66.0
+Amsterdam,Netherlands,7,18.25,1.61,11,52.24N,5.26E,76.5
+Amsterdam,Netherlands,8,17.75,1.03,11,52.24N,5.26E,85.9
+Amsterdam,Netherlands,9,15.11,1.33,10,52.24N,5.26E,82.4
+Amsterdam,Netherlands,10,10.73,1.7,10,52.24N,5.26E,89.6
+Amsterdam,Netherlands,11,7.05,1.17,10,52.24N,5.26E,87.2
+Amsterdam,Netherlands,12,3.19,2.25,10,52.24N,5.26E,76.3
+Auckland,New Zealand,1,19.29,0.6,11,36.17S,175.03E,73.3
+Auckland,New Zealand,2,19.9,0.72,11,36.17S,175.03E,66.1
+Auckland,New Zealand,3,18.86,0.78,11,36.17S,175.03E,87.3
+Auckland,New Zealand,4,17.07,0.59,11,36.17S,175.03E,99.4
+Auckland,New Zealand,5,15.27,0.92,11,36.17S,175.03E,112.6
+Auckland,New Zealand,6,13.47,0.88,11,36.17S,175.03E,126.4
+Auckland,New Zealand,7,12.57,0.54,11,36.17S,175.03E,145.1
+Auckland,New Zealand,8,12.81,0.71,11,36.17S,175.03E,118.4
+Auckland,New Zealand,9,13.63,0.52,10,36.17S,175.03E,105.1
+Auckland,New Zealand,10,14.21,0.44,10,36.17S,175.03E,100.2
+Auckland,New Zealand,11,15.82,0.45,10,36.17S,175.03E,85.8
+Auckland,New Zealand,12,17.76,1.19,10,36.17S,175.03E,92.8
+Wellington,New Zealand,1,16.85,0.58,11,40.99S,174.67E,77.5
+Wellington,New Zealand,2,17.11,0.72,11,40.99S,174.67E,77.0
+Wellington,New Zealand,3,15.96,0.88,11,40.99S,174.67E,85.8
+Wellington,New Zealand,4,13.91,0.87,11,40.99S,174.67E,100.9
+Wellington,New Zealand,5,12.37,1.12,11,40.99S,174.67E,120.7
+Wellington,New Zealand,6,10.43,1.05,11,40.99S,174.67E,132.4
+Wellington,New Zealand,7,9.62,0.66,11,40.99S,174.67E,136.0
+Wellington,New Zealand,8,10.24,0.68,11,40.99S,174.67E,125.5
+Wellington,New Zealand,9,11.37,0.61,10,40.99S,174.67E,100.8
+Wellington,New Zealand,10,11.98,0.45,10,40.99S,174.67E,110.3
+Wellington,New Zealand,11,13.75,0.54,10,40.99S,174.67E,91.5
+Wellington,New Zealand,12,15.58,1.22,10,40.99S,174.67E,92.0
+Lagos,Nigeria,1,27.07,0.47,11,5.63N,3.23E,13.2
+Lagos,Nigeria,2,27.93,0.49,11,5.63N,3.23E,40.6
+Lagos,Nigeria,3,28.29,0.26,11,5.63N,3.23E,84.3
+Lagos,Nigeria,4,28.25,0.48,11,5.63N,3.23E,146.3
+Lagos,Nigeria,5,28.28,0.4,11,5.63N,3.23E,202.4
+Lagos,Nigeria,6,27.45,0.31,11,5.63N,3.23E,315.5
+Lagos,Nigeria,7,26.72,0.25,11,5.63N,3.23E,243.0
+Lagos,Nigeria,8,26.23,0.3,11,5.63N,3.23E,121.7
+Lagos,Nigeria,9,26.57,0.15,10,5.63N,3.23E,160.0
+Lagos,Nigeria,10,26.81,0.16,10,5.63N,3.23E,125.1
+Lagos,Nigeria,11,27.74,0.25,10,5.63N,3.23E,39.7
+Lagos,Nigeria,12,27.57,0.43,10,5.63N,3.23E,14.8
+Oslo,Norway,1,-6.26,2.97,11,60.27N,9.73E,54.9
+Oslo,Norway,2,-5.95,2.39,11,60.27N,9.73E,41.0
+Oslo,Norway,3,-1.87,2.78,11,60.27N,9.73E,50.4
+Oslo,Norway,4,3.1,1.69,11,60.27N,9.73E,46.9
+Oslo,Norway,5,7.89,0.88,11,60.27N,9.73E,54.1
+Oslo,Norway,6,12.18,1.06,11,60.27N,9.73E,70.5
+Oslo,Norway,7,14.76,1.24,11,60.27N,9.73E,84.7
+Oslo,Norway,8,13.26,0.71,11,60.27N,9.73E,97.8
+Oslo,Norway,9,9.05,1.23,10,60.27N,9.73E,80.6
+Oslo,Norway,10,2.97,1.52,10,60.27N,9.73E,90.4
+Oslo,Norway,11,-0.92,2.18,10,60.27N,9.73E,79.1
+Oslo,Norway,12,-5.66,3.97,10,60.27N,9.73E,52.4
+Karachi,Pakistan,1,18.6,0.81,11,24.92N,67.39E,
+Karachi,Pakistan,2,21.54,1.34,11,24.92N,67.39E,
+Karachi,Pakistan,3,26.19,1.5,11,24.92N,67.39E,
+Karachi,Pakistan,4,29.59,1.3,11,24.92N,67.39E,
+Karachi,Pakistan,5,32.05,0.52,11,24.92N,67.39E,
+Karachi,Pakistan,6,32.37,0.35,11,24.92N,67.39E,
+Karachi,Pakistan,7,31.22,0.27,11,24.92N,67.39E,
+Karachi,Pakistan,8,29.84,0.51,11,24.92N,67.39E,
+Karachi,Pakistan,9,29.53,0.43,10,24.92N,67.39E,
+Karachi,Pakistan,10,28.38,0.65,10,24.92N,67.39E,
+Karachi,Pakistan,11,24.99,0.86,10,24.92N,67.39E,
+Karachi,Pakistan,12,20.04,0.69,10,24.92N,67.39E,
+Lima,Peru,1,20.23,0.66,11,12.05S,77.26W,0.8
+Lima,Peru,2,20.98,0.6,11,12.05S,77.26W,0.4
+Lima,Peru,3,20.79,0.75,11,12.05S,77.26W,0.4
+Lima,Peru,4,18.8,0.63,11,12.05S,77.26W,0.1
+Lima,Peru,5,16.65,0.7,11,12.05S,77.26W,0.3
+Lima,Peru,6,15.32,0.91,11,12.05S,77.26W,0.7
+Lima,Peru,7,14.8,0.95,11,12.05S,77.26W,1.0
+Lima,Peru,8,14.44,0.7,11,12.05S,77.26W,1.5
+Lima,Peru,9,14.57,0.69,10,12.05S,77.26W,0.7
+Lima,Peru,10,14.96,0.61,10,12.05S,77.26W,0.2
+Lima,Peru,11,16.5,0.75,10,12.05S,77.26W,0.1
+Lima,Peru,12,18.2,0.61,10,12.05S,77.26W,0.2
+Manila,Philippines,1,25.39,0.4,11,15.27N,120.83E,
+Manila,Philippines,2,26.49,0.37,11,15.27N,120.83E,
+Manila,Philippines,3,27.9,0.39,11,15.27N,120.83E,
+Manila,Philippines,4,29.15,0.6,11,15.27N,120.83E,
+Manila,Philippines,5,29.01,0.7,11,15.27N,120.83E,
+Manila,Philippines,6,27.9,0.53,11,15.27N,120.83E,
+Manila,Philippines,7,27.21,0.39,11,15.27N,120.83E,
+Manila,Philippines,8,26.83,0.28,11,15.27N,120.83E,
+Manila,Philippines,9,26.98,0.3,10,15.27N,120.83E,
+Manila,Philippines,10,26.72,0.25,10,15.27N,120.83E,
+Manila,Philippines,11,26.6,0.39,10,15.27N,120.83E,
+Manila,Philippines,12,25.58,0.51,10,15.27N,120.83E,
+Krakow,Poland,1,-2.16,3.13,11,50.63N,19.01E,
+Krakow,Poland,2,-1.56,2.54,11,50.63N,19.01E,
+Krakow,Poland,3,3.09,2.1,11,50.63N,19.01E,
+Krakow,Poland,4,9.65,1.12,11,50.63N,19.01E,
+Krakow,Poland,5,14.35,1.12,11,50.63N,19.01E,
+Krakow,Poland,6,17.74,1.06,11,50.63N,19.01E,
+Krakow,Poland,7,19.91,1.3,11,50.63N,19.01E,
+Krakow,Poland,8,19.01,0.79,11,50.63N,19.01E,
+Krakow,Poland,9,14.59,1.36,10,50.63N,19.01E,
+Krakow,Poland,10,8.68,1.84,10,50.63N,19.01E,
+Krakow,Poland,11,4.8,1.63,10,50.63N,19.01E,
+Krakow,Poland,12,-0.16,2.35,10,50.63N,19.01E,
+Warsaw,Poland,1,-2.94,3.63,11,52.24N,21.02E,27.0
+Warsaw,Poland,2,-2.46,2.67,11,52.24N,21.02E,26.0
+Warsaw,Poland,3,2.3,2.51,11,52.24N,21.02E,31.0
+Warsaw,Poland,4,9.03,1.0,11,52.24N,21.02E,34.0
+Warsaw,Poland,5,14.32,1.12,11,52.24N,21.02E,56.0
+Warsaw,Poland,6,17.62,1.08,11,52.24N,21.02E,69.0
+Warsaw,Poland,7,20.04,1.41,11,52.24N,21.02E,73.0
+Warsaw,Poland,8,18.87,0.57,11,52.24N,21.02E,64.0
+Warsaw,Poland,9,14.35,1.27,10,52.24N,21.02E,46.0
+Warsaw,Poland,10,8.08,1.8,10,52.24N,21.02E,32.0
+Warsaw,Poland,11,4.15,1.45,10,52.24N,21.02E,37.0
+Warsaw,Poland,12,-0.47,2.76,10,52.24N,21.02E,34.0
+Lisbon,Portugal,1,9.48,0.93,11,39.38N,8.32W,99.9
+Lisbon,Portugal,2,10.38,1.19,11,39.38N,8.32W,84.9
+Lisbon,Portugal,3,13.11,0.91,11,39.38N,8.32W,53.2
+Lisbon,Portugal,4,15.01,1.4,11,39.38N,8.32W,68.1
+Lisbon,Portugal,5,18.24,1.21,11,39.38N,8.32W,53.6
+Lisbon,Portugal,6,21.94,1.08,11,39.38N,8.32W,15.9
+Lisbon,Portugal,7,23.65,0.93,11,39.38N,8.32W,4.2
+Lisbon,Portugal,8,24.14,1.03,11,39.38N,8.32W,6.2
+Lisbon,Portugal,9,21.72,0.47,10,39.38N,8.32W,32.9
+Lisbon,Portugal,10,17.58,1.23,10,39.38N,8.32W,100.8
+Lisbon,Portugal,11,12.69,1.13,10,39.38N,8.32W,127.6
+Lisbon,Portugal,12,9.77,0.48,10,39.38N,8.32W,126.7
+Porto,Portugal,1,8.72,0.91,11,40.99N,8.52W,147.1
+Porto,Portugal,2,9.26,1.29,11,40.99N,8.52W,110.5
+Porto,Portugal,3,11.71,0.88,11,40.99N,8.52W,95.6
+Porto,Portugal,4,13.45,1.48,11,40.99N,8.52W,117.6
+Porto,Portugal,5,16.25,1.07,11,40.99N,8.52W,89.6
+Porto,Portugal,6,19.33,1.07,11,40.99N,8.52W,39.9
+Porto,Portugal,7,20.53,1.08,11,40.99N,8.52W,20.4
+Porto,Portugal,8,21.01,1.08,11,40.99N,8.52W,32.9
+Porto,Portugal,9,19.21,0.53,10,40.99N,8.52W,71.9
+Porto,Portugal,10,15.75,1.17,10,40.99N,8.52W,158.3
+Porto,Portugal,11,11.62,1.18,10,40.99N,8.52W,172.0
+Porto,Portugal,12,8.98,0.46,10,40.99N,8.52W,181.0
+Bucharest,Romania,1,-1.22,2.45,11,44.20N,26.83E,37.0
+Bucharest,Romania,2,0.01,3.0,11,44.20N,26.83E,37.0
+Bucharest,Romania,3,6.08,1.61,11,44.20N,26.83E,44.0
+Bucharest,Romania,4,12.15,1.26,11,44.20N,26.83E,50.0
+Bucharest,Romania,5,18.1,1.29,11,44.20N,26.83E,56.0
+Bucharest,Romania,6,22.0,1.28,11,44.20N,26.83E,83.0
+Bucharest,Romania,7,24.09,1.36,11,44.20N,26.83E,70.0
+Bucharest,Romania,8,24.0,1.13,11,44.20N,26.83E,56.0
+Bucharest,Romania,9,18.51,1.23,10,44.20N,26.83E,64.0
+Bucharest,Romania,10,12.15,1.58,10,44.20N,26.83E,53.0
+Bucharest,Romania,11,6.73,2.18,10,44.20N,26.83E,46.0
+Bucharest,Romania,12,1.09,1.32,10,44.20N,26.83E,48.0
+Moscow,Russia,1,-7.92,3.61,11,55.45N,36.85E,53.0
+Moscow,Russia,2,-9.06,3.67,11,55.45N,36.85E,44.0
+Moscow,Russia,3,-2.45,3.48,11,55.45N,36.85E,39.0
+Moscow,Russia,4,5.81,1.55,11,55.45N,36.85E,37.0
+Moscow,Russia,5,13.8,1.94,11,55.45N,36.85E,61.0
+Moscow,Russia,6,16.48,1.86,11,55.45N,36.85E,78.0
+Moscow,Russia,7,19.53,2.14,11,55.45N,36.85E,84.0
+Moscow,Russia,8,17.82,1.59,11,55.45N,36.85E,78.0
+Moscow,Russia,9,12.12,0.91,10,55.45N,36.85E,66.0
+Moscow,Russia,10,5.83,1.26,10,55.45N,36.85E,70.0
+Moscow,Russia,11,0.38,1.65,10,55.45N,36.85E,52.0
+Moscow,Russia,12,-4.19,3.12,10,55.45N,36.85E,51.0
+Riyadh,Saudi Arabia,1,14.4,1.45,11,24.92N,46.11E,
+Riyadh,Saudi Arabia,2,17.46,1.27,11,24.92N,46.11E,
+Riyadh,Saudi Arabia,3,21.6,1.28,11,24.92N,46.11E,
+Riyadh,Saudi Arabia,4,26.55,0.67,11,24.92N,46.11E,
+Riyadh,Saudi Arabia,5,32.63,0.82,11,24.92N,46.11E,
+Riyadh,Saudi Arabia,6,35.75,0.61,11,24.92N,46.11E,
+Riyadh,Saudi Arabia,7,36.71,0.62,11,24.92N,46.11E,
+Riyadh,Saudi Arabia,8,36.6,0.53,11,24.92N,46.11E,
+Riyadh,Saudi Arabia,9,33.26,0.64,10,24.92N,46.11E,
+Riyadh,Saudi Arabia,10,27.74,0.62,10,24.92N,46.11E,
+Riyadh,Saudi Arabia,11,20.69,0.87,10,24.92N,46.11E,
+Riyadh,Saudi Arabia,12,15.07,1.67,10,24.92N,46.11E,
+Belgrade,Serbia,1,-0.11,1.87,11,44.20N,20.12E,46.9
+Belgrade,Serbia,2,0.48,3.17,11,44.20N,20.12E,40.0
+Belgrade,Serbia,3,5.98,1.33,11,44.20N,20.12E,49.3
+Belgrade,Serbia,4,11.58,0.93,11,44.20N,20.12E,56.1
+Belgrade,Serbia,5,16.27,1.4,11,44.20N,20.12E,58.0
+Belgrade,Serbia,6,19.94,1.43,11,44.20N,20.12E,101.2
+Belgrade,Serbia,7,21.9,1.03,11,44.20N,20.12E,63.0
+Belgrade,Serbia,8,21.71,1.47,11,44.20N,20.12E,58.3
+Belgrade,Serbia,9,16.79,1.75,10,44.20N,20.12E,55.3
+Belgrade,Serbia,10,11.1,1.62,10,44.20N,20.12E,50.2
+Belgrade,Serbia,11,6.31,2.24,10,44.20N,20.12E,55.1
+Belgrade,Serbia,12,1.51,1.3,10,44.20N,20.12E,57.4
+Singapore,Singapore,1,26.54,0.3,11,0.80N,103.66E,
+Singapore,Singapore,2,27.12,0.51,11,0.80N,103.66E,
+Singapore,Singapore,3,27.44,0.5,11,0.80N,103.66E,
+Singapore,Singapore,4,27.63,0.33,11,0.80N,103.66E,
+Singapore,Singapore,5,28.21,0.3,11,0.80N,103.66E,
+Singapore,Singapore,6,28.14,0.33,11,0.80N,103.66E,
+Singapore,Singapore,7,27.51,0.35,11,0.80N,103.66E,
+Singapore,Singapore,8,27.49,0.2,11,0.80N,103.66E,
+Singapore,Singapore,9,27.32,0.26,10,0.80N,103.66E,
+Singapore,Singapore,10,27.13,0.25,10,0.80N,103.66E,
+Singapore,Singapore,11,26.99,0.12,10,0.80N,103.66E,
+Singapore,Singapore,12,26.56,0.18,10,0.80N,103.66E,
+Ljubljana,Slovenia,1,0.12,1.96,11,45.81N,15.00E,69.0
+Ljubljana,Slovenia,2,0.85,2.38,11,45.81N,15.00E,70.0
+Ljubljana,Slovenia,3,5.52,1.62,11,45.81N,15.00E,88.0
+Ljubljana,Slovenia,4,10.79,1.25,11,45.81N,15.00E,99.0
+Ljubljana,Slovenia,5,15.41,1.27,11,45.81N,15.00E,109.0
+Ljubljana,Slovenia,6,19.37,1.27,11,45.81N,15.00E,144.0
+Ljubljana,Slovenia,7,21.34,0.91,11,45.81N,15.00E,115.0
+Ljubljana,Slovenia,8,20.6,1.86,11,45.81N,15.00E,137.0
+Ljubljana,Slovenia,9,15.93,1.54,10,45.81N,15.00E,147.0
+Ljubljana,Slovenia,10,10.51,1.48,10,45.81N,15.00E,147.0
+Ljubljana,Slovenia,11,6.21,1.5,10,45.81N,15.00E,129.0
+Ljubljana,Slovenia,12,1.2,1.29,10,45.81N,15.00E,107.0
+Cape Town,South Africa,1,20.55,0.57,11,32.95S,18.19E,9.4
+Cape Town,South Africa,2,20.81,0.48,11,32.95S,18.19E,9.6
+Cape Town,South Africa,3,19.83,0.67,11,32.95S,18.19E,12.5
+Cape Town,South Africa,4,17.61,0.43,11,32.95S,18.19E,40.1
+Cape Town,South Africa,5,15.18,0.65,11,32.95S,18.19E,61.1
+Cape Town,South Africa,6,13.16,0.52,11,32.95S,18.19E,92.3
+Cape Town,South Africa,7,12.99,0.68,11,32.95S,18.19E,84.8
+Cape Town,South Africa,8,12.59,0.68,11,32.95S,18.19E,72.4
+Cape Town,South Africa,9,14.36,0.78,10,32.95S,18.19E,44.3
+Cape Town,South Africa,10,16.38,0.58,10,32.95S,18.19E,28.4
+Cape Town,South Africa,11,18.18,0.75,10,32.95S,18.19E,25.3
+Cape Town,South Africa,12,19.43,0.8,10,32.95S,18.19E,12.8
+Johannesburg,South Africa,1,20.0,0.59,11,26.52S,28.66E,
+Johannesburg,South Africa,2,20.18,0.76,11,26.52S,28.66E,
+Johannesburg,South Africa,3,18.59,1.01,11,26.52S,28.66E,
+Johannesburg,South Africa,4,15.34,0.9,11,26.52S,28.66E,
+Johannesburg,South Africa,5,12.22,0.87,11,26.52S,28.66E,
+Johannesburg,South Africa,6,9.3,0.72,11,26.52S,28.66E,
+Johannesburg,South Africa,7,9.01,1.05,11,26.52S,28.66E,
+Johannesburg,South Africa,8,12.09,1.06,11,26.52S,28.66E,
+Johannesburg,South Africa,9,16.22,1.29,10,26.52S,28.66E,
+Johannesburg,South Africa,10,18.09,0.92,10,26.52S,28.66E,
+Johannesburg,South Africa,11,19.08,0.76,10,26.52S,28.66E,
+Johannesburg,South Africa,12,19.75,0.68,10,26.52S,28.66E,
+Seoul,South Korea,1,-3.43,1.73,11,37.78N,126.10E,16.8
+Seoul,South Korea,2,-0.13,1.98,11,37.78N,126.10E,28.2
+Seoul,South Korea,3,4.49,0.91,11,37.78N,126.10E,36.9
+Seoul,South Korea,4,10.59,1.33,11,37.78N,126.10E,72.9
+Seoul,South Korea,5,16.84,0.7,11,37.78N,126.10E,103.6
+Seoul,South Korea,6,21.15,0.72,11,37.78N,126.10E,129.5
+Seoul,South Korea,7,23.72,0.75,11,37.78N,126.10E,414.4
+Seoul,South Korea,8,25.12,0.94,11,37.78N,126.10E,348.2
+Seoul,South Korea,9,20.89,0.38,10,37.78N,126.10E,141.5
+Seoul,South Korea,10,14.49,1.09,10,37.78N,126.10E,52.2
+Seoul,South Korea,11,7.38,1.41,10,37.78N,126.10E,51.1
+Seoul,South Korea,12,-0.96,1.96,10,37.78N,126.10E,22.6
+Barcelona,Spain,1,10.79,0.91,11,40.99N,2.13E,37.0
+Barcelona,Spain,2,10.48,1.32,11,40.99N,2.13E,35.0
+Barcelona,Spain,3,12.63,0.81,11,40.99N,2.13E,36.0
+Barcelona,Spain,4,14.87,0.86,11,40.99N,2.13E,40.0
+Barcelona,Spain,5,18.2,1.18,11,40.99N,2.13E,47.0
+Barcelona,Spain,6,22.29,1.24,11,40.99N,2.13E,30.0
+Barcelona,Spain,7,24.82,1.04,11,40.99N,2.13E,21.0
+Barcelona,Spain,8,25.26,1.15,11,40.99N,2.13E,62.0
+Barcelona,Spain,9,22.62,0.66,10,40.99N,2.13E,81.0
+Barcelona,Spain,10,19.11,1.05,10,40.99N,2.13E,91.0
+Barcelona,Spain,11,14.67,1.46,10,40.99N,2.13E,59.0
+Barcelona,Spain,12,11.4,1.01,10,40.99N,2.13E,40.0
+Bilbao,Spain,1,4.77,0.96,11,42.59N,2.18W,120.0
+Bilbao,Spain,2,5.34,1.79,11,42.59N,2.18W,86.0
+Bilbao,Spain,3,8.73,1.09,11,42.59N,2.18W,90.0
+Bilbao,Spain,4,11.25,1.33,11,42.59N,2.18W,107.0
+Bilbao,Spain,5,14.8,1.47,11,42.59N,2.18W,78.0
+Bilbao,Spain,6,19.09,1.6,11,42.59N,2.18W,60.0
+Bilbao,Spain,7,21.22,1.18,11,42.59N,2.18W,50.0
+Bilbao,Spain,8,21.31,1.38,11,42.59N,2.18W,76.0
+Bilbao,Spain,9,18.13,0.95,10,42.59N,2.18W,73.0
+Bilbao,Spain,10,13.71,1.26,10,42.59N,2.18W,111.0
+Bilbao,Spain,11,8.5,1.62,10,42.59N,2.18W,147.0
+Bilbao,Spain,12,4.88,1.06,10,42.59N,2.18W,122.0
+Madrid,Spain,1,3.93,1.01,11,40.99N,4.26W,33.0
+Madrid,Spain,2,4.69,1.55,11,40.99N,4.26W,35.0
+Madrid,Spain,3,7.91,0.98,11,40.99N,4.26W,25.0
+Madrid,Spain,4,10.4,1.46,11,40.99N,4.26W,45.0
+Madrid,Spain,5,14.5,1.75,11,40.99N,4.26W,51.0
+Madrid,Spain,6,19.77,1.72,11,40.99N,4.26W,21.0
+Madrid,Spain,7,22.55,1.05,11,40.99N,4.26W,12.0
+Madrid,Spain,8,22.45,1.16,11,40.99N,4.26W,10.0
+Madrid,Spain,9,18.5,0.87,10,40.99N,4.26W,22.0
+Madrid,Spain,10,12.91,1.25,10,40.99N,4.26W,60.0
+Madrid,Spain,11,7.47,1.54,10,40.99N,4.26W,58.0
+Madrid,Spain,12,4.2,0.43,10,40.99N,4.26W,51.0
+Seville,Spain,1,9.34,0.97,11,37.78N,6.10W,66.0
+Seville,Spain,2,10.48,1.45,11,37.78N,6.10W,50.0
+Seville,Spain,3,13.6,0.62,11,37.78N,6.10W,36.0
+Seville,Spain,4,16.06,1.24,11,37.78N,6.10W,54.0
+Seville,Spain,5,20.15,1.52,11,37.78N,6.10W,31.0
+Seville,Spain,6,24.91,1.13,11,37.78N,6.10W,10.0
+Seville,Spain,7,27.58,0.63,11,37.78N,6.10W,2.0
+Seville,Spain,8,27.81,0.86,11,37.78N,6.10W,5.0
+Seville,Spain,9,24.16,0.54,10,37.78N,6.10W,27.0
+Seville,Spain,10,19.21,1.18,10,37.78N,6.10W,68.0
+Seville,Spain,11,13.46,1.24,10,37.78N,6.10W,91.0
+Seville,Spain,12,9.95,0.63,10,37.78N,6.10W,99.0
+Valencia,Spain,1,10.45,1.07,11,39.38N,0.00W,37.0
+Valencia,Spain,2,10.63,1.41,11,39.38N,0.00W,36.0
+Valencia,Spain,3,13.04,0.87,11,39.38N,0.00W,33.0
+Valencia,Spain,4,15.37,0.87,11,39.38N,0.00W,38.0
+Valencia,Spain,5,18.79,1.14,11,39.38N,0.00W,39.0
+Valencia,Spain,6,22.96,1.26,11,39.38N,0.00W,22.0
+Valencia,Spain,7,25.61,0.67,11,39.38N,0.00W,8.0
+Valencia,Spain,8,25.92,0.85,11,39.38N,0.00W,20.0
+Valencia,Spain,9,22.82,0.65,10,39.38N,0.00W,70.0
+Valencia,Spain,10,18.96,1.01,10,39.38N,0.00W,77.0
+Valencia,Spain,11,14.15,1.43,10,39.38N,0.00W,47.0
+Valencia,Spain,12,10.88,0.74,10,39.38N,0.00W,48.0
+Colombo,Sri Lanka,1,25.51,0.48,11,7.23N,80.27E,
+Colombo,Sri Lanka,2,26.52,0.37,11,7.23N,80.27E,
+Colombo,Sri Lanka,3,27.59,0.46,11,7.23N,80.27E,
+Colombo,Sri Lanka,4,27.53,0.45,11,7.23N,80.27E,
+Colombo,Sri Lanka,5,27.75,0.33,11,7.23N,80.27E,
+Colombo,Sri Lanka,6,27.07,0.33,11,7.23N,80.27E,
+Colombo,Sri Lanka,7,26.72,0.29,11,7.23N,80.27E,
+Colombo,Sri Lanka,8,26.86,0.22,11,7.23N,80.27E,
+Colombo,Sri Lanka,9,26.8,0.28,10,7.23N,80.27E,
+Colombo,Sri Lanka,10,26.27,0.33,10,7.23N,80.27E,
+Colombo,Sri Lanka,11,26.07,0.41,10,7.23N,80.27E,
+Colombo,Sri Lanka,12,25.44,0.33,10,7.23N,80.27E,
+Stockholm,Sweden,1,0.17,2.46,11,58.66N,18.46E,37.0
+Stockholm,Sweden,2,-1.19,2.11,11,58.66N,18.46E,29.4
+Stockholm,Sweden,3,0.66,2.53,11,58.66N,18.46E,27.3
+Stockholm,Sweden,4,4.49,1.25,11,58.66N,18.46E,29.2
+Stockholm,Sweden,5,9.08,0.64,11,58.66N,18.46E,34.0
+Stockholm,Sweden,6,13.24,1.14,11,58.66N,18.46E,61.7
+Stockholm,Sweden,7,17.43,1.3,11,58.66N,18.46E,61.5
+Stockholm,Sweden,8,17.08,0.7,11,58.66N,18.46E,66.2
+Stockholm,Sweden,9,13.6,1.08,10,58.66N,18.46E,53.3
+Stockholm,Sweden,10,8.59,1.5,10,58.66N,18.46E,51.4
+Stockholm,Sweden,11,5.83,1.51,10,58.66N,18.46E,47.6
+Stockholm,Sweden,12,2.53,3.13,10,58.66N,18.46E,47.8
+Zurich,Switzerland,1,-1.08,1.99,11,47.42N,8.29E,63.0
+Zurich,Switzerland,2,-1.07,2.49,11,47.42N,8.29E,64.0
+Zurich,Switzerland,3,3.29,1.55,11,47.42N,8.29E,78.0
+Zurich,Switzerland,4,8.12,1.74,11,47.42N,8.29E,83.0
+Zurich,Switzerland,5,12.09,1.59,11,47.42N,8.29E,122.0
+Zurich,Switzerland,6,15.84,1.62,11,47.42N,8.29E,128.0
+Zurich,Switzerland,7,17.34,1.63,11,47.42N,8.29E,124.0
+Zurich,Switzerland,8,16.71,2.0,11,47.42N,8.29E,124.0
+Zurich,Switzerland,9,13.08,1.49,10,47.42N,8.29E,99.0
+Zurich,Switzerland,10,8.11,1.65,10,47.42N,8.29E,86.0
+Zurich,Switzerland,11,3.49,1.33,10,47.42N,8.29E,79.0
+Zurich,Switzerland,12,-0.59,1.41,10,47.42N,8.29E,83.0
+Taipei,Taiwan,1,16.97,0.92,11,24.92N,122.36E,93.8
+Taipei,Taiwan,2,18.11,1.26,11,24.92N,122.36E,129.4
+Taipei,Taiwan,3,18.85,1.11,11,24.92N,122.36E,157.8
+Taipei,Taiwan,4,21.46,0.82,11,24.92N,122.36E,151.4
+Taipei,Taiwan,5,24.52,0.44,11,24.92N,122.36E,245.2
+Taipei,Taiwan,6,26.74,0.49,11,24.92N,122.36E,354.6
+Taipei,Taiwan,7,28.66,0.44,11,24.92N,122.36E,214.2
+Taipei,Taiwan,8,28.47,0.35,11,24.92N,122.36E,336.5
+Taipei,Taiwan,9,27.25,0.59,10,24.92N,122.36E,336.8
+Taipei,Taiwan,10,24.5,0.68,10,24.92N,122.36E,162.6
+Taipei,Taiwan,11,22.31,0.74,10,24.92N,122.36E,89.3
+Taipei,Taiwan,12,18.62,0.9,10,24.92N,122.36E,96.9
+Dar es Salaam,Tanzania,1,28.44,0.28,11,7.23S,39.73E,54.2
+Dar es Salaam,Tanzania,2,28.58,0.55,11,7.23S,39.73E,70.8
+Dar es Salaam,Tanzania,3,28.38,0.41,11,7.23S,39.73E,169.6
+Dar es Salaam,Tanzania,4,27.33,0.58,11,7.23S,39.73E,263.6
+Dar es Salaam,Tanzania,5,26.44,0.34,11,7.23S,39.73E,172.2
+Dar es Salaam,Tanzania,6,25.3,0.48,11,7.23S,39.73E,31.3
+Dar es Salaam,Tanzania,7,24.41,0.16,11,7.23S,39.73E,15.8
+Dar es Salaam,Tanzania,8,24.32,0.17,11,7.23S,39.73E,17.8
+Dar es Salaam,Tanzania,9,24.85,0.18,10,7.23S,39.73E,20.2
+Dar es Salaam,Tanzania,10,25.55,0.17,10,7.23S,39.73E,77.3
+Dar es Salaam,Tanzania,11,26.91,0.26,10,7.23S,39.73E,114.4
+Dar es Salaam,Tanzania,12,27.9,0.34,10,7.23S,39.73E,110.2
+Bangkok,Thailand,1,25.73,0.83,11,13.66N,99.91E,
+Bangkok,Thailand,2,27.79,0.69,11,13.66N,99.91E,
+Bangkok,Thailand,3,29.09,0.93,11,13.66N,99.91E,
+Bangkok,Thailand,4,30.13,0.62,11,13.66N,99.91E,
+Bangkok,Thailand,5,29.49,0.88,11,13.66N,99.91E,
+Bangkok,Thailand,6,28.83,0.44,11,13.66N,99.91E,
+Bangkok,Thailand,7,28.23,0.3,11,13.66N,99.91E,
+Bangkok,Thailand,8,28.29,0.24,11,13.66N,99.91E,
+Bangkok,Thailand,9,27.92,0.26,10,13.66N,99.91E,
+Bangkok,Thailand,10,27.45,0.29,10,13.66N,99.91E,
+Bangkok,Thailand,11,26.97,0.82,10,13.66N,99.91E,
+Bangkok,Thailand,12,25.38,0.95,10,13.66N,99.91E,
+Tunis,Tunisia,1,11.0,0.99,11,36.17N,9.94E,
+Tunis,Tunisia,2,11.15,1.49,11,36.17N,9.94E,
+Tunis,Tunisia,3,14.13,0.68,11,36.17N,9.94E,
+Tunis,Tunisia,4,17.32,0.87,11,36.17N,9.94E,
+Tunis,Tunisia,5,21.61,0.96,11,36.17N,9.94E,
+Tunis,Tunisia,6,26.45,1.16,11,36.17N,9.94E,
+Tunis,Tunisia,7,29.97,0.85,11,36.17N,9.94E,
+Tunis,Tunisia,8,29.58,0.93,11,36.17N,9.94E,
+Tunis,Tunisia,9,25.4,0.53,10,36.17N,9.94E,
+Tunis,Tunisia,10,21.34,1.07,10,36.17N,9.94E,
+Tunis,Tunisia,11,16.18,0.87,10,36.17N,9.94E,
+Tunis,Tunisia,12,11.99,0.94,10,36.17N,9.94E,
+Istanbul,Turkey,1,5.77,1.64,11,40.99N,29.82E,99.5
+Istanbul,Turkey,2,5.77,1.92,11,40.99N,29.82E,82.1
+Istanbul,Turkey,3,8.24,1.67,11,40.99N,29.82E,69.2
+Istanbul,Turkey,4,12.0,1.66,11,40.99N,29.82E,43.1
+Istanbul,Turkey,5,17.4,1.1,11,40.99N,29.82E,31.5
+Istanbul,Turkey,6,21.8,0.99,11,40.99N,29.82E,40.6
+Istanbul,Turkey,7,24.23,0.89,11,40.99N,29.82E,39.6
+Istanbul,Turkey,8,24.64,1.16,11,40.99N,29.82E,41.9
+Istanbul,Turkey,9,20.43,0.79,10,40.99N,29.82E,64.4
+Istanbul,Turkey,10,15.97,1.55,10,40.99N,29.82E,102.3
+Istanbul,Turkey,11,11.37,2.13,10,40.99N,29.82E,110.3
+Istanbul,Turkey,12,7.87,1.17,10,40.99N,29.82E,125.1
+Kyiv,Ukraine,1,-4.42,2.97,11,50.63N,31.69E,35.7
+Kyiv,Ukraine,2,-4.91,3.25,11,50.63N,31.69E,38.6
+Kyiv,Ukraine,3,1.1,2.63,11,50.63N,31.69E,36.4
+Kyiv,Ukraine,4,9.38,1.36,11,50.63N,31.69E,46.2
+Kyiv,Ukraine,5,16.41,2.13,11,50.63N,31.69E,58.1
+Kyiv,Ukraine,6,19.32,1.65,11,50.63N,31.69E,82.7
+Kyiv,Ukraine,7,21.46,1.34,11,50.63N,31.69E,71.8
+Kyiv,Ukraine,8,20.43,1.51,11,50.63N,31.69E,60.4
+Kyiv,Ukraine,9,14.84,0.92,10,50.63N,31.69E,58.2
+Kyiv,Ukraine,10,8.32,1.34,10,50.63N,31.69E,39.7
+Kyiv,Ukraine,11,3.13,1.93,10,50.63N,31.69E,48.8
+Kyiv,Ukraine,12,-1.58,2.34,10,50.63N,31.69E,44.1
+Dubai,United Arab Emirates,1,19.12,0.92,11,24.92N,54.98E,
+Dubai,United Arab Emirates,2,20.93,0.92,11,24.92N,54.98E,
+Dubai,United Arab Emirates,3,23.66,0.68,11,24.92N,54.98E,
+Dubai,United Arab Emirates,4,27.49,0.59,11,24.92N,54.98E,
+Dubai,United Arab Emirates,5,31.7,0.7,11,24.92N,54.98E,
+Dubai,United Arab Emirates,6,33.68,0.51,11,24.92N,54.98E,
+Dubai,United Arab Emirates,7,35.34,0.53,11,24.92N,54.98E,
+Dubai,United Arab Emirates,8,35.56,0.56,11,24.92N,54.98E,
+Dubai,United Arab Emirates,9,33.34,0.53,10,24.92N,54.98E,
+Dubai,United Arab Emirates,10,29.76,0.44,10,24.92N,54.98E,
+Dubai,United Arab Emirates,11,25.49,0.3,10,24.92N,54.98E,
+Dubai,United Arab Emirates,12,20.95,1.04,10,24.92N,54.98E,
+Edinburgh,United Kingdom,1,2.98,1.3,11,55.45N,2.83W,67.5
+Edinburgh,United Kingdom,2,3.56,1.04,11,55.45N,2.83W,47.0
+Edinburgh,United Kingdom,3,5.27,1.52,11,55.45N,2.83W,51.7
+Edinburgh,United Kingdom,4,7.86,1.42,11,55.45N,2.83W,40.5
+Edinburgh,United Kingdom,5,10.69,0.73,11,55.45N,2.83W,48.9
+Edinburgh,United Kingdom,6,13.69,0.98,11,55.45N,2.83W,61.3
+Edinburgh,United Kingdom,7,15.31,1.14,11,55.45N,2.83W,65.0
+Edinburgh,United Kingdom,8,14.65,0.69,11,55.45N,2.83W,60.2
+Edinburgh,United Kingdom,9,12.55,0.8,10,55.45N,2.83W,63.7
+Edinburgh,United Kingdom,10,8.71,1.28,10,55.45N,2.83W,75.6
+Edinburgh,United Kingdom,11,5.37,1.26,10,55.45N,2.83W,62.1
+Edinburgh,United Kingdom,12,2.21,1.79,10,55.45N,2.83W,60.8
+Glasgow,United Kingdom,1,2.98,1.3,11,55.45N,2.83W,157.3
+Glasgow,United Kingdom,2,3.56,1.04,11,55.45N,2.83W,125.0
+Glasgow,United Kingdom,3,5.27,1.52,11,55.45N,2.83W,112.4
+Glasgow,United Kingdom,4,7.86,1.42,11,55.45N,2.83W,73.2
+Glasgow,United Kingdom,5,10.69,0.73,11,55.45N,2.83W,71.9
+Glasgow,United Kingdom,6,13.69,0.98,11,55.45N,2.83W,80.8
+Glasgow,United Kingdom,7,15.31,1.14,11,55.45N,2.83W,91.9
+Glasgow,United Kingdom,8,14.65,0.69,11,55.45N,2.83W,107.1
+Glasgow,United Kingdom,9,12.55,0.8,10,55.45N,2.83W,109.4
+Glasgow,United Kingdom,10,8.71,1.28,10,55.45N,2.83W,135.7
+Glasgow,United Kingdom,11,5.37,1.26,10,55.45N,2.83W,145.0
+Glasgow,United Kingdom,12,2.21,1.79,10,55.45N,2.83W,160.7
+London,United Kingdom,1,4.48,1.66,11,52.24N,0.00W,55.2
+London,United Kingdom,2,4.39,1.21,11,52.24N,0.00W,40.9
+London,United Kingdom,3,6.46,1.35,11,52.24N,0.00W,41.6
+London,United Kingdom,4,9.45,1.46,11,52.24N,0.00W,43.7
+London,United Kingdom,5,12.52,0.87,11,52.24N,0.00W,49.4
+London,United Kingdom,6,15.69,1.04,11,52.24N,0.00W,45.1
+London,United Kingdom,7,17.64,1.4,11,52.24N,0.00W,44.5
+London,United Kingdom,8,17.32,0.92,11,52.24N,0.00W,49.5
+London,United Kingdom,9,15.04,1.07,10,52.24N,0.00W,49.1
+London,United Kingdom,10,11.12,1.5,10,52.24N,0.00W,68.5
+London,United Kingdom,11,7.5,1.25,10,52.24N,0.00W,59.0
+London,United Kingdom,12,4.25,1.75,10,52.24N,0.00W,55.2
+Chicago,United States,1,0.15,2.84,11,42.59N,87.27W,58.0
+Chicago,United States,2,0.36,2.19,11,42.59N,87.27W,54.0
+Chicago,United States,3,5.06,2.98,11,42.59N,87.27W,68.0
+Chicago,United States,4,8.48,1.38,11,42.59N,87.27W,105.0
+Chicago,United States,5,12.64,1.43,11,42.59N,87.27W,121.0
+Chicago,United States,6,18.28,1.31,11,42.59N,87.27W,115.0
+Chicago,United States,7,22.66,1.72,11,42.59N,87.27W,102.0
+Chicago,United States,8,23.05,1.25,11,42.59N,87.27W,104.0
+Chicago,United States,9,19.62,1.19,10,42.59N,87.27W,85.0
+Chicago,United States,10,13.32,1.62,10,42.59N,87.27W,98.0
+Chicago,United States,11,8.54,1.06,10,42.59N,87.27W,69.0
+Chicago,United States,12,2.46,2.42,10,42.59N,87.27W,59.0
+Houston,United States,1,11.77,1.83,11,29.74N,96.00W,
+Houston,United States,2,13.23,2.06,11,29.74N,96.00W,
+Houston,United States,3,17.66,1.63,11,29.74N,96.00W,
+Houston,United States,4,20.89,1.51,11,29.74N,96.00W,
+Houston,United States,5,25.04,0.87,11,29.74N,96.00W,
+Houston,United States,6,28.24,0.75,11,29.74N,96.00W,
+Houston,United States,7,28.77,0.92,11,29.74N,96.00W,
+Houston,United States,8,29.44,0.91,11,29.74N,96.00W,
+Houston,United States,9,26.6,1.11,10,29.74N,96.00W,
+Houston,United States,10,21.82,1.1,10,29.74N,96.00W,
+Houston,United States,11,17.33,0.58,10,29.74N,96.00W,
+Houston,United States,12,12.36,1.37,10,29.74N,96.00W,
+Los Angeles,United States,1,10.2,1.6,11,34.56N,118.70W,84.0
+Los Angeles,United States,2,10.2,0.85,11,34.56N,118.70W,92.0
+Los Angeles,United States,3,12.88,1.94,11,34.56N,118.70W,57.0
+Los Angeles,United States,4,14.05,1.41,11,34.56N,118.70W,18.0
+Los Angeles,United States,5,17.95,1.31,11,34.56N,118.70W,8.1
+Los Angeles,United States,6,21.14,1.49,11,34.56N,118.70W,2.3
+Los Angeles,United States,7,25.12,1.11,11,34.56N,118.70W,0.5
+Los Angeles,United States,8,24.75,0.97,11,34.56N,118.70W,0.0
+Los Angeles,United States,9,22.72,1.43,10,34.56N,118.70W,0.3
+Los Angeles,United States,10,17.71,1.47,10,34.56N,118.70W,15.0
+Los Angeles,United States,11,13.26,1.62,10,34.56N,118.70W,20.0
+Los Angeles,United States,12,9.31,0.89,10,34.56N,118.70W,63.0
+Miami,United States,1,17.68,1.86,11,26.52N,80.60W,46.0
+Miami,United States,2,19.08,1.74,11,26.52N,80.60W,55.0
+Miami,United States,3,20.95,2.01,11,26.52N,80.60W,62.0
+Miami,United States,4,23.12,1.03,11,26.52N,80.60W,85.0
+Miami,United States,5,25.84,0.67,11,26.52N,80.60W,161.0
+Miami,United States,6,27.91,0.6,11,26.52N,80.60W,267.0
+Miami,United States,7,28.63,0.47,11,26.52N,80.60W,187.0
+Miami,United States,8,28.87,0.36,11,26.52N,80.60W,243.0
+Miami,United States,9,27.87,0.22,10,26.52N,80.60W,260.0
+Miami,United States,10,25.17,0.77,10,26.52N,80.60W,194.0
+Miami,United States,11,21.45,1.22,10,26.52N,80.60W,90.0
+Miami,United States,12,18.83,2.35,10,26.52N,80.60W,62.0
+New York,United States,1,-2.45,2.7,11,40.99N,74.56W,92.0
+New York,United States,2,-1.27,1.8,11,40.99N,74.56W,81.0
+New York,United States,3,4.04,2.06,11,40.99N,74.56W,109.0
+New York,United States,4,10.15,1.17,11,40.99N,74.56W,104.0
+New York,United States,5,15.79,1.64,11,40.99N,74.56W,101.0
+New York,United States,6,20.65,1.1,11,40.99N,74.56W,115.0
+New York,United States,7,23.48,1.26,11,40.99N,74.56W,117.0
+New York,United States,8,22.33,0.9,11,40.99N,74.56W,116.0
+New York,United States,9,18.57,1.01,10,40.99N,74.56W,109.0
+New York,United States,10,11.63,1.5,10,40.99N,74.56W,111.0
+New York,United States,11,6.59,1.53,10,40.99N,74.56W,91.0
+New York,United States,12,0.55,2.0,10,40.99N,74.56W,111.0
+Montevideo,Uruguay,1,24.28,0.57,11,34.56S,56.43W,94.0
+Montevideo,Uruguay,2,23.51,0.67,11,34.56S,56.43W,95.0
+Montevideo,Uruguay,3,21.38,0.93,11,34.56S,56.43W,106.0
+Montevideo,Uruguay,4,17.45,0.87,11,34.56S,56.43W,111.0
+Montevideo,Uruguay,5,13.6,1.26,11,34.56S,56.43W,83.0
+Montevideo,Uruguay,6,10.64,1.21,11,34.56S,56.43W,89.0
+Montevideo,Uruguay,7,9.89,1.85,11,34.56S,56.43W,93.0
+Montevideo,Uruguay,8,11.23,1.4,11,34.56S,56.43W,90.0
+Montevideo,Uruguay,9,13.6,0.95,10,34.56S,56.43W,92.0
+Montevideo,Uruguay,10,16.47,0.88,10,34.56S,56.43W,102.0
+Montevideo,Uruguay,11,20.0,1.41,10,34.56S,56.43W,96.0
+Montevideo,Uruguay,12,22.27,1.13,10,34.56S,56.43W,91.0
+Caracas,Venezuela,1,24.58,0.38,11,10.45N,66.27W,15.3
+Caracas,Venezuela,2,24.84,0.54,11,10.45N,66.27W,13.2
+Caracas,Venezuela,3,25.76,0.67,11,10.45N,66.27W,11.4
+Caracas,Venezuela,4,26.25,0.51,11,10.45N,66.27W,59.2
+Caracas,Venezuela,5,26.64,0.37,11,10.45N,66.27W,81.7
+Caracas,Venezuela,6,26.37,0.36,11,10.45N,66.27W,134.1
+Caracas,Venezuela,7,25.99,0.39,11,10.45N,66.27W,118.4
+Caracas,Venezuela,8,26.17,0.34,11,10.45N,66.27W,123.8
+Caracas,Venezuela,9,26.45,0.42,10,10.45N,66.27W,115.4
+Caracas,Venezuela,10,26.16,0.41,10,10.45N,66.27W,126.3
+Caracas,Venezuela,11,25.81,0.51,10,10.45N,66.27W,72.6
+Caracas,Venezuela,12,24.93,0.52,10,10.45N,66.27W,41.4
+Hanoi,Vietnam,1,13.41,1.67,11,21.70N,106.44E,
+Hanoi,Vietnam,2,16.69,2.71,11,21.70N,106.44E,
+Hanoi,Vietnam,3,18.86,1.62,11,21.70N,106.44E,
+Hanoi,Vietnam,4,22.94,1.0,11,21.70N,106.44E,
+Hanoi,Vietnam,5,26.13,0.96,11,21.70N,106.44E,
+Hanoi,Vietnam,6,27.66,0.41,11,21.70N,106.44E,
+Hanoi,Vietnam,7,27.77,0.48,11,21.70N,106.44E,
+Hanoi,Vietnam,8,27.19,0.39,11,21.70N,106.44E,
+Hanoi,Vietnam,9,25.96,0.53,10,21.70N,106.44E,
+Hanoi,Vietnam,10,23.32,0.9,10,21.70N,106.44E,
+Hanoi,Vietnam,11,19.67,1.2,10,21.70N,106.44E,
+Hanoi,Vietnam,12,15.56,1.13,10,21.70N,106.44E,
+Ho Chi Minh City,Vietnam,1,26.21,0.52,11,10.45N,107.18E,
+Ho Chi Minh City,Vietnam,2,26.95,0.52,11,10.45N,107.18E,
+Ho Chi Minh City,Vietnam,3,28.06,0.51,11,10.45N,107.18E,
+Ho Chi Minh City,Vietnam,4,29.02,0.49,11,10.45N,107.18E,
+Ho Chi Minh City,Vietnam,5,29.12,0.69,11,10.45N,107.18E,
+Ho Chi Minh City,Vietnam,6,28.89,0.32,11,10.45N,107.18E,
+Ho Chi Minh City,Vietnam,7,28.32,0.19,11,10.45N,107.18E,
+Ho Chi Minh City,Vietnam,8,28.41,0.31,11,10.45N,107.18E,
+Ho Chi Minh City,Vietnam,9,28.06,0.19,10,10.45N,107.18E,
+Ho Chi Minh City,Vietnam,10,27.63,0.28,10,10.45N,107.18E,
+Ho Chi Minh City,Vietnam,11,27.68,0.54,10,10.45N,107.18E,
+Ho Chi Minh City,Vietnam,12,26.69,0.65,10,10.45N,107.18E,
