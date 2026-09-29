@@ -1,6 +1,6 @@
 import math
 
-LAUNDRY_AFTER_DAYS = 7
+LAUNDRY_AFTER_DAYS = 8
 
 
 def effective_days(trip_days):
@@ -72,6 +72,15 @@ COASTAL_RULES = [
 minimum_temp = 20
 max_precipitation = 200
 
+RAIN_RULES = {
+    "wet": [
+        ("Raincoat", "outerwear", 0, 1),
+        ("Umbrella", "other", 0, 1),
+    ],
+    "moderate": [],
+    "dry": [],
+    None: [],
+}
 
 def is_coastal(city, country):
     return (city, country) in COASTAL_CITIES
@@ -84,3 +93,60 @@ def wants_beach_items(city, country, avg_temp_c, precip_mm):
     if precip_mm is not None and precip_mm > max_precipitation:
         return False
     return True
+
+TEMPERATURE_RULES = {
+    "cool": [
+        ("T-shirt", "top", 0.5, 1),
+        ("Long-sleeve shirt", "top", 0.5, 1),
+        ("Sweater", "top", 0.5, 1),
+        ("Jeans", "bottom", 0.75, 1),
+        ("Sneakers", "footwear", 0.25, 1),
+        ("Underwear", "other", 1.0, 1),
+        ("Socks", "other", 1.0, 1),
+    ],
+    
+    "cold": [
+        ("Jacket", "outerwear", 0.5, 1),
+        ("Coat", "outerwear", 0, 1),
+        ("Shirt", "top", 0.5, 1),
+        ("Thermal t-shirt", "top", 0.25, 1),
+        ("Jeans", "bottom", 0.75, 1),
+        ("Sneakers", "footwear", 0.5, 1),
+        ("Underwear", "other", 1.0, 1),
+        ("Socks", "other", 1.0, 1),
+    ],
+    
+    "freezing": [
+        ("Gloves", "other", 0, 1),
+        ("Scarf", "other", 0, 1),
+        ("Thermal leggings", "bottom", 0.5, 1),
+        ("Thermal t-shirt", "top", 0.75, 1),
+        ("Shirt", "top", 0.5, 1),
+        ("Jacket", "outerwear", 0.5, 1),
+        ("Coat", "outerwear", 0, 1),
+        ("Sneakers", "footwear", 0.25, 1),
+        ("Boots", "footwear", 0.25, 1),
+        ("Underwear", "other", 1.0, 1),
+        ("Socks", "other", 1.0, 1),
+    ],
+    "mild": [
+        ("T-shirt", "top", 0.75, 1),
+        ("Light jacket", "outerwear", 0.25, 1),
+        ("Jeans", "bottom", 0.5, 1),
+        ("Shorts", "bottom", 0.5, 1),
+        ("Sneakers", "footwear", 0.5, 1),
+        ("Underwear", "other", 1.0, 1),
+        ("Socks", "other", 1.0, 1),
+    ],
+    "hot": [
+        ("T-shirt", "top", 1.0, 1),
+        ("Shorts", "bottom", 0.75, 1),
+        ("Sandals", "footwear", 0, 1),
+        ("Sneakers", "footwear", 0.33, 1),
+        ("Sunglasses", "other", 0, 1),
+        ("Underwear", "other", 1.0, 1),
+        ("Socks", "other", 1.0, 1),
+],
+
+
+}
