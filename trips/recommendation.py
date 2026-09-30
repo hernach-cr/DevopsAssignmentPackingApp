@@ -85,7 +85,7 @@ RAIN_RULES = {
 def is_coastal(city, country):
     return (city, country) in COASTAL_CITIES
 
-def wants_beach_items(city, country, avg_temp_c, precip_mm):
+def beach_items(city, country, avg_temp_c, precip_mm):
     if not is_coastal(city, country):
         return False
     if avg_temp_c <= minimum_temp:
@@ -146,7 +146,33 @@ TEMPERATURE_RULES = {
         ("Sunglasses", "other", 0, 1),
         ("Underwear", "other", 1.0, 1),
         ("Socks", "other", 1.0, 1),
-],
+    ],
+ 
 
 
 }
+
+
+def recommend_clothing(avg_temp_c, precip_mm, trip_days, city=None, country=None):
+    days=effective_days(trip_days)
+    items=[]
+    temp=temperature(avg_temp_c)
+    for name,category,per_day,minimum in TEMPERATURE_RULES[temp]:
+
+        items.append({"item_name": name, "category": category, "quantity": item_quantity(per_day,minimum,days)})
+
+    precip=rain(precip_mm)
+
+    for name,category,per_day,minimum in RAIN_RULES[precip]:
+    
+        items.append({"item_name": name, "category": category, "quantity": item_quantity(per_day,minimum,days)})
+
+    if beach_items(city, country, avg_temp_c, precip_mm):
+        for name,category,per_day,minimum in COASTAL_RULES:
+            items.append({"item_name": name, "category": category, "quantity": item_quantity(per_day,minimum,days)})
+    return items
+
+
+    
+    
+
