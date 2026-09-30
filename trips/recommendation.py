@@ -65,7 +65,7 @@ COASTAL_CITIES = {
 COASTAL_RULES = [
     ("Swimsuit", "other", 0.3, 2),
     ("Beach towel", "other", 0, 1),
-    ("Sandals", "footwear", 0, 1),
+    ("flip-flops", "footwear", 0, 1),
     ("suncream","other", 0 , 1)
 ]
 
@@ -171,6 +171,7 @@ def recommend_clothing(avg_temp_c, precip_mm, trip_days, city=None, country=None
         for name,category,per_day,minimum in COASTAL_RULES:
             items.append({"item_name": name, "category": category, "quantity": item_quantity(per_day,minimum,days)})
     return items
+
 
 
     
