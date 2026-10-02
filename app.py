@@ -6,9 +6,12 @@ from flask import Flask, g
 from database import seed
 
 app = Flask(__name__)
+
 from trips.routes import trips_bp
 app.register_blueprint(trips_bp)
 
+from packs.routes import packing_bp
+app.register_blueprint(packing_bp)
 
 def get_db():
     if "db" not in g:
