@@ -6,6 +6,9 @@ from trips.recommendation import (
     beach_items,
     recommend_clothing,
 )
+from datetime import date
+import pytest
+from trips.recommendation import generate_packing_list
 
 def test_temperature_boundaries():
     assert temperature(-5) == "freezing"
@@ -61,3 +64,31 @@ def test_recommend_clothing_hotwet_inland():
     assert "Coat" not in names
     assert "Raincoat"  in names
     assert "Swimsuit"  not in names
+
+
+
+def test_generate_packing_list_looks_up_correct_month(test_db):
+    items = generate_packing_list(
+        db=test_db,
+        city="Madrid",
+        country="Spain",
+        start_date=date(2026, 6, 15),
+        end_date=date(2026, 6, 22),
+        trip_days=8,
+    )
+    names = [item["item_name"] for item in items]
+
+    assert "T-shirt" in names
+    assert "Coat" not in names
+
+
+def test_generate_packing_list_raises_for_unknown_city(test_db):
+    with pytest.raises(ValueError):
+        generate_packing_list(
+            db=test_db,
+            city="Nowhere",
+            country="Nowhere",
+            start_date=date(2026, 6, 15),
+            end_date=date(2026, 6, 22),
+            trip_days=8,
+        )
