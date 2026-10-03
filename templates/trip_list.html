@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>My Trips</h2>
+<a href="/new">+ Plan a new trip</a>
+<ul>
+    {% for trip in trips %}
+    <li data-trip-id="{{ trip.id }}">
+  <a href="/trips/{{ trip.id }}/view">
+    {{ trip.city }}, {{ trip.country }} &mdash; {{ trip.start_date }} to {{ trip.end_date }}
+</a>
+<a href="/trips/{{ trip.id }}/edit">Edit</a>
+<button class="delete-trip-btn">Delete</button>
+</li>
+    {% endfor %}
+</ul>
+{% if not trips %}
+<p>No trips yet. <a href="/new">Create one</a>.</p>
+{% endif %}
+<script>
+document.querySelectorAll(".delete-trip-btn").forEach(button => {
+    button.addEventListener("click", async function () {
+        const tripId = this.closest("li").dataset.tripId;
+        if (!confirm("Delete this trip?")) return;
+        await fetch(`/trips/${tripId}`, { method: "DELETE" });
+        location.reload();
+    });
+});
+</script>
+{% endblock %}

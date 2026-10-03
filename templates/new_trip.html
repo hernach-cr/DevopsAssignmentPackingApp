@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Plan a trip</h2>
+<form id="trip-form">
+    <label>Country: <select id="country-select" required></select></label><br>
+    <label>City: <select id="city-select" required></select></label><br>
+    <label>Start date: <input type="date" name="start_date" required></label><br>
+    <label>End date: <input type="date" name="end_date" required></label><br>
+    <label>Accommodation:
+        <select name="accommodation_type">
+            <option value="hotel">Hotel</option>
+            <option value="hostel">Hostel</option>
+            <option value="apartment">Apartment</option>
+            <option value="other">Other</option>
+        </select>
+    </label><br>
+    <button type="submit">Generate packing list</button>
+</form>
+<div id="preview-section" style="display:none;">
+    <h3>Suggested packing list</h3>
+    <ul id="preview-items"></ul>
+    <button id="save-trip-btn">Save trip</button>
+    <button id="discard-btn" type="button">Discard</button>
+</div>
+<p id="error-message" style="color: red;"></p>
+
+<script>
+async function loadCountries() {
+    const response = await fetch("/api/countries");
+    const countries = await response.json();
+    const select = document.getElementById("country-select");
+    select.innerHTML = '<option value="">Select a country</option>';
+    countries.forEach(country => {
+        const option = document.createElement("option");
+        option.value = country;
+        option.textContent = country;
+        select.appendChild(option);
+    });
+}
+
+async function loadCitiesForCountry(country) {
+    const response = await fetch(`/api/cities?country=${encodeURIComponent(country)}`);
+    const cities = await response.json();
+    const select = document.getElementById("city-select");
+    select.innerHTML = '<option value="">Select a city</option>';
+    cities.forEach(c => {
+        const option = document.createElement("option");
+        option.value = c.city;
+        option.textContent = c.city;
+        select.appendChild(option);
+    });
+}
+
+document.getElementById("country-select").addEventListener("change", function () {
+    loadCitiesForCountry(this.value);
+});
+
+loadCountries();
+document.querySelector('input[name="start_date"]').addEventListener("change", function () {
+    document.querySelector('input[name="end_date"]').min = this.value;
+});
+
+let pendingTripData = null;
+
+document.getElementById("trip-form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = {
+        city: document.getElementById("city-select").value,
+        country: document.getElementById("country-select").value,
+        start_date: form.start_date.value,
+        end_date: form.end_date.value,
+        accommodation_type: form.accommodation_type.value,
+    };
+
+    const response = await fetch("/trips/preview", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+        const err = await response.json();
+        document.getElementById("error-message").textContent = err.error;
+        return;
+    }
+
+    const result = await response.json();
+    pendingTripData = data;
+
+    const list = document.getElementById("preview-items");
+    list.innerHTML = "";
+    result.items.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = `${item.item_name} (x${item.quantity}) — ${item.category}`;
+        list.appendChild(li);
+    });
+
+    document.getElementById("preview-section").style.display = "block";
+});
+
+document.getElementById("save-trip-btn").addEventListener("click", async function () {
+    const response = await fetch("/trips", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(pendingTripData),
+    });
+    const result = await response.json();
+    window.location.href = "/trips/" + result.trip_id + "/view";
+});
+
+document.getElementById("discard-btn").addEventListener("click", function () {
+    document.getElementById("preview-section").style.display = "none";
+    pendingTripData = null;
+});
+
+</script>
+{% endblock %}

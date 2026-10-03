@@ -1,0 +1,5 @@
+body { font-family: sans-serif; max-width: 600px; margin: 2rem auto; padding: 0 1rem; }
+form label { display: block; margin-bottom: 0.5rem; }
+ul { list-style: none; padding: 0; }
+li { padding: 0.5rem 0; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; }
+</style>

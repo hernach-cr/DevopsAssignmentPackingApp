@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ trip.city }}, {{ trip.country }}</h2>
+<p>{{ trip.start_date }} to {{ trip.end_date }} &mdash; {{ trip.accommodation_type }}</p>
+<button id="edit-trip-btn">Edit destination/dates</button>
+
+<div id="edit-trip-form-section" style="display:none;">
+    <form id="edit-trip-form">
+        <label>Country: <select id="country-select" required></select></label><br>
+        <label>City: <select id="city-select" required></select></label><br>
+        <label>Start date: <input type="date" name="start_date" value="{{ trip.start_date }}" required></label><br>
+        <label>End date: <input type="date" name="end_date" value="{{ trip.end_date }}" required></label><br>
+        <label>Accommodation:
+            <select name="accommodation_type">
+                <option value="hotel" {% if trip.accommodation_type == "hotel" %}selected{% endif %}>Hotel</option>
+                <option value="hostel" {% if trip.accommodation_type == "hostel" %}selected{% endif %}>Hostel</option>
+                <option value="apartment" {% if trip.accommodation_type == "apartment" %}selected{% endif %}>Apartment</option>
+                <option value="other" {% if trip.accommodation_type == "other" %}selected{% endif %}>Other</option>
+            </select>
+        </label><br>
+        <button type="submit">Save changes</button>
+        <button type="button" id="cancel-edit-btn">Cancel</button>
+    </form>
+</div>
+<p id="edit-error-message" style="color: red;"></p>
+
+<ul id="item-list">
+    {% for item in items %}
+    <li data-item-id="{{ item.id }}">
+        <label>
+            <input type="checkbox" class="packed-toggle" {% if item.packed %}checked{% endif %}>
+            {{ item.item_name }} (x{{ item.quantity }}) &mdash; {{ item.category }}
+        </label>
+        <button class="delete-btn">Remove</button>
+    </li>
+    {% endfor %}
+</ul>
+
+<h3>Add an item</h3>
+<form id="add-item-form">
+    <input type="text" name="item_name" placeholder="Item name" required>
+    <input type="number" name="quantity" value="1" min="1">
+    <button type="submit">Add</button>
+</form>
+
+<script>
+const tripId = {{ trip.id }};
+const currentCity = {{ trip.city | tojson }};
+const currentCountry = {{ trip.country | tojson }};
+
+document.getElementById("edit-trip-btn").addEventListener("click", async function () {
+    document.getElementById("edit-trip-form-section").style.display = "block";
+    await loadCountries();
+});
+
+document.getElementById("cancel-edit-btn").addEventListener("click", function () {
+    document.getElementById("edit-trip-form-section").style.display = "none";
+});
+
+async function loadCountries() {
+    const response = await fetch("/api/countries");
+    const countries = await response.json();
+    const select = document.getElementById("country-select");
+    select.innerHTML = "";
+    countries.forEach(country => {
+        const option = document.createElement("option");
+        option.value = country;
+        option.textContent = country;
+        if (country === currentCountry) option.selected = true;
+        select.appendChild(option);
+    });
+    await loadCitiesForCountry(currentCountry);
+}
+
+async function loadCitiesForCountry(country) {
+    const response = await fetch(`/api/cities?country=${encodeURIComponent(country)}`);
+    const cities = await response.json();
+    const select = document.getElementById("city-select");
+    select.innerHTML = "";
+    cities.forEach(c => {
+        const option = document.createElement("option");
+        option.value = c.city;
+        option.textContent = c.city;
+        if (c.city === currentCity) option.selected = true;
+        select.appendChild(option);
+    });
+}
+
+document.getElementById("country-select").addEventListener("change", function () {
+    loadCitiesForCountry(this.value);
+});
+
+document.getElementById("edit-trip-form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = {
+        city: document.getElementById("city-select").value,
+        country: document.getElementById("country-select").value,
+        start_date: form.start_date.value,
+        end_date: form.end_date.value,
+        accommodation_type: form.accommodation_type.value,
+    };
+
+    const response = await fetch(`/trips/${tripId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+        const err = await response.json();
+        document.getElementById("edit-error-message").textContent = err.error;
+        return;
+    }
+
+    location.reload();
+});
+
+document.getElementById("add-item-form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const form = e.target;
+    const response = await fetch(`/trips/${tripId}/items`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ item_name: form.item_name.value, quantity: parseInt(form.quantity.value) }),
+    });
+    if (response.ok) location.reload();
+});
+
+document.querySelectorAll(".packed-toggle").forEach(checkbox => {
+    checkbox.addEventListener("change", async function () {
+        const itemId = this.closest("li").dataset.itemId;
+        await fetch(`/items/${itemId}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ packed: this.checked }),
+        });
+    });
+});
+
+document.querySelectorAll(".delete-btn").forEach(button => {
+    button.addEventListener("click", async function () {
+        const itemId = this.closest("li").dataset.itemId;
+        await fetch(`/items/${itemId}`, { method: "DELETE" });
+        location.reload();
+    });
+});
+</script>
+{% endblock %}
