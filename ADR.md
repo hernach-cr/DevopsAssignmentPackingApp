@@ -22,6 +22,14 @@ Decision: The first table contains the cities, and next to it the average precip
 Alternatives considered: Another option would have been linking climate data to clothing types through a new dataset for the clothes. Instead, I chose to code that linking through Python, calculating quantities based on the weather and the number of days the user stays. I chose this because it gives less complexity when changing decisions about temperature, rain, or clothing rules later.
 Consequences: This design makes it easier to change variables and rules later. However, some values aren't linked to real data and come back as null, in which case I skip the value instead of guessing it.
 
+## 4. Testing approach
+Date: 30/09
+Status: Decided
+Context: The assignment requires at least 70% coverage of the core business logic, so I had to decide where to spend the tests. Dates and clothing recommendation are where wrong answers would most likely appear, and recommending clothes for a specific trip is the core of the app.
+Decision: I focused my tests on the thresholds and quantities, with assertions checking that a given temperature, rainfall amount or trip length returns the expected band, item or quantity. I also tested the month selection for trips and added route tests for the main success and error responses.
+Alternatives considered: I could have tested the HTML page routes as well, but I judged them less important because any mistake there can be seen directly in the frontend and wouldn't break the core recommendation logic.
+Consequences: Coverage is 83% overall. The recommendation.py  and dates.py files are at 94 and 100%  and packs/routes.py is at 96%, but trips/routes.py is the thinnest at 71%. Its untested lines are the routes I only checked by hand in the browser, such as the page and dropdown routes and the delete-trip route, plus a few error branches, and none of the frontend JavaScript is covered by automated tests. In exchange, when I change a clothing rule or a threshold, the tests show right away whether any recommendation changed.
+
 ## 5. Laundry assumption based on trip length 
 Date: 28/09
 Status: Decided
