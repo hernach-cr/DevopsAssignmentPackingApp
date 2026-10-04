@@ -21,7 +21,7 @@ def _parse_trip_fields(data, defaults=None):
 @trips_bp.route("/trips", methods=["POST"])
 def create_trip():
     data = request.get_json(silent=True)
-    print("Received data:", data)
+    
 
     if data is None:
         return jsonify({"error": "Request body must be valid JSON"}), 400

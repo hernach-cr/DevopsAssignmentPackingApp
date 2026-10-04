@@ -2,7 +2,7 @@
 
 | Date | Tool | Prompt | Disposition | What changed & why | In my own words |
 |---|---|---|---|---|---|
-| 2026-09-25 | Claude | Asked for help finding a global city-temperature dataset the recommendation system could use to suggest clothes from monthly temperature averages | Accepted | Used Berkeley Earth GlobalLandTemperaturesByCity (Kaggle) |I asked for help finding a global city-temperature dataset which the recommendation system would use for suggesting different clothes based on temperature averages across 12 years |
+| 2026-09-25 | Claude | Asked for help finding a global city-temperature dataset the recommendation system could use to suggest clothes from monthly temperature averages | Accepted | Used Berkeley Earth GlobalLandTemperaturesByCity (Kaggle) |The source has a temperature for every city and month. I kept January 2003 to August 2013 because it's the most recent period with complete data . For each city I average each calendar month over those years. |
 
 
 | 2026-09-25 | Claude | Asked for a precipitation dataset to add a second climate variable | Modified | The first attempt included invented values for cities missing. |I Asked for a precipitation dataset to add a second climate variable, this one connected directly to 73 out 100 cities leaving the other ones as None |

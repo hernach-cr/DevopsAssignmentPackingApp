@@ -18,7 +18,7 @@ Consequences: This separation has held up well in practice as one domain only ev
 Date: 25/09
 Status: Decided
 Context: I needed a schema that keeps my two feature domains separate from each other. One domain looks for information inside the climate dataset and suggests while the other domain takes that suggestion and lets the user add or delete items from it.
-Decision: The first table contains the cities, and next to it the average precipitation and temperature for each month in 12 years. The trips table stores where and when a trip takes place, which is used to generate the clothing suggestion. The packing_items table uses the suggested data from a trip and lets the user add or erase items using that suggestion.
+Decision: The first table contains the cities, and next to it the average precipitation and temperature for each month in 11 years. The trips table stores where and when a trip takes place, which is used to generate the clothing suggestion. The packing_items table uses the suggested data from a trip and lets the user add or erase items using that suggestion.
 Alternatives considered: Another option would have been linking climate data to clothing types through a new dataset for the clothes. Instead, I chose to code that linking through Python, calculating quantities based on the weather and the number of days the user stays. I chose this because it gives less complexity when changing decisions about temperature, rain, or clothing rules later.
 Consequences: This design makes it easier to change variables and rules later. However, some values aren't linked to real data and come back as null, in which case I skip the value instead of guessing it.
 
