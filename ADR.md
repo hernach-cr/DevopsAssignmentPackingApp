@@ -34,6 +34,6 @@ Consequences: Coverage is 83% overall. The recommendation.py  and dates.py files
 Date: 28/09
 Status: Decided
 Context: The recommendation needs to know how many days of clothes to pack. Longer trips could assume laundry access, but that really depends on accommodation type (apartment vs hostel), not just trip length.
-Decision: I assume laundry is available for any trip over 7 days, based on length alone. accommodation_type is stored in the  tripstable but not used by the recommendation algorithm.
-Alternatives considered: I considered branching the laundry cap by accommodation type as for example, apartments getting a 7-day cap and hostels a longer one, since they're less likely to have a washing machine. I rejected this for v1 to keep the core algorithm and its tests simpler, at the cost of some accuracy for hostel or camping trips.
-Consequences: A 12-day hostel trip is packed as if laundry exists at day 7, which may under-pack for travelers without real laundry access. 
+Decision: I assume laundry is available for any trip over 8 days, based on length alone. accommodation_type is stored in the  tripstable but not used by the recommendation algorithm.
+Alternatives considered: I considered branching the laundry cap by accommodation type as for example, apartments getting a 8-day cap and hostels a longer one, since they're less likely to have a washing machine. I rejected this for v1 to keep the core algorithm and its tests simpler, at the cost of some accuracy for hostel or camping trips.
+Consequences: A 12-day hostel trip is packed as if laundry exists at day 8, which may under-pack for travelers without real laundry access. 
