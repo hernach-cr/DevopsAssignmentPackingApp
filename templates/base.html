@@ -2,14 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PackWise</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <header>
-    <h1><a href="/trips" style="text-decoration: none; color: inherit;">PackWise</a></h1>
-    </header>
-    <main>
+        <div class="bar">
+            <a class="brand" href="/">PackWise</a>
+            <nav class="nav">
+                <a class="nav-text" href="/trips">My trips</a>
+                <a class="nav-link" href="/new">Plan a trip</a>
+            </nav>
+        </div>
+    </header>   
+    <main>  
         {% block content %}{% endblock %}
     </main>
 </body>

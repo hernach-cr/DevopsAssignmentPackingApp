@@ -8,7 +8,7 @@ from trips.recommendation import (
 )
 from datetime import date
 import pytest
-from trips.recommendation import generate_packing_list
+from trips.recommendation import generate_packing_list, get_trip_climate
 
 def test_temperature_boundaries():
     assert temperature(-5) == "freezing"
@@ -92,3 +92,28 @@ def test_generate_packing_list_raises_for_unknown_city(test_db):
             end_date=date(2026, 6, 22),
             trip_days=8,
         )
+
+def test_get_trip_climate_returns_values_and_labels(test_db):
+    climate = get_trip_climate(test_db, "Madrid", "Spain", date(2026, 6, 15), date(2026, 6, 22))
+    assert climate["month_name"] == "June"
+    assert climate["avg_temp_c"] == 22.0
+    assert climate["temperature_label"] == "Mild temperature"
+    assert climate["rain_label"] == "Little rain"
+
+
+def test_get_trip_climate_handles_missing_precipitation(test_db):
+    test_db.execute("INSERT INTO locations (city, country) VALUES ('Dubai', 'United Arab Emirates')")
+    location_id = test_db.execute("SELECT id FROM locations WHERE city = 'Dubai'").fetchone()["id"]
+    test_db.execute(
+        "INSERT INTO climate_monthly (location_id, month, avg_temp_c, precip_mm) VALUES (?, 7, 36.0, NULL)",
+        (location_id,),
+    )
+    climate = get_trip_climate(test_db, "Dubai", "United Arab Emirates", date(2026, 7, 1), date(2026, 7, 5))
+    assert climate["precip_mm"] is None
+    assert climate["rain_label"] == "No rainfall data"
+    assert climate["temperature_label"] == "Hot temperature"
+
+
+def test_get_trip_climate_unknown_city_raises(test_db):
+    with pytest.raises(ValueError):
+        get_trip_climate(test_db, "Nowhere", "Nowhere", date(2026, 6, 15), date(2026, 6, 22))

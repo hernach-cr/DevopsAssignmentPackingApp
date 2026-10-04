@@ -4,6 +4,7 @@ import sqlite3
 from flask import Flask, g
 
 from database import seed
+from flask import Flask, g, render_template
 
 app = Flask(__name__)
 
@@ -27,6 +28,9 @@ def close_db(exception=None):
     if db is not None:
         db.close()
 
+@app.route("/")
+def home():
+    return render_template("home.html")
 
 @app.route("/health")
 def health():

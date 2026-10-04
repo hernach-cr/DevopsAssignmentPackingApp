@@ -1,28 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
 <h2>Plan a trip</h2>
+<p class="lede">Pick a destination and dates. You'll see a suggested packing list before anything is saved.</p>
+
 <form id="trip-form">
-    <label>Country: <select id="country-select" required></select></label><br>
-    <label>City: <select id="city-select" required></select></label><br>
-    <label>Start date: <input type="date" name="start_date" required></label><br>
-    <label>End date: <input type="date" name="end_date" required></label><br>
-    <label>Accommodation:
+    <label>Country <select id="country-select" required></select></label>
+    <label>City <select id="city-select" required></select></label>
+    <label>Start date <input type="date" name="start_date" required></label>
+    <label>End date <input type="date" name="end_date" required></label>
+    <label>Accommodation
         <select name="accommodation_type">
             <option value="hotel">Hotel</option>
             <option value="hostel">Hostel</option>
             <option value="apartment">Apartment</option>
             <option value="other">Other</option>
         </select>
-    </label><br>
+    </label>
     <button type="submit">Generate packing list</button>
 </form>
-<div id="preview-section" style="display:none;">
+<p id="error-message"></p>
+
+<div id="preview-section" class="preview" style="display:none;">
     <h3>Suggested packing list</h3>
+    <div id="preview-climate" class="climate" style="display:none;"></div>
+    <p id="preview-climate-note" class="climate-note"></p>
     <ul id="preview-items"></ul>
     <button id="save-trip-btn">Save trip</button>
-    <button id="discard-btn" type="button">Discard</button>
+    <button id="discard-btn" type="button" class="secondary">Discard</button>
 </div>
-<p id="error-message" style="color: red;"></p>
 
 <script>
 async function loadCountries() {
@@ -56,6 +61,7 @@ document.getElementById("country-select").addEventListener("change", function ()
 });
 
 loadCountries();
+
 document.querySelector('input[name="start_date"]').addEventListener("change", function () {
     document.querySelector('input[name="end_date"]').min = this.value;
 });
@@ -64,6 +70,7 @@ let pendingTripData = null;
 
 document.getElementById("trip-form").addEventListener("submit", async function (e) {
     e.preventDefault();
+    document.getElementById("error-message").textContent = "";
     const form = e.target;
     const data = {
         city: document.getElementById("city-select").value,
@@ -87,12 +94,30 @@ document.getElementById("trip-form").addEventListener("submit", async function (
 
     const result = await response.json();
     pendingTripData = data;
+    const c = result.climate;
+    const climateBox = document.getElementById("preview-climate");
+    const rainText = c.precip_mm === null ? "n/a" : `${Math.round(c.precip_mm)} mm`;
+    climateBox.innerHTML = "";
+    [[`${c.avg_temp_c.toFixed(1)}°C`, c.temperature_label], [rainText, c.rain_label]].forEach(([value, label]) => {
+        const item = document.createElement("div");
+        item.className = "climate-item";
+        const valueEl = document.createElement("span");
+        valueEl.className = "climate-value";
+        valueEl.textContent = value;
+        const labelEl = document.createElement("span");
+        labelEl.className = "climate-label";
+        labelEl.textContent = label;
+        item.append(valueEl, labelEl);
+        climateBox.appendChild(item);
+    });
+    climateBox.style.display = "flex";
+    document.getElementById("preview-climate-note").textContent = `Monthly averages for ${c.month_name}`;
 
     const list = document.getElementById("preview-items");
     list.innerHTML = "";
     result.items.forEach(item => {
         const li = document.createElement("li");
-        li.textContent = `${item.item_name} (x${item.quantity}) — ${item.category}`;
+        li.textContent = `${item.item_name} ×${item.quantity}`;
         list.appendChild(li);
     });
 
@@ -112,7 +137,8 @@ document.getElementById("save-trip-btn").addEventListener("click", async functio
 document.getElementById("discard-btn").addEventListener("click", function () {
     document.getElementById("preview-section").style.display = "none";
     pendingTripData = null;
+document.getElementById("preview-climate").style.display = "none";
+document.getElementById("preview-climate-note").textContent = "";
 });
-
 </script>
 {% endblock %}

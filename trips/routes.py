@@ -2,7 +2,7 @@ from datetime import datetime
 
 from flask import Blueprint, jsonify, request
 
-from trips.recommendation import generate_packing_list
+from trips.recommendation import generate_packing_list, get_trip_climate
 
 from flask import Blueprint, jsonify, request, render_template
 
@@ -107,6 +107,7 @@ def new_trip_page():
 
 
 @trips_bp.route("/trips/<int:trip_id>/view", methods=["GET"])
+
 def trip_view_page(trip_id):
     from app import get_db
     db = get_db()
@@ -116,12 +117,24 @@ def trip_view_page(trip_id):
         "FROM trips t JOIN locations l ON t.location_id = l.id WHERE t.id = ?",
         (trip_id,),
     ).fetchone()
+    if trip is None:
+        return "Trip not found", 404
+
     items = db.execute(
         "SELECT id, item_name, category, quantity, packed FROM packing_items WHERE trip_id = ?",
         (trip_id,),
     ).fetchall()
 
-    return render_template("trip_view.html", trip=trip, items=items)
+    try:
+        climate = get_trip_climate(
+            db, trip["city"], trip["country"],
+            datetime.strptime(trip["start_date"], "%Y-%m-%d").date(),
+            datetime.strptime(trip["end_date"], "%Y-%m-%d").date(),
+        )
+    except ValueError:
+        climate = None
+
+    return render_template("trip_view.html", trip=trip, items=items, climate=climate)
 
 @trips_bp.route("/trips", methods=["GET"])
 def list_trips_page():
@@ -195,6 +208,7 @@ def preview_trip():
         return jsonify({"error": f"Unknown location: {city}, {country}"}), 404
 
     try:
+        climate = get_trip_climate(db, city, country, start_date, end_date)
         items = generate_packing_list(
             db=db, city=city, country=country,
             start_date=start_date, end_date=end_date, trip_days=trip_days,
@@ -202,7 +216,7 @@ def preview_trip():
     except ValueError as e:
         return jsonify({"error": str(e)}), 404
 
-    return jsonify({"items": items})
+    return jsonify({"items": items, "climate": climate})
 
 @trips_bp.route("/trips/<int:trip_id>", methods=["PUT"])
 def edit_trip(trip_id):

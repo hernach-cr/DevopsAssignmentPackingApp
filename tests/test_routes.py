@@ -176,3 +176,8 @@ def test_edit_nonexistent_trip_returns_404(client):
         json={"city": "Madrid", "country": "Spain", "start_date": "2026-06-15", "end_date": "2026-06-22"},
     )
     assert response.status_code == 404
+
+def test_home_page_loads(client):
+    response = client.get("/")
+    assert response.status_code == 200
+    assert b"Plan a new trip" in response.data
