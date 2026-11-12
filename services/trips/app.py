@@ -8,11 +8,8 @@ from flask import Flask, g, render_template
 
 app = Flask(__name__)
 
-from trips.routes import trips_bp
-app.register_blueprint(trips_bp)
 
-from packs.routes import packing_bp
-app.register_blueprint(packing_bp)
+
 
 def get_db():
     if "db" not in g:
@@ -41,5 +38,5 @@ def health():
 
 if __name__ == "__main__":
     seed.main()
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 5001))
     app.run(host="0.0.0.0", port=port)
