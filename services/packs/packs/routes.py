@@ -86,3 +86,55 @@ def delete_item(item_id):
     db.commit()
 
     return "", 204
+
+@packing_bp.route("/trips/<int:trip_id>/items", methods=["GET" ])
+def list_items(trip_id):
+    from app import get_db
+    db=get_db()
+
+    rows=db.execute(
+        "SELECT id, item_name, category, quantity, packed, source FROM packing_items WHERE trip_id=?",
+        (trip_id,),).fetchall()
+
+    items=[dict(row) for row in rows]
+    return jsonify(items)
+
+
+@packing_bp.route("/trips/<int:trip_id>/items", methods=["DELETE"])
+def delete_trip_items(trip_id):
+    from app import get_db
+    db = get_db()
+    db.execute("DELETE FROM packing_items WHERE trip_id = ?", (trip_id,))
+    db.commit()
+    return "", 204
+
+@packing_bp.route("/trips/<int:trip_id>/items/recommended", methods=["PUT"])
+def replace_recommended(trip_id):
+    from app import get_db
+    db = get_db()
+
+    new_items = request.get_json(silent=True)
+    if not isinstance(new_items, list):
+        return jsonify({"error": "Body must be a JSON list of items"}), 400
+
+    old_recommended= db.execute(
+        "SELECT item_name, packed FROM packing_items WHERE trip_id = ? AND source = 'recommended'",
+        (trip_id,),
+    ).fetchall()
+    packed_lookup = {}
+    packed_lookup = {}
+    for row in old_recommended:
+        packed_lookup[row["item_name"]] = row["packed"]
+
+    db.execute(
+        "DELETE FROM packing_items WHERE trip_id = ? AND source = 'recommended'", (trip_id,)
+    )
+    for item in new_items:
+            was_packed = packed_lookup.get(item["item_name"], 0)
+            db.execute(
+                "INSERT INTO packing_items (trip_id, item_name, category, quantity, packed, source) "
+                "VALUES (?, ?, ?, ?, ?, 'recommended')",
+                (trip_id, item["item_name"], item["category"], item["quantity"], was_packed),
+            )
+    db.commit()
+    return jsonify(new_items), 200
