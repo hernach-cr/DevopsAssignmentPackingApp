@@ -6,6 +6,8 @@ from trips.recommendation import generate_packing_list, get_trip_climate
 
 from flask import Blueprint, jsonify, request, render_template
 
+from trips import packs_client
+
 trips_bp = Blueprint("trips", __name__)
 
 def _parse_trip_fields(data, defaults=None):
@@ -61,16 +63,11 @@ def create_trip():
     )
     trip_id = cursor.lastrowid
 
-    for item in items:
-        db.execute(
-            "INSERT INTO packing_items (trip_id, item_name, category, quantity, packed, source) "
-            "VALUES (?, ?, ?, ?, 0, 'recommended')",
-            (trip_id, item["item_name"], item["category"], item["quantity"]),
-        )
+    
 
     db.commit()
-
-    return jsonify({"trip_id": trip_id, "items": items}), 201
+    saved = packs_client.replace_recommended(trip_id,items)
+    return jsonify({"trip_id": trip_id, "items": items, "packing_list_saved": saved}), 201
 
 
 @trips_bp.route("/trips/<int:trip_id>", methods=["GET"])

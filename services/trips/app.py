@@ -7,6 +7,8 @@ from database import seed
 from flask import Flask, g, render_template
 
 app = Flask(__name__)
+from trips.routes import trips_bp
+app.register_blueprint(trips_bp)
 
 
 
