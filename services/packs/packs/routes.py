@@ -1,4 +1,5 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, current_app
+from packs import trips_client
 
 packing_bp = Blueprint("packing", __name__)
 
@@ -8,9 +9,11 @@ def add_item(trip_id):
     from app import get_db
     db = get_db()
 
-    trip = db.execute("SELECT id FROM trips WHERE id = ?", (trip_id,)).fetchone()
-    if trip is None:
+    exists = trips_client.trip_exists(trip_id)
+    if exists is False:
         return jsonify({"error": "Trip not found"}), 404
+    if exists is None:
+        current_app.logger.warning("Trips unavailable, adding item to trip %s without checking", trip_id)
 
     data = request.get_json(silent=True)
     if data is None or "item_name" not in data:
