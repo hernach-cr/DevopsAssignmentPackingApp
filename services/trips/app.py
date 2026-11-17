@@ -1,13 +1,18 @@
 import os
 import sqlite3
 
-from flask import Flask, g
+
 
 from database import seed
 from flask import Flask, g, render_template
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+from flask_cors import CORS
+CORS(app, origins=[os.environ.get("UI_ORIGIN", "http://localhost:8080")])
 from trips.routes import trips_bp
+
 app.register_blueprint(trips_bp)
 
 
