@@ -4,13 +4,13 @@ import sqlite3
 
 
 from database import seed
-from flask import Flask, g, render_template
+from flask import Flask, g
 from flask_cors import CORS
 
 
 app = Flask(__name__)
 from flask_cors import CORS
-CORS(app, origins=[os.environ.get("UI_ORIGIN", "http://localhost:8080")])
+CORS(app, origins=[os.environ.get("UI_ORIGIN", "http://localhost:5500")])
 from trips.routes import trips_bp
 
 app.register_blueprint(trips_bp)
@@ -32,9 +32,7 @@ def close_db(exception=None):
     if db is not None:
         db.close()
 
-@app.route("/")
-def home():
-    return render_template("home.html")
+
 
 @app.route("/health")
 def health():

@@ -4,7 +4,7 @@ from datetime import datetime
 
 from trips.recommendation import generate_packing_list, get_trip_climate
 
-from flask import Blueprint, current_app, jsonify, request, render_template
+from flask import Blueprint, current_app, jsonify, request
 
 from trips import packs_client
 
@@ -84,40 +84,6 @@ def get_trip(trip_id):
     if trip is None:
         return jsonify({"error": "Trip not found"}), 404
 
-    
-
-    return jsonify({
-        "trip": dict(trip),
-        
-    })
-
-
-
-
-@trips_bp.route("/new", methods=["GET"])
-def new_trip_page():
-    return render_template("new_trip.html")
-
-
-@trips_bp.route("/trips/<int:trip_id>/view", methods=["GET"])
-
-def trip_view_page(trip_id):
-    from app import get_db
-    db = get_db()
-
-    trip = db.execute(
-        "SELECT t.id, t.start_date, t.end_date, t.accommodation_type, l.city, l.country "
-        "FROM trips t JOIN locations l ON t.location_id = l.id WHERE t.id = ?",
-        (trip_id,),
-    ).fetchone()
-    if trip is None:
-        return "Trip not found", 404
-
-    items = db.execute(
-        "SELECT id, item_name, category, quantity, packed FROM packing_items WHERE trip_id = ?",
-        (trip_id,),
-    ).fetchall()
-
     try:
         climate = get_trip_climate(
             db, trip["city"], trip["country"],
@@ -127,7 +93,8 @@ def trip_view_page(trip_id):
     except ValueError:
         climate = None
 
-    return render_template("trip_view.html", trip=trip, items=items, climate=climate)
+    return jsonify({"trip": dict(trip), "climate": climate})
+
 
 @trips_bp.route("/trips", methods=["GET"])
 def list_trips_page():
@@ -140,7 +107,7 @@ def list_trips_page():
         "ORDER BY t.id DESC"
     ).fetchall()
 
-    return render_template("trip_list.html", trips=trips)
+    return jsonify([dict(trip) for trip in trips])
 
 @trips_bp.route("/api/cities", methods=["GET"])
 def list_cities():

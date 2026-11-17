@@ -1,36 +1,53 @@
-{% extends "base.html" %}
-{% block content %}
-<h2>{{ trip.city }}, {{ trip.country }}</h2>
-<p class="trip-meta">{{ trip.start_date }} to {{ trip.end_date }}<br>Accommodation: {{ trip.accommodation_type }}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PackWise</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="bar">
+            <a class="brand" href="index.html">PackWise</a>
+            <nav class="nav">
+                <a class="nav-text" href="/trips">My trips</a>
+                <a class="nav-link" href="/new">Plan a trip</a>
+            </nav>
+        </div>
+    </header>   
+    <main>  
+<h2 id="trip-title"></h2>
+<p class="trip-meta" id="trip-meta"></p>
 
 <button id="edit-trip-btn" class="secondary">Edit destination or dates</button>
 
-        {% if climate %}
-        <div class="climate">
-            <div class="climate-item">
-                <span class="climate-value">{{ "%.1f"|format(climate.avg_temp_c) }}&deg;C</span>
-                <span class="climate-label">{{ climate.temperature_label }}</span>
-            </div>
-            <div class="climate-item">
-                <span class="climate-value">{% if climate.precip_mm is not none %}{{ "%.0f"|format(climate.precip_mm) }} mm{% else %}n/a{% endif %}</span>
-                <span class="climate-label">{{ climate.rain_label }}</span>
-            </div>
+        <div id="climate-box" hidden>
+    <div class="climate">
+        <div class="climate-item">
+            <span class="climate-value" id="climate-temp"></span>
+            <span class="climate-label" id="climate-temp-label"></span>
         </div>
-        <p class="climate-note">Monthly averages for {{ climate.month_name }}</p>
-        {% endif %}
+        <div class="climate-item">
+            <span class="climate-value" id="climate-rain"></span>
+            <span class="climate-label" id="climate-rain-label"></span>
+        </div>
+    </div>
+    <p class="climate-note" id="climate-month"></p>
+</div>
 
 <div id="edit-trip-form-section" style="display:none;">
     <form id="edit-trip-form">
         <label>Country <select id="country-select" required></select></label>
         <label>City <select id="city-select" required></select></label>
-        <label>Start date <input type="date" name="start_date" value="{{ trip.start_date }}" required></label>
-        <label>End date <input type="date" name="end_date" value="{{ trip.end_date }}" required></label>
+        <label>Start date <input type="date" name="start_date" required></label>
+<label>End date <input type="date" name="end_date" required></label>
         <label>Accommodation
             <select name="accommodation_type">
-                <option value="hotel" {% if trip.accommodation_type == "hotel" %}selected{% endif %}>Hotel</option>
-                <option value="hostel" {% if trip.accommodation_type == "hostel" %}selected{% endif %}>Hostel</option>
-                <option value="apartment" {% if trip.accommodation_type == "apartment" %}selected{% endif %}>Apartment</option>
-                <option value="other" {% if trip.accommodation_type == "other" %}selected{% endif %}>Other</option>
+                <option value="hotel">Hotel</option>
+                <option value="hostel">Hostel</option>
+                <option value="apartment">Apartment</option>
+                <option value="other">Other</option>
             </select>
         </label>
         <button type="submit">Save changes</button>
@@ -44,19 +61,8 @@
     <span id="progress-text"></span>
 </div>
 
-<ul id="item-list" class="item-list">
-    {% for item in items %}
-    <li data-item-id="{{ item.id }}" class="{% if item.packed %}is-packed{% endif %}">
-        <label class="item-main">
-            <input type="checkbox" class="packed-toggle" {% if item.packed %}checked{% endif %}>
-            <span class="item-name">{{ item.item_name }}</span>
-            <span class="item-qty">&times;{{ item.quantity }}</span>
-        </label>
-        <span class="item-cat">{{ item.category }}</span>
-        <button class="delete-btn" aria-label="Remove {{ item.item_name }}">Remove</button>
-    </li>
-    {% endfor %}
-</ul>
+<ul id="item-list" class="item-list"></ul>
+<p id="items-unavailable" hidden>Packing list temporarily unavailable. Try again later.</p>
 
 <h3>Add an item</h3>
 <form id="add-item-form">
@@ -64,11 +70,45 @@
     <input type="number" name="quantity" value="1" min="1" aria-label="Quantity">
     <button type="submit">Add</button>
 </form>
-
+<script src="config.js"></script>
 <script>
-const tripId = {{ trip.id }};
-const currentCity = {{ trip.city | tojson }};
-const currentCountry = {{ trip.country | tojson }};
+const tripId = new URLSearchParams(window.location.search).get("id");
+let currentCity = "";
+let currentCountry = "";
+async function loadTrip() {
+    const response = await fetch(`${CONFIG.TRIPS_URL}/trips/${tripId}`);
+    if (!response.ok) {
+        document.getElementById("trip-title").textContent = "Trip not found";
+        return;
+    }
+    const data = await response.json();
+    const trip = data.trip;
+    const climate = data.climate;
+
+    currentCity = trip.city;
+    currentCountry = trip.country;
+
+ 
+    document.getElementById("trip-title").textContent = `${trip.city}, ${trip.country}`;
+    document.getElementById("trip-meta").innerHTML =
+        `${trip.start_date} to ${trip.end_date}<br>Accommodation: ${trip.accommodation_type}`;
+
+    
+    const form = document.getElementById("edit-trip-form");
+    form.start_date.value = trip.start_date;
+    form.end_date.value = trip.end_date;
+    form.accommodation_type.value = trip.accommodation_type;
+
+    if (climate) {
+        document.getElementById("climate-temp").textContent = climate.avg_temp_c.toFixed(1) + "°C";
+        document.getElementById("climate-temp-label").textContent = climate.temperature_label;
+        document.getElementById("climate-rain").textContent =
+            climate.precip_mm === null ? "n/a" : climate.precip_mm.toFixed(0) + " mm";
+        document.getElementById("climate-rain-label").textContent = climate.rain_label;
+        document.getElementById("climate-month").textContent = `Monthly averages for ${climate.month_name}`;
+        document.getElementById("climate-box").hidden = false;
+    }
+}
 
 function updateProgress() {
     const boxes = Array.from(document.querySelectorAll(".packed-toggle"));
@@ -84,34 +124,17 @@ updateProgress();
 document.getElementById("add-item-form").addEventListener("submit", async function (e) {
     e.preventDefault();
     const form = e.target;
-    const response = await fetch(`/trips/${tripId}/items`, {
+        const response = await fetch(`${CONFIG.PACKS_URL}/trips/${tripId}/items`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ item_name: form.item_name.value, quantity: parseInt(form.quantity.value) }),
     });
-    if (response.ok) location.reload();
+    if (response.ok) {
+    form.reset();
+    loadItems();
+}
 });
 
-document.querySelectorAll(".packed-toggle").forEach(checkbox => {
-    checkbox.addEventListener("change", async function () {
-        const li = this.closest("li");
-        li.classList.toggle("is-packed", this.checked);
-        updateProgress();
-        await fetch(`/items/${li.dataset.itemId}`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ packed: this.checked }),
-        });
-    });
-});
-
-document.querySelectorAll(".delete-btn").forEach(button => {
-    button.addEventListener("click", async function () {
-        const itemId = this.closest("li").dataset.itemId;
-        await fetch(`/items/${itemId}`, { method: "DELETE" });
-        location.reload();
-    });
-});
 
 document.getElementById("edit-trip-btn").addEventListener("click", async function () {
     document.getElementById("edit-trip-form-section").style.display = "block";
@@ -123,7 +146,7 @@ document.getElementById("cancel-edit-btn").addEventListener("click", function ()
 });
 
 async function loadCountries() {
-    const response = await fetch("/api/countries");
+    const response = await fetch(`${CONFIG.TRIPS_URL}/api/countries`);
     const countries = await response.json();
     const select = document.getElementById("country-select");
     select.innerHTML = "";
@@ -138,8 +161,7 @@ async function loadCountries() {
 }
 
 async function loadCitiesForCountry(country) {
-    const response = await fetch(`/api/cities?country=${encodeURIComponent(country)}`);
-    const cities = await response.json();
+    const response = await fetch(`${CONFIG.TRIPS_URL}/api/cities?country=${encodeURIComponent(country)}`);    const cities = await response.json();
     const select = document.getElementById("city-select");
     select.innerHTML = "";
     cities.forEach(c => {
@@ -170,7 +192,7 @@ document.getElementById("edit-trip-form").addEventListener("submit", async funct
         accommodation_type: form.accommodation_type.value,
     };
 
-    const response = await fetch(`/trips/${tripId}`, {
+    const response = await fetch(`${CONFIG.TRIPS_URL}/trips/${tripId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -184,5 +206,57 @@ document.getElementById("edit-trip-form").addEventListener("submit", async funct
 
     location.reload();
 });
+
+loadTrip();
+async function loadItems() {
+    const list = document.getElementById("item-list");
+    const unavailable = document.getElementById("items-unavailable");
+
+    let items;
+    try {
+        const response = await fetch(`${CONFIG.PACKS_URL}/trips/${tripId}/items`);
+        if (!response.ok) throw new Error("packs error");
+        items = await response.json();
+    } catch {
+        list.innerHTML = "";
+        unavailable.hidden = false;   
+        return;
+    }
+    unavailable.hidden = true;
+
+    list.innerHTML = "";
+    items.forEach(item => {
+        const li = document.createElement("li");
+        li.dataset.itemId = item.id;
+        if (item.packed) li.classList.add("is-packed");
+        li.innerHTML = `
+            <label class="item-main">
+                <input type="checkbox" class="packed-toggle" ${item.packed ? "checked" : ""}>
+                <span class="item-name">${item.item_name}</span>
+                <span class="item-qty">&times;${item.quantity}</span>
+            </label>
+            <span class="item-cat">${item.category}</span>
+            <button class="delete-btn">Remove</button>`;
+                    li.querySelector(".packed-toggle").addEventListener("change", async function () {
+            li.classList.toggle("is-packed", this.checked);
+            updateProgress();
+            await fetch(`${CONFIG.PACKS_URL}/items/${item.id}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ packed: this.checked }),
+            });
+        });
+
+        li.querySelector(".delete-btn").addEventListener("click", async () => {
+            await fetch(`${CONFIG.PACKS_URL}/items/${item.id}`, { method: "DELETE" });
+            loadItems();
+        });
+        list.appendChild(li);
+    });
+
+    updateProgress();
+}
+loadItems();
 </script>
-{% endblock %}
+</body>
+</html>
