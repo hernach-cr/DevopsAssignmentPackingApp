@@ -1,5 +1,32 @@
-{% extends "base.html" %}
-{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PackWise</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="bar">
+            <a class="brand" href="index.html">PackWise</a>
+            <nav class="nav">
+                <a class="nav-text" href="/trips">My trips</a>
+                <a class="nav-link" href="/new">Plan a trip</a>
+            </nav>
+        </div>
+    </header>   
+    <main>  
+        
+        <section class="hero">
+    <h1>PackWise</h1>
+    <p>Tell us where and when you're going. We'll suggest what to pack for the weather, and you keep the list.</p>
+    <div class="hero-actions">
+        <a class="btn" href="new.html">Plan a new trip</a>
+        <a class="btn btn-secondary" href="trips.html">My trips</a>
+    </div>
+</section>
+        
+
 <h2>Plan a trip</h2>
 <p class="lede">Pick a destination and dates. You'll see a suggested packing list before anything is saved.</p>
 
@@ -29,9 +56,10 @@
     <button id="discard-btn" type="button" class="secondary">Discard</button>
 </div>
 
+<script src="config.js"></script>
 <script>
 async function loadCountries() {
-    const response = await fetch("/api/countries");
+    const response = await fetch(`${CONFIG.TRIPS_URL}/api/countries`);
     const countries = await response.json();
     const select = document.getElementById("country-select");
     select.innerHTML = '<option value="">Select a country</option>';
@@ -44,7 +72,7 @@ async function loadCountries() {
 }
 
 async function loadCitiesForCountry(country) {
-    const response = await fetch(`/api/cities?country=${encodeURIComponent(country)}`);
+    const response = await fetch(`${CONFIG.TRIPS_URL}/api/cities?country=${encodeURIComponent(country)}`);
     const cities = await response.json();
     const select = document.getElementById("city-select");
     select.innerHTML = '<option value="">Select a city</option>';
@@ -80,11 +108,11 @@ document.getElementById("trip-form").addEventListener("submit", async function (
         accommodation_type: form.accommodation_type.value,
     };
 
-    const response = await fetch("/trips/preview", {
+    const response = await fetch(`${CONFIG.TRIPS_URL}/trips/preview`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
-    });
+    }); 
 
     if (!response.ok) {
         const err = await response.json();
@@ -125,13 +153,13 @@ document.getElementById("trip-form").addEventListener("submit", async function (
 });
 
 document.getElementById("save-trip-btn").addEventListener("click", async function () {
-    const response = await fetch("/trips", {
+    const response = await fetch(`${CONFIG.TRIPS_URL}/trips`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(pendingTripData),
     });
     const result = await response.json();
-    window.location.href = "/trips/" + result.trip_id + "/view";
+   window.location.href = "trip.html?id=" + result.trip_id;
 });
 
 document.getElementById("discard-btn").addEventListener("click", function () {
@@ -141,4 +169,3 @@ document.getElementById("preview-climate").style.display = "none";
 document.getElementById("preview-climate-note").textContent = "";
 });
 </script>
-{% endblock %}

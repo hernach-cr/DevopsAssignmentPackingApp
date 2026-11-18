@@ -1,3 +1,4 @@
+# Assignment 1
 ## 1. Backend language and framework
 Date: 28/09
 Status: Decided
@@ -37,3 +38,12 @@ Context: The recommendation needs to know how many days of clothes to pack. Long
 Decision: I assume laundry is available for any trip over 8 days, based on length alone. accommodation_type is stored in the  tripstable but not used by the recommendation algorithm.
 Alternatives considered: I considered branching the laundry cap by accommodation type as for example, apartments getting a 8-day cap and hostels a longer one, since they're less likely to have a washing machine. I rejected this for v1 to keep the core algorithm and its tests simpler, at the cost of some accuracy for hostel or camping trips.
 Consequences: A 12-day hostel trip is packed as if laundry exists at day 8, which may under-pack for travelers without real laundry access. 
+
+# Assignment 2 
+## 6. Splitting PackWise into two services
+Date: 17/11
+Status: Decided
+Context: Assignment 2 requires one service per domain, each with its own database. In Assignment 1 both domains lived in one Flask app and shared one SQLite file.
+Decision:+ The trips service owns trips, locations and climate_monthly, and the packs service owns packing_items, where trip_id is now a plain number with no foreign key. The only things that cross the seam are HTTP calls. Packs asks trips whether a trip exists before adding an item. If the other service does not answer, each service keeps working. The UI calls both services directly, so trips no longer returns items.
+Alternatives considered: Refusing to create or delete a trip when packs is down would keep the data consistent, but it would make trips depend on packs, which is what I wanted to avoid. 
+Consequences: Because there is no foreign key across the seam, a trip deleted while packs is down leaves orphaned items in packs. They are invisible to the user, and a cleanup job could remove them later. A trip created while packs is down has no packing list, and the response says that the packing list is false, but the user can regenerate the list by editing the trip once packs is back.

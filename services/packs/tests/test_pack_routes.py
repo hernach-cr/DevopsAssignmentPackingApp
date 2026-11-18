@@ -2,17 +2,7 @@ import json
 
 
 def _create_trip(client):
-    response = client.post(
-        "/trips",
-        json={
-            "city": "Madrid",
-            "country": "Spain",
-            "start_date": "2026-06-15",
-            "end_date": "2026-06-22",
-            "accommodation_type": "hotel",
-        },
-    )
-    return response.get_json()["trip_id"]
+    return 1 
 
 
 def test_add_item_creates_custom_item(client):
@@ -29,7 +19,8 @@ def test_add_item_creates_custom_item(client):
     assert data["packed"] is False
 
 
-def test_add_item_to_nonexistent_trip_returns_404(client):
+def test_add_item_to_nonexistent_trip_returns_404(client, fake_trips):
+    fake_trips["answer"] = False 
     response = client.post(
         "/trips/999999/items",
         json={"item_name": "Laptop charger"},
@@ -82,11 +73,51 @@ def test_delete_item_removes_it(client):
     delete_response = client.delete(f"/items/{item_id}")
     assert delete_response.status_code == 204
 
-    trip_response = client.get(f"/trips/{trip_id}")
-    item_ids = [item["id"] for item in trip_response.get_json()["items"]]
+    items_response = client.get(f"/trips/{trip_id}/items")
+    item_ids = [item["id"] for item in items_response.get_json()]
     assert item_id not in item_ids
 
 
 def test_delete_nonexistent_item_returns_404(client):
     response = client.delete("/items/999999")
     assert response.status_code == 404
+
+
+def test_1_endpoints_packs_incasetripsdown(client, fake_trips):
+    fake_trips["answer"] = None
+    response = client.post("/trips/1/items", json={"item_name": "Charger"})
+    assert response.status_code == 201
+
+def test_2_endpoints_packs_replacebutkeepitems(client):
+    client.post("/trips/1/items", json={"item_name": "Computer"})      
+    client.put("/trips/1/items/recommended",
+               json=[{"item_name": "T-shirt", "category": "top", "quantity": 3}])
+
+    names = [i["item_name"] for i in client.get("/trips/1/items").get_json()]
+    assert "Computer" in names
+
+def test_3_endpoints_packs_replacebutkeepticks(client):   
+    client.put("/trips/1/items/recommended",
+               json=[{"item_name": "T-shirt", "category": "top", "quantity": 3}])
+    items = client.get("/trips/1/items").get_json()
+    tshirt = next(i for i in items if i["item_name"] == "T-shirt")
+    client.patch(f"/items/{tshirt['id']}", json={"packed": True })
+    client.put("/trips/1/items/recommended",
+               json=[{"item_name": "T-shirt", "category": "top", "quantity": 3},
+                     {"item_name": "Umbrella", "category": "other", "quantity": 1}])
+    items_after = client.get("/trips/1/items").get_json()
+    tshirt_after = next(i for i in items_after if i["item_name"] == "T-shirt")
+    assert tshirt_after["packed"] == 1
+
+def test_4_endpoints_packs_rejectsnotlist(client):
+    response = client.put("/trips/1/items/recommended", json={"item_name": "x"})
+    assert response.status_code == 400
+
+def test_5_endpoints_packs_deleteitemsremovesall(client):
+    client.post("/trips/1/items", json={"item_name": "Charger"})
+    client.post("/trips/1/items", json={"item_name": "Passport"})
+
+    response = client.delete("/trips/1/items")
+    assert response.status_code == 204
+
+    assert client.get("/trips/1/items").get_json() == []

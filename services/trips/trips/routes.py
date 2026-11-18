@@ -1,10 +1,12 @@
 from datetime import datetime
 
-from flask import Blueprint, jsonify, request
+
 
 from trips.recommendation import generate_packing_list, get_trip_climate
 
-from flask import Blueprint, jsonify, request, render_template
+from flask import Blueprint, current_app, jsonify, request
+
+from trips import packs_client
 
 trips_bp = Blueprint("trips", __name__)
 
@@ -61,16 +63,11 @@ def create_trip():
     )
     trip_id = cursor.lastrowid
 
-    for item in items:
-        db.execute(
-            "INSERT INTO packing_items (trip_id, item_name, category, quantity, packed, source) "
-            "VALUES (?, ?, ?, ?, 0, 'recommended')",
-            (trip_id, item["item_name"], item["category"], item["quantity"]),
-        )
+    
 
     db.commit()
-
-    return jsonify({"trip_id": trip_id, "items": items}), 201
+    saved = packs_client.replace_recommended(trip_id,items)
+    return jsonify({"trip_id": trip_id, "items": items, "packing_list_saved": saved}), 201
 
 
 @trips_bp.route("/trips/<int:trip_id>", methods=["GET"])
@@ -87,44 +84,6 @@ def get_trip(trip_id):
     if trip is None:
         return jsonify({"error": "Trip not found"}), 404
 
-    items = db.execute(
-        "SELECT id, item_name, category, quantity, packed, source "
-        "FROM packing_items WHERE trip_id = ?",
-        (trip_id,),
-    ).fetchall()
-
-    return jsonify({
-        "trip": dict(trip),
-        "items": [dict(item) for item in items],
-    })
-
-from flask import render_template
-
-
-@trips_bp.route("/new", methods=["GET"])
-def new_trip_page():
-    return render_template("new_trip.html")
-
-
-@trips_bp.route("/trips/<int:trip_id>/view", methods=["GET"])
-
-def trip_view_page(trip_id):
-    from app import get_db
-    db = get_db()
-
-    trip = db.execute(
-        "SELECT t.id, t.start_date, t.end_date, t.accommodation_type, l.city, l.country "
-        "FROM trips t JOIN locations l ON t.location_id = l.id WHERE t.id = ?",
-        (trip_id,),
-    ).fetchone()
-    if trip is None:
-        return "Trip not found", 404
-
-    items = db.execute(
-        "SELECT id, item_name, category, quantity, packed FROM packing_items WHERE trip_id = ?",
-        (trip_id,),
-    ).fetchall()
-
     try:
         climate = get_trip_climate(
             db, trip["city"], trip["country"],
@@ -134,7 +93,8 @@ def trip_view_page(trip_id):
     except ValueError:
         climate = None
 
-    return render_template("trip_view.html", trip=trip, items=items, climate=climate)
+    return jsonify({"trip": dict(trip), "climate": climate})
+
 
 @trips_bp.route("/trips", methods=["GET"])
 def list_trips_page():
@@ -147,7 +107,7 @@ def list_trips_page():
         "ORDER BY t.id DESC"
     ).fetchall()
 
-    return render_template("trip_list.html", trips=trips)
+    return jsonify([dict(trip) for trip in trips])
 
 @trips_bp.route("/api/cities", methods=["GET"])
 def list_cities():
@@ -182,7 +142,9 @@ def delete_trip(trip_id):
 
     db.execute("DELETE FROM trips WHERE id = ?", (trip_id,))
     db.commit()
-
+    deleted = packs_client.delete_items(trip_id)
+    if not deleted:
+        current_app.logger.warning("Trip %s deleted but its items could not be removed from packs", trip_id)
     return "", 204
 
 @trips_bp.route("/trips/preview", methods=["POST"])
@@ -252,28 +214,12 @@ def edit_trip(trip_id):
     except ValueError as e:
         return jsonify({"error": str(e)}), 404
 
-    old_recommended = db.execute(
-        "SELECT item_name, packed FROM packing_items WHERE trip_id = ? AND source = 'recommended'",
-        (trip_id,),
-    ).fetchall()
-    packed_lookup = {row["item_name"]: row["packed"] for row in old_recommended}
-
-    db.execute(
-        "DELETE FROM packing_items WHERE trip_id = ? AND source = 'recommended'", (trip_id,)
-    )
-
-    for item in new_items:
-        was_packed = packed_lookup.get(item["item_name"], 0)
-        db.execute(
-            "INSERT INTO packing_items (trip_id, item_name, category, quantity, packed, source) "
-            "VALUES (?, ?, ?, ?, ?, 'recommended')",
-            (trip_id, item["item_name"], item["category"], item["quantity"], was_packed),
-        )
+     
 
     db.execute(
         "UPDATE trips SET location_id = ?, start_date = ?, end_date = ?, accommodation_type = ? WHERE id = ?",
         (location["id"], data["start_date"], data["end_date"], accommodation_type, trip_id),
     )
     db.commit()
-
-    return jsonify({"trip_id": trip_id, "items": new_items})
+    saved = packs_client.replace_recommended(trip_id,new_items)
+    return jsonify({"trip_id": trip_id, "items": new_items, "packing_list_saved": saved})

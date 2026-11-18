@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PackWise</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="bar">
+            <a class="brand" href="index.html">PackWise</a>
+            <nav class="nav">
+                <a class="nav-text" href="trips.html">My trips</a>
+                <a class="nav-link" href="new.html">Plan a trip</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <h2>My Trips</h2>
+        <a href="new.html">+ Plan a new trip</a>
+        <ul id="trip-list"></ul>
+        <p id="no-trips" hidden>No trips yet. <a href="new.html">Create one</a>.</p>
+    </main>
+
+<script src="config.js"></script>
+<script>
+async function loadTrips() {
+    const response = await fetch(`${CONFIG.TRIPS_URL}/trips`);
+    const trips = await response.json();
+
+    const list = document.getElementById("trip-list");
+    list.innerHTML = "";                      
+    document.getElementById("no-trips").hidden = trips.length > 0;
+
+    trips.forEach(trip => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+            <a href="trip.html?id=${trip.id}">
+                ${trip.city}, ${trip.country} &mdash; ${trip.start_date} to ${trip.end_date }
+            </a>
+            <button class="delete-trip-btn">Delete</button>`;
+
+        li.querySelector(".delete-trip-btn").addEventListener("click", async () => {
+            if (!confirm("Delete this trip?")) return;
+            await fetch(`${CONFIG.TRIPS_URL}/trips/${trip.id}`, { method: "DELETE" });
+            loadTrips();                       // redraw the list
+        });
+
+        list.appendChild(li);
+    });
+}
+
+loadTrips();
+</script>
+</body>
+</html>

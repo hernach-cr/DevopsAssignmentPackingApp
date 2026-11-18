@@ -1,18 +1,22 @@
 import os
 import sqlite3
 
-from flask import Flask, g
+
 
 from database import seed
-from flask import Flask, g, render_template
+from flask import Flask, g
+from flask_cors import CORS
+
 
 app = Flask(__name__)
-
+from flask_cors import CORS
+CORS(app, origins=[os.environ.get("UI_ORIGIN", "http://localhost:5500")])
 from trips.routes import trips_bp
+
 app.register_blueprint(trips_bp)
 
-from packs.routes import packing_bp
-app.register_blueprint(packing_bp)
+
+
 
 def get_db():
     if "db" not in g:
@@ -28,9 +32,7 @@ def close_db(exception=None):
     if db is not None:
         db.close()
 
-@app.route("/")
-def home():
-    return render_template("home.html")
+
 
 @app.route("/health")
 def health():
@@ -41,5 +43,5 @@ def health():
 
 if __name__ == "__main__":
     seed.main()
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 5001))
     app.run(host="0.0.0.0", port=port)

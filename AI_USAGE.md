@@ -38,3 +38,15 @@
 
 
 
+
+
+# ASSIGNMENT 2 AI Usage Log
+| 2026-11-16 | Claude | Asked which endpoints packs should offer so trips can stop using the shared table, with skeletons for them | Modified | Wrote GET and DELETE items from the skeletons and added PUT|
+
+| 2026-11-16 | Claude | Asked for the current_app library | Modified | adding the current_app library, it’s Flask’s way of saying “the app that is running right now”. Your routes live in a blueprint, not in app.py, so they can’t use app directly. current_app gives them access to it, and .logger is its built-in logger.|
+
+| 2026-11-17 | Claude | Asked for a skeleton of trips_client.trip_exists with three outcomes | Accepted | Packs checks the trip over HTTP; if trips is down the item is still added and a warning is logged |
+
+| 2026-11-17 | Claude | Asked how to allow the UI to call both services (CORS) | Accepted | Added flask-cors to both services, allowing only the UI origin from the UI_ORIGIN env var |
+
+| 2026-11-17 | Claude | Asked how to turn the Jinja templates into a static UI| Modified | Moved templates to ui folder, removed all Jinja, filled the skeletons, fixed fetch URLs to use CONFIG.TRIPS_URL / CONFIG.PACKS_URL, removed render_template from trips | 

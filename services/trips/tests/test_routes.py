@@ -77,7 +77,7 @@ def test_preview_trip_unknown_city_returns_404(client):
     )
     assert response.status_code == 404
 
-def test_edit_trip_updates_destination_and_regenerates_items(client):
+def test_edit_trip_updates_destination_and_regenerates_items(client, fake_packs):
     create_response = client.post(
         "/trips",
         json={
@@ -103,71 +103,13 @@ def test_edit_trip_updates_destination_and_regenerates_items(client):
     assert edit_response.status_code == 200
 
     trip_response = client.get(f"/trips/{trip_id}")
-    data = trip_response.get_json()
-    assert data["trip"]["city"] == "Miami"
-    names = [item["item_name"] for item in data["items"]]
+    assert trip_response.get_json()["trip"]["city"] == "Miami"
+
+    sent_trip_id, sent_items = fake_packs["replace"][-1]
+    assert sent_trip_id == trip_id
+    names = [item["item_name"] for item in sent_items]
     assert "T-shirt" in names
     assert "Jacket" not in names
-
-
-def test_edit_trip_preserves_custom_items(client):
-    create_response = client.post(
-        "/trips",
-        json={
-            "city": "Madrid",
-            "country": "Spain",
-            "start_date": "2026-06-15",
-            "end_date": "2026-06-22",
-        },
-    )
-    trip_id = create_response.get_json()["trip_id"]
-
-    client.post(f"/trips/{trip_id}/items", json={"item_name": "Passport"})
-
-    client.put(
-        f"/trips/{trip_id}",
-        json={
-            "city": "Miami",
-            "country": "United States",
-            "start_date": "2026-07-01",
-            "end_date": "2026-07-10",
-        },
-    )
-
-    trip_response = client.get(f"/trips/{trip_id}")
-    names = [item["item_name"] for item in trip_response.get_json()["items"]]
-    assert "Passport" in names
-
-
-def test_edit_trip_preserves_packed_status_for_matching_items(client):
-    create_response = client.post(
-        "/trips",
-        json={
-            "city": "Madrid",
-            "country": "Spain",
-            "start_date": "2026-06-15",
-            "end_date": "2026-06-22",
-        },
-    )
-    trip_id = create_response.get_json()["trip_id"]
-
-    items_before = client.get(f"/trips/{trip_id}").get_json()["items"]
-    tshirt = next(i for i in items_before if i["item_name"] == "T-shirt")
-    client.patch(f"/items/{tshirt['id']}", json={"packed": True})
-
-    client.put(
-        f"/trips/{trip_id}",
-        json={
-            "city": "Barcelona",
-            "country": "Spain",
-            "start_date": "2026-06-15",
-            "end_date": "2026-06-22",
-        },
-    )
-
-    items_after = client.get(f"/trips/{trip_id}").get_json()["items"]
-    tshirt_after = next(i for i in items_after if i["item_name"] == "T-shirt")
-    assert tshirt_after["packed"] == 1
 
 
 def test_edit_nonexistent_trip_returns_404(client):
@@ -177,7 +119,37 @@ def test_edit_nonexistent_trip_returns_404(client):
     )
     assert response.status_code == 404
 
-def test_home_page_loads(client):
-    response = client.get("/")
-    assert response.status_code == 200
-    assert b"Plan a new trip" in response.data
+MADRID = {"city": "Madrid", "country": "Spain",
+          "start_date": "2026-06-15", "end_date": "2026-06-22"}
+
+
+def test_1_endpoints_trips_create_trip_when_packs_down(client, fake_packs):
+    fake_packs["up"] = False
+    response = client.post("/trips", json=MADRID)
+    assert response.status_code == 201
+    assert response.get_json()["packing_list_saved"] is False
+
+def test_2_endpoints_trips_createtrip_sendslisttopacks(client, fake_packs):
+    response = client.post("/trips", json=MADRID)
+    trip_id = response.get_json()["trip_id"]
+
+    assert len(fake_packs["replace"]) == 1
+    sent_trip_id, sent_items = fake_packs["replace"][0]
+    assert sent_trip_id == trip_id
+    assert len(sent_items) > 0
+
+
+def test_3_endpoints_trips_delete_trip_packsdeleteitems(client, fake_packs):
+    trip_id = client.post("/trips", json=MADRID).get_json()["trip_id"]
+
+    response = client.delete(f"/trips/{trip_id}")
+    assert response.status_code == 204
+    assert trip_id in fake_packs["delete"]
+
+
+def test_4_endpoints_trips_includes_climate(client):
+    trip_id = client.post("/trips", json=MADRID).get_json()["trip_id"]
+
+    data = client.get(f"/trips/{trip_id}").get_json()
+    assert "climate" in data
+    assert "items" not in data
