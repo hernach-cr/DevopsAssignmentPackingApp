@@ -1,31 +1,7 @@
 import sqlite3
 import pytest
+from packs import trips_client
 
-
-@pytest.fixture
-def test_db():
-    conn = sqlite3.connect(":memory:")
-    conn.row_factory = sqlite3.Row
-    conn.execute("PRAGMA foreign_keys = ON")
-
-    with open("database/schema.sql") as f:
-        conn.executescript(f.read())
-
-    conn.execute(
-        "INSERT INTO locations (city, country, latitude, longitude) VALUES (?, ?, ?, ?)",
-        ("Madrid", "Spain", "40.4N", "3.7W"),
-    )
-    location_id = conn.execute(
-        "SELECT id FROM locations WHERE city = ? AND country = ?", ("Madrid", "Spain")
-    ).fetchone()["id"]
-
-    conn.execute(
-        "INSERT INTO climate_monthly (location_id, month, avg_temp_c, precip_mm) VALUES (?, ?, ?, ?)",
-        (location_id, 6, 22.0, 40.0),
-    )
-
-    yield conn
-    conn.close()
 @pytest.fixture
 def client(tmp_path, monkeypatch):
     monkeypatch.setenv("DATA_DIR", str(tmp_path))
@@ -37,3 +13,13 @@ def client(tmp_path, monkeypatch):
     flask_app.config["TESTING"] = True
     with flask_app.test_client() as test_client:
         yield test_client
+
+@pytest.fixture(autouse=True)
+def fake_trips(monkeypatch):
+    state = {"answer": True}
+
+    def fake_trip_exists(trip_id):
+        return state["answer"]
+
+    monkeypatch.setattr(trips_client, "trip_exists", fake_trip_exists)
+    return state
