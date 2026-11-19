@@ -1,5 +1,5 @@
 Flask==3.1.3
 pytest==9.1.1
 pytest-cov==7.1.0
-requests
-flask-cors
+requests==2.34.2
+flask-cors==6.0.5

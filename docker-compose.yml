@@ -1,0 +1,22 @@
+services:
+  trips:
+    build: ./services/trips
+    ports: ["5001:5001"]
+    environment:
+      DATA_DIR: /tmp
+      PACKS_URL: http://packs:5002
+      UI_ORIGIN: http://localhost:5500
+
+  packs:
+    build: ./services/packs
+    ports: ["5002:5002"]
+    environment:
+      DATA_DIR: /tmp
+      TRIPS_URL: http://trips:5001
+      UI_ORIGIN: http://localhost:5500
+
+  ui:
+    image: nginx:1.27-alpine
+    ports: ["5500:80"]
+    volumes:
+      - ./ui:/usr/share/nginx/html:ro
