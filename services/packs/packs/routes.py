@@ -25,7 +25,7 @@ def add_item(trip_id):
 
     cursor = db.execute(
         "INSERT INTO packing_items (trip_id, item_name, category, quantity, packed, source) "
-        "VALUES (?, ?, ?, ?, 0, 'custom')",
+        "VALUES (%s, %s, %s, %s, 0, 'custom')",
         (trip_id, item_name, category, quantity),
     )
     db.commit()
@@ -45,7 +45,7 @@ def update_item(item_id):
     from app import get_db
     db = get_db()
 
-    item = db.execute("SELECT id FROM packing_items WHERE id = ?", (item_id,)).fetchone()
+    item = db.execute("SELECT id FROM packing_items WHERE id = %s", (item_id,)).fetchone()
     if item is None:
         return jsonify({"error": "Item not found"}), 404
 
@@ -55,7 +55,7 @@ def update_item(item_id):
 
     if "packed" in data:
         db.execute(
-            "UPDATE packing_items SET packed = ? WHERE id = ?",
+            "UPDATE packing_items SET packed = %s WHERE id = %s",
             (1 if data["packed"] else 0, item_id),
         )
 
@@ -63,14 +63,14 @@ def update_item(item_id):
         if data["quantity"] < 1:
             return jsonify({"error": "quantity must be at least 1"}), 400
         db.execute(
-            "UPDATE packing_items SET quantity = ? WHERE id = ?",
+            "UPDATE packing_items SET quantity = %s WHERE id = %s",
             (data["quantity"], item_id),
         )
 
     db.commit()
 
     updated = db.execute(
-        "SELECT id, item_name, category, quantity, packed, source FROM packing_items WHERE id = ?",
+        "SELECT id, item_name, category, quantity, packed, source FROM packing_items WHERE id = %s",
         (item_id,),
     ).fetchone()
     return jsonify(dict(updated))
@@ -81,11 +81,11 @@ def delete_item(item_id):
     from app import get_db
     db = get_db()
 
-    item = db.execute("SELECT id FROM packing_items WHERE id = ?", (item_id,)).fetchone()
+    item = db.execute("SELECT id FROM packing_items WHERE id = %s", (item_id,)).fetchone()
     if item is None:
         return jsonify({"error": "Item not found"}), 404
 
-    db.execute("DELETE FROM packing_items WHERE id = ?", (item_id,))
+    db.execute("DELETE FROM packing_items WHERE id = %s", (item_id,))
     db.commit()
 
     return "", 204
@@ -96,7 +96,7 @@ def list_items(trip_id):
     db=get_db()
 
     rows=db.execute(
-        "SELECT id, item_name, category, quantity, packed, source FROM packing_items WHERE trip_id=?",
+        "SELECT id, item_name, category, quantity, packed, source FROM packing_items WHERE trip_id=%s",
         (trip_id,),).fetchall()
 
     items=[dict(row) for row in rows]
@@ -107,7 +107,7 @@ def list_items(trip_id):
 def delete_trip_items(trip_id):
     from app import get_db
     db = get_db()
-    db.execute("DELETE FROM packing_items WHERE trip_id = ?", (trip_id,))
+    db.execute("DELETE FROM packing_items WHERE trip_id = %s", (trip_id,))
     db.commit()
     return "", 204
 
@@ -121,7 +121,7 @@ def replace_recommended(trip_id):
         return jsonify({"error": "Body must be a JSON list of items"}), 400
 
     old_recommended= db.execute(
-        "SELECT item_name, packed FROM packing_items WHERE trip_id = ? AND source = 'recommended'",
+        "SELECT item_name, packed FROM packing_items WHERE trip_id = %s AND source = 'recommended'",
         (trip_id,),
     ).fetchall()
     packed_lookup = {}
@@ -130,13 +130,13 @@ def replace_recommended(trip_id):
         packed_lookup[row["item_name"]] = row["packed"]
 
     db.execute(
-        "DELETE FROM packing_items WHERE trip_id = ? AND source = 'recommended'", (trip_id,)
+        "DELETE FROM packing_items WHERE trip_id = %s AND source = 'recommended'", (trip_id,)
     )
     for item in new_items:
             was_packed = packed_lookup.get(item["item_name"], 0)
             db.execute(
                 "INSERT INTO packing_items (trip_id, item_name, category, quantity, packed, source) "
-                "VALUES (?, ?, ?, ?, ?, 'recommended')",
+                "VALUES (%s, %s, %s, %s, %s, 'recommended')",
                 (trip_id, item["item_name"], item["category"], item["quantity"], was_packed),
             )
     db.commit()
