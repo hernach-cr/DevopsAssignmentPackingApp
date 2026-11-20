@@ -42,7 +42,10 @@ def run():
         if path.name in applied:
             continue
         print(f"Applying migration {path.name}")
-        cursor.execute(path.read_text(encoding="utf-8"))
+        sql = path.read_text(encoding="utf-8")
+        for statement in sql.split(";"):
+            if statement.strip():
+                cursor.execute(statement)
         cursor.execute("INSERT INTO schema_migrations (version) VALUES (%s)", (path.name,))
         conn.commit()
 

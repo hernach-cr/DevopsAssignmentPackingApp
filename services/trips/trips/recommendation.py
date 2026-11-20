@@ -183,7 +183,7 @@ def generate_packing_list(db, city, country, start_date, end_date, trip_days):
         SELECT cm.avg_temp_c, cm.precip_mm
         FROM climate_monthly cm
         JOIN locations l ON cm.location_id = l.id
-        WHERE l.city = ? AND l.country = ? AND cm.month = ?
+        WHERE l.city = %s AND l.country = %s AND cm.month = %s
         """,
         (city, country, month),
     ).fetchone()
@@ -223,7 +223,7 @@ def get_trip_climate(db, city, country, start_date, end_date):
         SELECT cm.avg_temp_c, cm.precip_mm
         FROM climate_monthly cm
         JOIN locations l ON cm.location_id = l.id
-        WHERE l.city = ? AND l.country = ? AND cm.month = ?
+        WHERE l.city = %s AND l.country = %s AND cm.month = %s
         """,
         (city, country, month),
     ).fetchone()

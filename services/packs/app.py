@@ -1,8 +1,6 @@
 import os
-
 from flask import Flask, g
 from database import migrate
-
 
 
 app = Flask(__name__)

@@ -9,6 +9,7 @@ COPY app.py .
 COPY database/ database/
 COPY trips/ trips/
 COPY data/ data/
+COPY migrations/ migrations/
 
 RUN useradd --system --no-create-home appuser
 USER appuser
