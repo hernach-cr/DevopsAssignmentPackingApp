@@ -27,7 +27,7 @@ def seed_climate_data(conn):
                 "VALUES (%s, %s, %s, %s)",
                 (row["city"], row["country"], row["latitude"], row["longitude"]),
             )
-            location_ids[key] = cursor.lastrowid
+            location_ids[key] = int(cursor.lastrowid)
 
         precip = row["precip_mm"]
         cursor.execute(

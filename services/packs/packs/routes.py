@@ -31,7 +31,7 @@ def add_item(trip_id):
     db.commit()
 
     return jsonify({
-        "id": cursor.lastrowid,
+        "id": int(cursor.lastrowid),
         "item_name": item_name,
         "category": category,
         "quantity": quantity,

@@ -61,7 +61,7 @@ def create_trip():
         "VALUES (%s, %s, %s, %s)",
         (location["id"], data["start_date"], data["end_date"], accommodation_type),
     )
-    trip_id = cursor.lastrowid
+    trip_id = int(cursor.lastrowid)
 
     
 
