@@ -43,7 +43,7 @@ def create_trip():
     db = get_db()
 
     location = db.execute(
-        "SELECT id FROM locations WHERE city = ? AND country = ?", (city, country)
+        "SELECT id FROM locations WHERE city = %s AND country = %s", (city, country)
     ).fetchone()
     if location is None:
         return jsonify({"error": f"Unknown location: {city}, {country}"}), 404
@@ -58,10 +58,10 @@ def create_trip():
 
     cursor = db.execute(
         "INSERT INTO trips (location_id, start_date, end_date, accommodation_type) "
-        "VALUES (?, ?, ?, ?)",
+        "VALUES (%s, %s, %s, %s)",
         (location["id"], data["start_date"], data["end_date"], accommodation_type),
     )
-    trip_id = cursor.lastrowid
+    trip_id = int(cursor.lastrowid)
 
     
 
@@ -78,7 +78,7 @@ def get_trip(trip_id):
     trip = db.execute(
         "SELECT t.id, t.start_date, t.end_date, t.accommodation_type, l.city, l.country "
         "FROM trips t JOIN locations l ON t.location_id = l.id "
-        "WHERE t.id = ?",
+        "WHERE t.id = %s",
         (trip_id,),
     ).fetchone()
     if trip is None:
@@ -117,7 +117,7 @@ def list_cities():
 
     if country:
         cities = db.execute(
-            "SELECT DISTINCT city, country FROM locations WHERE country = ? ORDER BY city",
+            "SELECT DISTINCT city, country FROM locations WHERE country = %s ORDER BY city",
             (country,),
         ).fetchall()
     else:
@@ -136,11 +136,11 @@ def delete_trip(trip_id):
     from app import get_db
     db = get_db()
 
-    trip = db.execute("SELECT id FROM trips WHERE id = ?", (trip_id,)).fetchone()
+    trip = db.execute("SELECT id FROM trips WHERE id = %s", (trip_id,)).fetchone()
     if trip is None:
         return jsonify({"error": "Trip not found"}), 404
 
-    db.execute("DELETE FROM trips WHERE id = ?", (trip_id,))
+    db.execute("DELETE FROM trips WHERE id = %s", (trip_id,))
     db.commit()
     deleted = packs_client.delete_items(trip_id)
     if not deleted:
@@ -164,7 +164,7 @@ def preview_trip():
     db = get_db()
 
     location = db.execute(
-        "SELECT id FROM locations WHERE city = ? AND country = ?", (city, country)
+        "SELECT id FROM locations WHERE city = %s AND country = %s", (city, country)
     ).fetchone()
     if location is None:
         return jsonify({"error": f"Unknown location: {city}, {country}"}), 404
@@ -185,7 +185,7 @@ def edit_trip(trip_id):
     from app import get_db
     db = get_db()
 
-    trip = db.execute("SELECT id FROM trips WHERE id = ?", (trip_id,)).fetchone()
+    trip = db.execute("SELECT id FROM trips WHERE id = %s", (trip_id,)).fetchone()
     if trip is None:
         return jsonify({"error": "Trip not found"}), 404
 
@@ -201,7 +201,7 @@ def edit_trip(trip_id):
     trip_days = (end_date - start_date).days + 1
 
     location = db.execute(
-        "SELECT id FROM locations WHERE city = ? AND country = ?", (city, country)
+        "SELECT id FROM locations WHERE city = %s AND country = %s", (city, country)
     ).fetchone()
     if location is None:
         return jsonify({"error": f"Unknown location: {city}, {country}"}), 404
@@ -217,7 +217,7 @@ def edit_trip(trip_id):
      
 
     db.execute(
-        "UPDATE trips SET location_id = ?, start_date = ?, end_date = ?, accommodation_type = ? WHERE id = ?",
+        "UPDATE trips SET location_id = %s, start_date = %s, end_date = %s, accommodation_type = %s WHERE id = %s",
         (location["id"], data["start_date"], data["end_date"], accommodation_type, trip_id),
     )
     db.commit()

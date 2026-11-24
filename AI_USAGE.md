@@ -50,3 +50,17 @@
 | 2026-11-17 | Claude | Asked how to allow the UI to call both services (CORS) | Accepted | Added flask-cors to both services, allowing only the UI origin from the UI_ORIGIN env var |
 
 | 2026-11-17 | Claude | Asked how to turn the Jinja templates into a static UI| Modified | Moved templates to ui folder, removed all Jinja, filled the skeletons, fixed fetch URLs to use CONFIG.TRIPS_URL / CONFIG.PACKS_URL, removed render_template from trips | 
+
+| 2026-11-18 | Claude | Asked why the unit tests failed after the split | Accepted | Added pytest.ini per service so tests find each service's modules
+ | ... |
+| 2026-11-18 | Claude | Asked how to test one service without calling the other | Accepted | conftest.py replaces packs_client / trips_client with fakes that record calls which makes tests no longer depend on the other service running | ... |
+
+| 2026-11-18 | Claude | Asked how to rewrite the tests that broke after the split| Modified | Moved the keep custom items and keep ticks tests from trips to packs, wrote new packs tests from skeletons, added trips tests for packs being down, delete and climate | ... |
+
+| 2026-11-18 | Claude | Asked why requirements.txt showed as binary in Git | Accepted | Re-saved both files as UTF-8 instead of UTF-16 so pip and Git read them as text | ... |
+
+| 2026-11-19 | Claude | Asked how to write integration tests across the two services; got the first test complete and left the rest to build them by my own | Modified | tests/integration calls the real services over HTTP | ... |
+
+| 2026-11-19 | Claude | Asked for a Dockerfile per service based on the class slides | Modified | My first version had several WORKDIRs, wrong COPY paths and inline comments used the corrected version | ... |
+
+| 2026-11-19 | Claude | Asked for a docker-compose.yml for trips, packs and the UI | Modified | Filled in PACKS_URL / TRIPS_URL with service names | ... |

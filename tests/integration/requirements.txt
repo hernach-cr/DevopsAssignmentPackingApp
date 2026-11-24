@@ -1,2 +1,3 @@
 pytest
 requests    
+pymssql==2.4.6

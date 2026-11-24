@@ -102,13 +102,13 @@ def test_get_trip_climate_returns_values_and_labels(test_db):
 
 
 def test_get_trip_climate_handles_missing_precipitation(test_db):
-    test_db.execute("INSERT INTO locations (city, country) VALUES ('Dubai', 'United Arab Emirates')")
-    location_id = test_db.execute("SELECT id FROM locations WHERE city = 'Dubai'").fetchone()["id"]
+    test_db.execute("INSERT INTO locations (city, country) VALUES ('testville', 'testland')")
+    location_id = test_db.execute("SELECT id FROM locations WHERE city = 'testville'").fetchone()["id"]
     test_db.execute(
-        "INSERT INTO climate_monthly (location_id, month, avg_temp_c, precip_mm) VALUES (?, 7, 36.0, NULL)",
+        "INSERT INTO climate_monthly (location_id, month, avg_temp_c, precip_mm) VALUES (%s, 7, 36.0, NULL)",
         (location_id,),
     )
-    climate = get_trip_climate(test_db, "Dubai", "United Arab Emirates", date(2026, 7, 1), date(2026, 7, 5))
+    climate = get_trip_climate(test_db, "testville", "testland", date(2026, 7, 1), date(2026, 7, 5))
     assert climate["precip_mm"] is None
     assert climate["rain_label"] == "No rainfall data"
     assert climate["temperature_label"] == "Hot temperature"

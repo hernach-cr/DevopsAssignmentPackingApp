@@ -1,37 +1,57 @@
-import sqlite3
+import os
+
+import pymssql
 import pytest
-from trips import packs_client
+
+
+os.environ["DB_NAME"] = "trips_test"
+os.environ["DB_USER"] = "sa"
+os.environ["DB_PASSWORD"] = os.environ["MSSQL_SA_PASSWORD"]
+
+from app import Db
+from database import migrate, seed 
+from trips import packs_client 
+
+@pytest.fixture(scope="session", autouse=True)
+def test_database():
+    conn = pymssql.connect(
+        server=os.environ.get("DB_HOST", "localhost"),
+        port=int(os.environ.get("DB_PORT", "1433")),
+        user="sa",
+        password=os.environ["MSSQL_SA_PASSWORD"],
+        database="master",
+        autocommit=True,
+    )
+    conn.cursor().execute("IF DB_ID('trips_test') IS NULL CREATE DATABASE trips_test")
+    conn.close()
+
+    migrate.run()
+    seed.main()
+
+    # Fix Madrid's June to the values the tests were written for
+    conn = migrate.connect()
+    conn.cursor().execute(
+        "UPDATE climate_monthly SET avg_temp_c = 22.0, std_temp_c = NULL, precip_mm = 40.0 "
+        "WHERE month = 6 AND location_id = "
+        "(SELECT id FROM locations WHERE city = 'Madrid' AND country = 'Spain')"
+    )
+    conn.commit()
+    conn.close()
+
 
 @pytest.fixture
 def test_db():
-    conn = sqlite3.connect(":memory:")
-    conn.row_factory = sqlite3.Row
-    conn.execute("PRAGMA foreign_keys = ON")
+    db = Db(migrate.connect())
+    yield db
+    db.close()
 
-    with open("database/schema.sql") as f:
-        conn.executescript(f.read())
 
-    conn.execute(
-        "INSERT INTO locations (city, country, latitude, longitude) VALUES (?, ?, ?, ?)",
-        ("Madrid", "Spain", "40.4N", "3.7W"),
-    )
-    location_id = conn.execute(
-        "SELECT id FROM locations WHERE city = ? AND country = ?", ("Madrid", "Spain")
-    ).fetchone()["id"]
-
-    conn.execute(
-        "INSERT INTO climate_monthly (location_id, month, avg_temp_c, precip_mm) VALUES (?, ?, ?, ?)",
-        (location_id, 6, 22.0, 40.0),
-    )
-
-    yield conn
-    conn.close()
 @pytest.fixture
-def client(tmp_path, monkeypatch):
-    monkeypatch.setenv("DATA_DIR", str(tmp_path))
-
-    from database import seed
-    seed.main()
+def client():
+    conn = migrate.connect()
+    conn.cursor().execute("DELETE FROM trips")
+    conn.commit()
+    conn.close()
 
     from app import app as flask_app
     flask_app.config["TESTING"] = True
