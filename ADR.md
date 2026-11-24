@@ -17,7 +17,7 @@ Consequences: This separation has held up well in practice as one domain only ev
 
 ## 3. Data schema decision in SQLite
 Date: 25/09
-Status: Decided
+Status: Superseded by [7]
 Context: I needed a schema that keeps my two feature domains separate from each other. One domain looks for information inside the climate dataset and suggests while the other domain takes that suggestion and lets the user add or delete items from it.
 Decision: The first table contains the cities, and next to it the average precipitation and temperature for each month in 11 years. The trips table stores where and when a trip takes place, which is used to generate the clothing suggestion. The packing_items table uses the suggested data from a trip and lets the user add or erase items using that suggestion.
 Alternatives considered: Another option would have been linking climate data to clothing types through a new dataset for the clothes. Instead, I chose to code that linking through Python, calculating quantities based on the weather and the number of days the user stays. I chose this because it gives less complexity when changing decisions about temperature, rain, or clothing rules later.
@@ -47,3 +47,12 @@ Context: Assignment 2 requires one service per domain, each with its own databas
 Decision:+ The trips service owns trips, locations and climate_monthly, and the packs service owns packing_items, where trip_id is now a plain number with no foreign key. The only things that cross the seam are HTTP calls. Packs asks trips whether a trip exists before adding an item. If the other service does not answer, each service keeps working. The UI calls both services directly, so trips no longer returns items.
 Alternatives considered: Refusing to create or delete a trip when packs is down would keep the data consistent, but it would make trips depend on packs, which is what I wanted to avoid. 
 Consequences: Because there is no foreign key across the seam, a trip deleted while packs is down leaves orphaned items in packs. They are invisible to the user, and a cleanup job could remove them later. A trip created while packs is down has no packing list, and the response says that the packing list is false, but the user can regenerate the list by editing the trip once packs is back.
+
+
+## 7. Moving from one SQLite file to one SQL Server database per service
+Date: 24/11
+Status: Decided
+Context: Assignment 2 requires one database per service on SQL Server, and a schema that can change over time without losing the data already stored.
+Decision: Locally, one SQL Server container holds two databases, trips and packs with one login per service. Each login can only open its own database, so trips cannot read packs's tables and the other way round. The script checks whether each database and login exists before creating it, so it is safe to run on every docker compose up. The schema is built by numbered SQL files in each service's migrations folder. A small runner applies them at start-up in number order and stores the name of each applied file in a migrations table. A migration and its record are committed together, so a failed migration is never marked as applied. 
+Alternatives considered: Keeping schema.sql with CREATE TABLE IF NOT EXISTS, but that only works for new tables and cannot change a table that already has data. Using Alembic, which is more powerful but adds a tool I would have to learn and explain for only a few migrations.
+Consequences: Integrity lost at the seam: the id of packing items has no foreign key to trips any more, and ON DELETE CASCADE is gone, because the two tables live in different databases. This is compensated in code, if packs is down at that moment, orphaned items can remain.  Recovery plan for a bad migration: A migration that has run anywhere shared is never edited or renamed so a mistake is fixed with a new numbered migration. If a bad migration reaches Azure, I redeploy the previous image and then ship a fix migration. Before a risky migration I can export the database with an Azure SQL backup, which serverless databases keep automatically.
