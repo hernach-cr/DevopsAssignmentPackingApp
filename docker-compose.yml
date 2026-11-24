@@ -2,16 +2,28 @@ services:
   trips:
     build: ./services/trips
     ports: ["5001:5001"]
+    depends_on:
+      db-init:
+        condition: service_completed_successfully
     environment:
-      DATA_DIR: /tmp
+      DB_HOST: sqlserver
+      DB_USER: trips_user
+      DB_PASSWORD: ${TRIPS_DB_PASSWORD}
+      DB_NAME: trips
       PACKS_URL: http://packs:5002
       UI_ORIGIN: http://localhost:5500
 
   packs:
     build: ./services/packs
     ports: ["5002:5002"]
+    depends_on:
+      db-init:
+        condition: service_completed_successfully
     environment:
-      DATA_DIR: /tmp
+      DB_HOST: sqlserver
+      DB_USER: packs_user
+      DB_PASSWORD: ${PACKS_DB_PASSWORD}
+      DB_NAME: packs
       TRIPS_URL: http://trips:5001
       UI_ORIGIN: http://localhost:5500
 
