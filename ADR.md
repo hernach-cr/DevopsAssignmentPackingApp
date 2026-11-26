@@ -25,7 +25,7 @@ Consequences: This design makes it easier to change variables and rules later. H
 
 ## 4. Testing approach
 Date: 30/09
-Status: Decided
+Status: Superseded by [9]
 Context: The assignment requires at least 70% coverage of the core business logic, so I had to decide where to spend the tests. Dates and clothing recommendation are where wrong answers would most likely appear, and recommending clothes for a specific trip is the core of the app.
 Decision: I focused my tests on the thresholds and quantities, with assertions checking that a given temperature, rainfall amount or trip length returns the expected band, item or quantity. I also tested the month selection for trips and added route tests for the main success and error responses.
 Alternatives considered: I could have tested the HTML page routes as well, but I judged them less important because any mistake there can be seen directly in the frontend and wouldn't break the core recommendation logic.
@@ -56,3 +56,12 @@ Context: Assignment 2 requires one database per service on SQL Server, and a sch
 Decision: Locally, one SQL Server container holds two databases, trips and packs with one login per service. Each login can only open its own database, so trips cannot read packs's tables and the other way round. The script checks whether each database and login exists before creating it, so it is safe to run on every docker compose up. The schema is built by numbered SQL files in each service's migrations folder. A small runner applies them at start-up in number order and stores the name of each applied file in a migrations table. A migration and its record are committed together, so a failed migration is never marked as applied. 
 Alternatives considered: Keeping schema.sql with CREATE TABLE IF NOT EXISTS, but that only works for new tables and cannot change a table that already has data. Using Alembic, which is more powerful but adds a tool I would have to learn and explain for only a few migrations.
 Consequences: Integrity lost at the seam: the id of packing items has no foreign key to trips any more, and ON DELETE CASCADE is gone, because the two tables live in different databases. This is compensated in code, if packs is down at that moment, orphaned items can remain.  Recovery plan for a bad migration: A migration that has run anywhere shared is never edited or renamed so a mistake is fixed with a new numbered migration. If a bad migration reaches Azure, I redeploy the previous image and then ship a fix migration. Before a risky migration I can export the database with an Azure SQL backup, which serverless databases keep automatically.
+
+
+## 9. CI pipeline and testing strategy
+Date: 26/11
+Status: Decided
+Context: Now there are two services, two databases, Docker images and automatic deployment from main, so a mistake that reaches main would go straight to Azure. I needed checks that run on every push and pull request, on a clean machine, before anything is merged.
+Decision: One GitHub Actions workflow  uns four jobs in parallel on every push and pull request. validate checks system.yaml against the system.schema.json and both openapi.yaml files against the OpenAPI specification. test runs once per service, it starts only the SQL Server container from docker-compose.yml, lints the code with flake8, and runs the unit tests with pytest, failing if coverage is below 70%. integration builds every Docker image with docker compose up --build, waits until both health endpoints return 200, and runs the cross-seam tests in integration. CI creates random throw-away passwords on every run, so it needs no secrets and never touches Azure SQL.
+Alternatives considered: Running the integration tests with a stub of the other service instead of the real one. It is faster, but it would only test my guess of how the other service behaves, not the real contract. 
+Consequences: CI saw that after the switch to SQL Server, IDs came back as Decimal and were sent as text in the JSON. The first CI run failed on lint and the second passed after the fixes.

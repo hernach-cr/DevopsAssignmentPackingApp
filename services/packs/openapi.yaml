@@ -1,0 +1,182 @@
+openapi: 3.0.3
+info:
+  title: PackWise packs service
+  version: "1.0"
+  description: Packing items of each trip. Owns the packing_items table.
+
+paths:
+  /health:
+    get:
+      summary: Health check with database status and running version
+      responses:
+        "200":
+          description: Service and database are up
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Health" }
+        "503":
+          description: Database unreachable
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Health" }
+
+  /trips/{trip_id}/items:
+    parameters:
+      - $ref: "#/components/parameters/TripId"
+    get:
+      summary: List all items of a trip (empty list if none)
+      responses:
+        "200":
+          description: The items
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Item" }
+    post:
+      summary: Add one custom item (packs checks with trips that the trip exists)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/NewItem" }
+      responses:
+        "201":
+          description: Item created
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Item" }
+        "400":
+          description: item_name missing
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+        "404":
+          description: Trip not found (according to trips)
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+    delete:
+      summary: Delete all items of a trip (called by trips when a trip is deleted)
+      responses:
+        "204":
+          description: Items deleted
+
+  /trips/{trip_id}/items/recommended:
+    parameters:
+      - $ref: "#/components/parameters/TripId"
+    put:
+      summary: Replace the recommended items, keeping custom items and the packed state of items that stay
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items: { $ref: "#/components/schemas/RecommendedItem" }
+      responses:
+        "200":
+          description: The new recommended list
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/RecommendedItem" }
+        "400":
+          description: Body is not a JSON list
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+
+  /items/{item_id}:
+    parameters:
+      - $ref: "#/components/parameters/ItemId"
+    patch:
+      summary: Tick an item or change its quantity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ItemUpdate" }
+      responses:
+        "200":
+          description: The updated item
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Item" }
+        "400":
+          description: Invalid body or quantity below 1
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+        "404":
+          description: Item not found
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+    delete:
+      summary: Delete one item
+      responses:
+        "204":
+          description: Item deleted
+        "404":
+          description: Item not found
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+
+components:
+  parameters:
+    TripId:
+      name: trip_id
+      in: path
+      required: true
+      schema: { type: integer }
+    ItemId:
+      name: item_id
+      in: path
+      required: true
+      schema: { type: integer }
+
+  schemas:
+    Health:
+      type: object
+      required: [status, db, version]
+      properties:
+        status: { type: string, enum: [ok, error] }
+        db: { type: string, enum: [ok, unreachable] }
+        version: { type: string, description: Git SHA of the running image }
+    Item:
+      type: object
+      required: [id, item_name, category, quantity, packed, source]
+      properties:
+        id: { type: integer }
+        item_name: { type: string }
+        category: { type: string }
+        quantity: { type: integer, minimum: 1 }
+        packed: { type: boolean }
+        source: { type: string, enum: [custom, recommended] }
+    NewItem:
+      type: object
+      required: [item_name]
+      properties:
+        item_name: { type: string }
+        category: { type: string, default: other }
+        quantity: { type: integer, minimum: 1, default: 1 }
+    RecommendedItem:
+      type: object
+      required: [item_name, category, quantity]
+      properties:
+        item_name: { type: string }
+        category: { type: string }
+        quantity: { type: integer, minimum: 1 }
+    ItemUpdate:
+      type: object
+      properties:
+        packed: { type: boolean }
+        quantity: { type: integer, minimum: 1 }
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error: { type: string }

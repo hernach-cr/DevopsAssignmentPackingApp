@@ -1,0 +1,97 @@
+name: CI
+
+
+on:
+  push:
+    branches-ignore: [main]
+  pull_request:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install validators
+        run: pip install jsonschema==4.23.0 pyyaml==6.0.2 openapi-spec-validator==0.7.1
+      - name: Validate system.yaml against system.schema.json
+        run: |
+          python -c "import json, yaml, jsonschema; jsonschema.Draft202012Validator(json.load(open('system.schema.json'))).validate(yaml.safe_load(open('system.yaml'))); print('system.yaml is valid')"
+      - name: Validate the OpenAPI documents
+        run: |
+          openapi-spec-validator services/trips/openapi.yaml
+          openapi-spec-validator services/packs/openapi.yaml
+
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        service: [trips, packs]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Create throw-away passwords for this run only
+        run: |
+          SA="Ci-$(openssl rand -hex 8)-A1"
+          echo "::add-mask::$SA"
+          echo "MSSQL_SA_PASSWORD=$SA" >> .env
+          echo "TRIPS_DB_PASSWORD=Ci-$(openssl rand -hex 8)-T1" >> .env
+          echo "PACKS_DB_PASSWORD=Ci-$(openssl rand -hex 8)-P1" >> .env
+          echo "MSSQL_SA_PASSWORD=$SA" >> "$GITHUB_ENV"
+      - name: Start SQL Server and wait until it is healthy
+        run: docker compose up -d --wait sqlserver
+      - name: Install dependencies and the linter
+        working-directory: services/${{ matrix.service }}
+        run: pip install -r requirements.txt flake8==7.1.1
+      - name: Lint
+        working-directory: services/${{ matrix.service }}
+        run: flake8 --max-line-length 120 .
+      - name: Unit tests with coverage (fail below 70%)
+        working-directory: services/${{ matrix.service }}
+        run: pytest --cov=${{ matrix.service }} --cov=database --cov=app --cov-report=term --cov-fail-under=70
+
+
+  integration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Create throw-away passwords for this run only
+        run: |
+          echo "MSSQL_SA_PASSWORD=Ci-$(openssl rand -hex 8)-A1" >> .env
+          echo "TRIPS_DB_PASSWORD=Ci-$(openssl rand -hex 8)-T1" >> .env
+          echo "PACKS_DB_PASSWORD=Ci-$(openssl rand -hex 8)-P1" >> .env
+      - name: Build all images and start the stack (a failed build fails the pipeline)
+        run: docker compose up -d --build
+      - name: Wait until both services answer /health with 200
+        run: |
+          for i in $(seq 1 30); do
+            if curl -fs http://localhost:5001/health && curl -fs http://localhost:5002/health; then
+              echo; echo "Both services are healthy"; exit 0
+            fi
+            echo "Not ready yet ($i/30), waiting 5s"; sleep 5
+          done
+          echo "Services never became healthy"; exit 1
+      - name: Integration tests
+        run: |
+          pip install -r tests/integration/requirements.txt
+          pytest tests/integration -v
+      - name: Show container logs if something failed
+        if: failure()
+        run: docker compose logs
+      - name: Stop the stack
+        if: always()
+        run: docker compose down -v

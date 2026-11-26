@@ -1,24 +1,24 @@
+from trips import packs_client
+from database import migrate, seed
+from app import Db
 import os
 
 import pymssql
 import pytest
+from urllib.parse import quote
 
+SA_PASSWORD = os.environ["MSSQL_SA_PASSWORD"]
+DB_HOST = os.environ.get("TEST_DB_HOST", "localhost")
+os.environ["DATABASE_URL"] = f"mssql://sa:{quote(SA_PASSWORD, safe='')}@{DB_HOST}:1433/trips_test"
 
-os.environ["DB_NAME"] = "trips_test"
-os.environ["DB_USER"] = "sa"
-os.environ["DB_PASSWORD"] = os.environ["MSSQL_SA_PASSWORD"]
-
-from app import Db
-from database import migrate, seed 
-from trips import packs_client 
 
 @pytest.fixture(scope="session", autouse=True)
 def test_database():
     conn = pymssql.connect(
-        server=os.environ.get("DB_HOST", "localhost"),
-        port=int(os.environ.get("DB_PORT", "1433")),
+        server=DB_HOST,
+        port=1433,
         user="sa",
-        password=os.environ["MSSQL_SA_PASSWORD"],
+        password=SA_PASSWORD,
         database="master",
         autocommit=True,
     )

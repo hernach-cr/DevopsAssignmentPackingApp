@@ -1,7 +1,6 @@
 from datetime import datetime
 
 
-
 from trips.recommendation import generate_packing_list, get_trip_climate
 
 from flask import Blueprint, current_app, jsonify, request
@@ -9,6 +8,7 @@ from flask import Blueprint, current_app, jsonify, request
 from trips import packs_client
 
 trips_bp = Blueprint("trips", __name__)
+
 
 def _parse_trip_fields(data, defaults=None):
     defaults = defaults or {}
@@ -23,7 +23,6 @@ def _parse_trip_fields(data, defaults=None):
 @trips_bp.route("/trips", methods=["POST"])
 def create_trip():
     data = request.get_json(silent=True)
-    
 
     if data is None:
         return jsonify({"error": "Request body must be valid JSON"}), 400
@@ -63,10 +62,8 @@ def create_trip():
     )
     trip_id = int(cursor.lastrowid)
 
-    
-
     db.commit()
-    saved = packs_client.replace_recommended(trip_id,items)
+    saved = packs_client.replace_recommended(trip_id, items)
     return jsonify({"trip_id": trip_id, "items": items, "packing_list_saved": saved}), 201
 
 
@@ -109,6 +106,7 @@ def list_trips_page():
 
     return jsonify([dict(trip) for trip in trips])
 
+
 @trips_bp.route("/api/cities", methods=["GET"])
 def list_cities():
     from app import get_db
@@ -124,12 +122,15 @@ def list_cities():
         cities = db.execute("SELECT DISTINCT city, country FROM locations ORDER BY country, city").fetchall()
 
     return jsonify([dict(c) for c in cities])
+
+
 @trips_bp.route("/api/countries", methods=["GET"])
 def list_countries():
     from app import get_db
     db = get_db()
     countries = db.execute("SELECT DISTINCT country FROM locations ORDER BY country").fetchall()
     return jsonify([c["country"] for c in countries])
+
 
 @trips_bp.route("/trips/<int:trip_id>", methods=["DELETE"])
 def delete_trip(trip_id):
@@ -146,6 +147,7 @@ def delete_trip(trip_id):
     if not deleted:
         current_app.logger.warning("Trip %s deleted but its items could not be removed from packs", trip_id)
     return "", 204
+
 
 @trips_bp.route("/trips/preview", methods=["POST"])
 def preview_trip():
@@ -179,6 +181,7 @@ def preview_trip():
         return jsonify({"error": str(e)}), 404
 
     return jsonify({"items": items, "climate": climate})
+
 
 @trips_bp.route("/trips/<int:trip_id>", methods=["PUT"])
 def edit_trip(trip_id):
@@ -214,12 +217,10 @@ def edit_trip(trip_id):
     except ValueError as e:
         return jsonify({"error": str(e)}), 404
 
-     
-
     db.execute(
         "UPDATE trips SET location_id = %s, start_date = %s, end_date = %s, accommodation_type = %s WHERE id = %s",
         (location["id"], data["start_date"], data["end_date"], accommodation_type, trip_id),
     )
     db.commit()
-    saved = packs_client.replace_recommended(trip_id,new_items)
+    saved = packs_client.replace_recommended(trip_id, new_items)
     return jsonify({"trip_id": trip_id, "items": new_items, "packing_list_saved": saved})

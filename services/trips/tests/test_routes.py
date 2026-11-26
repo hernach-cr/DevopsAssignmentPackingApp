@@ -45,6 +45,7 @@ def test_get_nonexistent_trip_returns_404(client):
     response = client.get("/trips/999999")
     assert response.status_code == 404
 
+
 def test_preview_trip_returns_items_without_saving(client):
     response = client.post(
         "/trips/preview",
@@ -76,6 +77,7 @@ def test_preview_trip_unknown_city_returns_404(client):
         },
     )
     assert response.status_code == 404
+
 
 def test_edit_trip_updates_destination_and_regenerates_items(client, fake_packs):
     create_response = client.post(
@@ -119,6 +121,7 @@ def test_edit_nonexistent_trip_returns_404(client):
     )
     assert response.status_code == 404
 
+
 MADRID = {"city": "Madrid", "country": "Spain",
           "start_date": "2026-06-15", "end_date": "2026-06-22"}
 
@@ -128,6 +131,7 @@ def test_1_endpoints_trips_create_trip_when_packs_down(client, fake_packs):
     response = client.post("/trips", json=MADRID)
     assert response.status_code == 201
     assert response.get_json()["packing_list_saved"] is False
+
 
 def test_2_endpoints_trips_createtrip_sendslisttopacks(client, fake_packs):
     response = client.post("/trips", json=MADRID)

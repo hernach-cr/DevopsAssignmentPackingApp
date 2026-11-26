@@ -1,0 +1,250 @@
+openapi: 3.0.3
+info:
+  title: PackWise trips service
+  version: "1.0"
+  description: Trips, destinations and climate data. Calls packs to save, replace and delete a trip's suggested items.
+
+paths:
+  /health:
+    get:
+      summary: Health check with database status and running version
+      responses:
+        "200":
+          description: Service and database are up
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Health" }
+        "503":
+          description: Database unreachable
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Health" }
+
+  /api/countries:
+    get:
+      summary: List the countries that have climate data
+      responses:
+        "200":
+          description: Country names, sorted
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { type: string }
+
+  /api/cities:
+    get:
+      summary: List the cities of one country
+      parameters:
+        - name: country
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: The cities
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/City" }
+
+  /trips:
+    get:
+      summary: List all trips
+      responses:
+        "200":
+          description: The trips
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/TripSummary" }
+    post:
+      summary: Create a trip and send its suggested packing list to packs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/TripInput" }
+      responses:
+        "201":
+          description: Trip created; packing_list_saved is false if packs did not answer
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/TripSaved" }
+        "400":
+          description: Invalid body or end_date before start_date
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+        "404":
+          description: Unknown city or no climate data
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+
+  /trips/preview:
+    post:
+      summary: Suggest a packing list without saving anything
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/TripInput" }
+      responses:
+        "200":
+          description: The suggested items and the climate
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items, climate]
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: "#/components/schemas/RecommendedItem" }
+                  climate: { $ref: "#/components/schemas/Climate" }
+        "400":
+          description: Invalid body or end_date before start_date
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+        "404":
+          description: Unknown city or no climate data
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+
+  /trips/{trip_id}:
+    parameters:
+      - name: trip_id
+        in: path
+        required: true
+        schema: { type: integer }
+    get:
+      summary: Get one trip with its climate (items are served by packs)
+      responses:
+        "200":
+          description: The trip
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [trip, climate]
+                properties:
+                  trip: { $ref: "#/components/schemas/Trip" }
+                  climate:
+                    nullable: true
+                    allOf: [{ $ref: "#/components/schemas/Climate" }]
+        "404":
+          description: Trip not found
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+    put:
+      summary: Change destination or dates and send the new suggested list to packs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/TripInput" }
+      responses:
+        "200":
+          description: Trip updated; packing_list_saved is false if packs did not answer
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/TripSaved" }
+        "400":
+          description: Invalid body or end_date before start_date
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+        "404":
+          description: Trip or city not found
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+    delete:
+      summary: Delete a trip and ask packs to delete its items
+      responses:
+        "204":
+          description: Trip deleted (items may remain if packs did not answer)
+        "404":
+          description: Trip not found
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+
+components:
+  schemas:
+    Health:
+      type: object
+      required: [status, db, version]
+      properties:
+        status: { type: string, enum: [ok, error] }
+        db: { type: string, enum: [ok, unreachable] }
+        version: { type: string, description: Git SHA of the running image }
+    City:
+      type: object
+      required: [city]
+      properties:
+        city: { type: string }
+    TripInput:
+      type: object
+      required: [city, country, start_date, end_date]
+      properties:
+        city: { type: string }
+        country: { type: string }
+        start_date: { type: string, format: date }
+        end_date: { type: string, format: date }
+        accommodation_type:
+          type: string
+          enum: [hotel, hostel, apartment, other]
+          default: hotel
+    TripSummary:
+      type: object
+      required: [id, city, country, start_date, end_date]
+      properties:
+        id: { type: integer }
+        city: { type: string }
+        country: { type: string }
+        start_date: { type: string, format: date }
+        end_date: { type: string, format: date }
+    Trip:
+      allOf:
+        - $ref: "#/components/schemas/TripSummary"
+        - type: object
+          required: [accommodation_type]
+          properties:
+            accommodation_type: { type: string }
+    TripSaved:
+      type: object
+      required: [trip_id, items, packing_list_saved]
+      properties:
+        trip_id: { type: integer }
+        items:
+          type: array
+          items: { $ref: "#/components/schemas/RecommendedItem" }
+        packing_list_saved: { type: boolean }
+    RecommendedItem:
+      type: object
+      required: [item_name, category, quantity]
+      properties:
+        item_name: { type: string }
+        category: { type: string }
+        quantity: { type: integer, minimum: 1 }
+    Climate:
+      type: object
+      properties:
+        avg_temp_c: { type: number }
+        precip_mm: { type: number, nullable: true }
+        month: { type: integer, minimum: 1, maximum: 12 }
+        month_name: { type: string }
+        temperature_label: { type: string }
+        rain_label: { type: string, nullable: true }
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error: { type: string }

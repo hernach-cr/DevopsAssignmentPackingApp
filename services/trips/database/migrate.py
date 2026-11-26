@@ -1,22 +1,28 @@
 import os
 import time
 from pathlib import Path
+from urllib.parse import unquote, urlsplit
 
 import pymssql
 
 MIGRATIONS_DIR = Path(__file__).resolve().parent.parent / "migrations"
 
 
+def connection_settings():
+    url = urlsplit(os.environ["DATABASE_URL"])
+    return {
+        "server": url.hostname,
+        "port": url.port or 1433,
+        "user": unquote(url.username),
+        "password": unquote(url.password),
+        "database": url.path.lstrip("/"),
+    }
+
+
 def connect(retries=10, wait_seconds=3):
     for attempt in range(1, retries + 1):
         try:
-            return pymssql.connect(
-                server=os.environ.get("DB_HOST", "localhost"),
-                port=int(os.environ.get("DB_PORT", "1433")),
-                user=os.environ.get("DB_USER", "trips_user"),
-                password=os.environ["DB_PASSWORD"],
-                database=os.environ.get("DB_NAME", "trips"),
-            )
+            return pymssql.connect(**connection_settings())
         except pymssql.OperationalError:
             if attempt == retries:
                 raise

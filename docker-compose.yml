@@ -6,10 +6,7 @@ services:
       db-init:
         condition: service_completed_successfully
     environment:
-      DB_HOST: sqlserver
-      DB_USER: trips_user
-      DB_PASSWORD: ${TRIPS_DB_PASSWORD}
-      DB_NAME: trips
+      DATABASE_URL: mssql://trips_user:${TRIPS_DB_PASSWORD}@sqlserver:1433/trips
       PACKS_URL: http://packs:5002
       UI_ORIGIN: http://localhost:5500
 
@@ -20,10 +17,7 @@ services:
       db-init:
         condition: service_completed_successfully
     environment:
-      DB_HOST: sqlserver
-      DB_USER: packs_user
-      DB_PASSWORD: ${PACKS_DB_PASSWORD}
-      DB_NAME: packs
+      DATABASE_URL: mssql://packs_user:${PACKS_DB_PASSWORD}@sqlserver:1433/packs
       TRIPS_URL: http://trips:5001
       UI_ORIGIN: http://localhost:5500
 

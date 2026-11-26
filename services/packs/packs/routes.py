@@ -90,16 +90,17 @@ def delete_item(item_id):
 
     return "", 204
 
-@packing_bp.route("/trips/<int:trip_id>/items", methods=["GET" ])
+
+@packing_bp.route("/trips/<int:trip_id>/items", methods=["GET"])
 def list_items(trip_id):
     from app import get_db
-    db=get_db()
+    db = get_db()
 
-    rows=db.execute(
+    rows = db.execute(
         "SELECT id, item_name, category, quantity, packed, source FROM packing_items WHERE trip_id=%s",
         (trip_id,),).fetchall()
 
-    items=[dict(row) for row in rows]
+    items = [dict(row) for row in rows]
     return jsonify(items)
 
 
@@ -111,6 +112,7 @@ def delete_trip_items(trip_id):
     db.commit()
     return "", 204
 
+
 @packing_bp.route("/trips/<int:trip_id>/items/recommended", methods=["PUT"])
 def replace_recommended(trip_id):
     from app import get_db
@@ -120,7 +122,7 @@ def replace_recommended(trip_id):
     if not isinstance(new_items, list):
         return jsonify({"error": "Body must be a JSON list of items"}), 400
 
-    old_recommended= db.execute(
+    old_recommended = db.execute(
         "SELECT item_name, packed FROM packing_items WHERE trip_id = %s AND source = 'recommended'",
         (trip_id,),
     ).fetchall()
@@ -133,11 +135,11 @@ def replace_recommended(trip_id):
         "DELETE FROM packing_items WHERE trip_id = %s AND source = 'recommended'", (trip_id,)
     )
     for item in new_items:
-            was_packed = packed_lookup.get(item["item_name"], 0)
-            db.execute(
-                "INSERT INTO packing_items (trip_id, item_name, category, quantity, packed, source) "
-                "VALUES (%s, %s, %s, %s, %s, 'recommended')",
-                (trip_id, item["item_name"], item["category"], item["quantity"], was_packed),
-            )
+        was_packed = packed_lookup.get(item["item_name"], 0)
+        db.execute(
+            "INSERT INTO packing_items (trip_id, item_name, category, quantity, packed, source) "
+            "VALUES (%s, %s, %s, %s, %s, 'recommended')",
+            (trip_id, item["item_name"], item["category"], item["quantity"], was_packed),
+        )
     db.commit()
     return jsonify(new_items), 200

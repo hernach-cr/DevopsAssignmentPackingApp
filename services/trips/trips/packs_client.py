@@ -2,7 +2,7 @@ import os
 import requests
 
 PACKS_URL = os.environ.get("PACKS_URL", "http://localhost:5002")
-TIMEOUT = 2  
+TIMEOUT = 2
 
 
 def replace_recommended(trip_id, items):
@@ -17,16 +17,18 @@ def replace_recommended(trip_id, items):
     except requests.RequestException:
         return False
 
+
 def list_items(trip_id):
     try:
-        r = requests.get(                         
-            f"{PACKS_URL}/trips/{trip_id}/items",  
-            timeout=TIMEOUT,                     
+        r = requests.get(
+            f"{PACKS_URL}/trips/{trip_id}/items",
+            timeout=TIMEOUT,
         )
         r.raise_for_status()
-        return r.json()                              
+        return r.json()
     except requests.RequestException:
-        return None       
+        return None
+
 
 def delete_items(trip_id):
     try:

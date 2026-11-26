@@ -1,3 +1,5 @@
+from packs.routes import packing_bp
+from flask_cors import CORS
 import os
 from flask import Flask, g
 from database import migrate
@@ -5,11 +7,10 @@ from database import migrate
 
 app = Flask(__name__)
 
-from flask_cors import CORS
 CORS(app, origins=[os.environ.get("UI_ORIGIN", "http://localhost:5500")])
 
-from packs.routes import packing_bp
 app.register_blueprint(packing_bp)
+
 
 class Db:
     def __init__(self, conn):

@@ -1,0 +1,65 @@
+
+student: hchacon.ieu2024
+prefix: hchacon-ieu2024
+public_url: https://hchaconieu2024ui.z6.web.core.windows.net   
+ui:
+  path: ui
+  storage_account: hchaconieu2024ui
+  calls: [trips, packs]
+azure:
+  resource_group: rg-hchacon-ieu2024
+  container_apps_environment: hchacon-ieu2024-env
+  sql_server: hchacon-ieu2024-sql
+  registry: ghcr.io/hernach-cr
+services:
+  trips:
+    description: Trips, destinations, climate data and the packing-list recommendation.
+    path: services/trips
+    openapi: services/trips/openapi.yaml
+    port_default: 5001
+    health: /health
+    migrations: services/trips/migrations
+    env:
+      PORT: { default: 5001, description: Port the service listens on }
+      DATABASE_URL: { secret: true, description: "Connection string of the trips database (mssql://user:password@host:1433/db)" }
+      PACKS_URL: { default: "http://localhost:5002", description: Base URL of the packs service }
+      UI_ORIGIN: { default: "http://localhost:5500", description: The only origin allowed by CORS }
+      GIT_SHA: { default: dev, description: "Commit SHA of the running image, shown by /health" }
+    calls:
+      - service: packs
+        url_env: PACKS_URL
+        endpoints:
+          - "PUT /trips/{trip_id}/items/recommended"
+          - "DELETE /trips/{trip_id}/items"
+        timeout_s: 2
+        on_failure: >-
+          The trip is still created, edited or deleted. On create and edit the response says
+          packing_list_saved false and the user can regenerate the list later by editing the trip;
+          on delete the items may remain in packs as orphans and a warning is logged.
+    azure:
+      container_app: hchacon-ieu2024-trips
+      sql_database: hchacon-ieu2024-trips-db
+  packs:
+    description: Packing items of each trip (suggested and custom) and their packed state.
+    path: services/packs
+    openapi: services/packs/openapi.yaml
+    port_default: 5002
+    health: /health
+    migrations: services/packs/migrations
+    env:
+      PORT: { default: 5002, description: Port the service listens on }
+      DATABASE_URL: { secret: true, description: "Connection string of the packs database (mssql://user:password@host:1433/db)" }
+      TRIPS_URL: { default: "http://localhost:5001", description: Base URL of the trips service }
+      UI_ORIGIN: { default: "http://localhost:5500", description: The only origin allowed by CORS }
+      GIT_SHA: { default: dev, description: "Commit SHA of the running image, shown by /health" }
+    calls:
+      - service: trips
+        url_env: TRIPS_URL
+        endpoints:
+          - "GET /trips/{trip_id}"
+        timeout_s: 2
+        on_failure: >-
+          The item is still added without checking that the trip exists, and a warning is logged.
+    azure:
+      container_app: hchacon-ieu2024-packs
+      sql_database: hchacon-ieu2024-packs-db

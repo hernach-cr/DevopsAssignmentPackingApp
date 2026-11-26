@@ -64,3 +64,23 @@
 | 2026-11-19 | Claude | Asked for a Dockerfile per service based on the class slides | Modified | My first version had several WORKDIRs, wrong COPY paths and inline comments used the corrected version | ... |
 
 | 2026-11-19 | Claude | Asked for a docker-compose.yml for trips, packs and the UI | Modified | Filled in PACKS_URL / TRIPS_URL with service names | ... |
+
+| 2026-11-20 | Claude | Asked how to add SQL Server to Docker Compose and keep the passwords out of Git | Accepted | Added the sqlserver service with a healthcheck | ... |
+
+| 2026-11-20 | Claude | Asked for db/init.sql and a db-init job that create one database and one login per service | Accepted | init.sql creates trips and packs databases and logins only if missing so db-init waits for SQL Server to be healthy, runs the script and exits | ... |
+
+| 2026-11-20 | Claude | Asked how to connect Flask to SQL Server without rewriting every route and got the Db wrapper and get_db | Accepted | Db wraps a pymssql connection so routes keep using db.execute(...).fetchone() | ... |
+
+| 2026-11-20 | Claude | Asked for a migration runner and help translating schema.sql into 001_init.sql | Modified | I translated the packs and trips schemas to SQL Server types with a mapping table; used the given migrate.py with connection retries and a schema_migrations table | ... |
+
+| 2026-11-24 | Claude | Asked how to run the unit tests on SQL Server; got new conftest.py files | Accepted | Tests create packs_test / trips_test, run the real migrations once, empty the tables before each test; Madrid's June set to the values the tests expect | ... |
+
+| 2026-11-24 | Claude | Asked for failed tested problem | Accepted | lastrowid returns a Decimal in pymssql, so IDs became text in JSON; wrapped it in int(); renamed the fake test city so it doesn't clash with real data | ... |
+
+| 2026-11-26 | Claude | Asked for the OpenAPI documents of both services | Modified | Claude generated both from my routes; I checked them against the code and added country to the City schema after calling /api/cities | ... |
+
+| 2026-11-26 | Claude | Asked for system.yaml following the provided system.schema.json | Accepted | Values taken from my code (env defaults, calls, timeouts) | ... |
+
+| 2026-11-26 | Claude | Asked for a CI yml | Accepted | ci.yml with validate, test ( flake8, pytest, coverage ≥70%) and integration (build all images, start the stack, integration tests) and throwing away passwords per run | ... |
+
+| 2026-11-26 | Claude | Asked how to fix the flake8 errors from the first CI run | Modified | Ran autopep8 for whitespace Eto deliberate late imports, removed an unused import and deleted a duplicated generate_packing_list after comparing both versions | ... |

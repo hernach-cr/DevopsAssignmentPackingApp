@@ -1,3 +1,4 @@
+from trips.routes import trips_bp
 import os
 
 from flask import Flask, g
@@ -8,7 +9,6 @@ from database import migrate, seed
 app = Flask(__name__)
 CORS(app, origins=[os.environ.get("UI_ORIGIN", "http://localhost:5500")])
 
-from trips.routes import trips_bp  
 app.register_blueprint(trips_bp)
 
 

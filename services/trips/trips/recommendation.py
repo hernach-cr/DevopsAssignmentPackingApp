@@ -11,6 +11,7 @@ def effective_days(trip_days):
     else:
         return trip_days
 
+
 def item_quantity(per_day, minimum, days):
     quantity = math.ceil(per_day * days)
 
@@ -18,6 +19,7 @@ def item_quantity(per_day, minimum, days):
         quantity = minimum
 
     return quantity
+
 
 def temperature(avg_temp_c):
     if avg_temp_c < 0:
@@ -30,6 +32,7 @@ def temperature(avg_temp_c):
         return "mild"
     else:
         return "hot"
+
 
 def rain(precip_mm):
     if precip_mm is None:
@@ -68,7 +71,7 @@ COASTAL_RULES = [
     ("Swimsuit", "other", 0.3, 2),
     ("Beach towel", "other", 0, 1),
     ("flip-flops", "footwear", 0, 1),
-    ("suncream","other", 0 , 1)
+    ("suncream", "other", 0, 1)
 ]
 
 minimum_temp = 20
@@ -84,8 +87,10 @@ RAIN_RULES = {
     None: [],
 }
 
+
 def is_coastal(city, country):
     return (city, country) in COASTAL_CITIES
+
 
 def beach_items(city, country, avg_temp_c, precip_mm):
     if not is_coastal(city, country):
@@ -95,6 +100,7 @@ def beach_items(city, country, avg_temp_c, precip_mm):
     if precip_mm is not None and precip_mm > max_precipitation:
         return False
     return True
+
 
 TEMPERATURE_RULES = {
     "cool": [
@@ -106,7 +112,7 @@ TEMPERATURE_RULES = {
         ("Underwear", "other", 1.0, 1),
         ("Socks", "other", 1.0, 1),
     ],
-    
+
     "cold": [
         ("Jacket", "outerwear", 0.5, 1),
         ("Coat", "outerwear", 0, 1),
@@ -117,7 +123,7 @@ TEMPERATURE_RULES = {
         ("Underwear", "other", 1.0, 1),
         ("Socks", "other", 1.0, 1),
     ],
-    
+
     "freezing": [
         ("Gloves", "other", 0, 1),
         ("Scarf", "other", 0, 1),
@@ -149,55 +155,31 @@ TEMPERATURE_RULES = {
         ("Underwear", "other", 1.0, 1),
         ("Socks", "other", 1.0, 1),
     ],
- 
+
 
 
 }
 
 
 def recommend_clothing(avg_temp_c, precip_mm, trip_days, city=None, country=None):
-    days=effective_days(trip_days)
-    items=[]
-    temp=temperature(avg_temp_c)
-    for name,category,per_day,minimum in TEMPERATURE_RULES[temp]:
+    days = effective_days(trip_days)
+    items = []
+    temp = temperature(avg_temp_c)
+    for name, category, per_day, minimum in TEMPERATURE_RULES[temp]:
 
-        items.append({"item_name": name, "category": category, "quantity": item_quantity(per_day,minimum,days)})
+        items.append({"item_name": name, "category": category, "quantity": item_quantity(per_day, minimum, days)})
 
-    precip=rain(precip_mm)
+    precip = rain(precip_mm)
 
-    for name,category,per_day,minimum in RAIN_RULES[precip]:
-    
-        items.append({"item_name": name, "category": category, "quantity": item_quantity(per_day,minimum,days)})
+    for name, category, per_day, minimum in RAIN_RULES[precip]:
+
+        items.append({"item_name": name, "category": category, "quantity": item_quantity(per_day, minimum, days)})
 
     if beach_items(city, country, avg_temp_c, precip_mm):
-        for name,category,per_day,minimum in COASTAL_RULES:
-            items.append({"item_name": name, "category": category, "quantity": item_quantity(per_day,minimum,days)})
+        for name, category, per_day, minimum in COASTAL_RULES:
+            items.append({"item_name": name, "category": category, "quantity": item_quantity(per_day, minimum, days)})
     return items
 
-
-def generate_packing_list(db, city, country, start_date, end_date, trip_days):
-    month = dominant_month(start_date, end_date)
-
-    row = db.execute(
-        """
-        SELECT cm.avg_temp_c, cm.precip_mm
-        FROM climate_monthly cm
-        JOIN locations l ON cm.location_id = l.id
-        WHERE l.city = %s AND l.country = %s AND cm.month = %s
-        """,
-        (city, country, month),
-    ).fetchone()
-
-    if row is None:
-        raise ValueError(f"No climate data for {city}, {country}, month {month}")
-
-    return recommend_clothing(
-        avg_temp_c=row["avg_temp_c"],
-        precip_mm=row["precip_mm"],
-        trip_days=trip_days,
-        city=city,
-        country=country,
-    )
 
 TEMPERATURE_LABELS = {
     "freezing": "Freezing temperature",
