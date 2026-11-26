@@ -7,6 +7,7 @@ import pymssql
 
 MIGRATIONS_DIR = Path(__file__).resolve().parent.parent / "migrations"
 
+
 def connection_settings():
     url = urlsplit(os.environ["DATABASE_URL"])
     return {
@@ -27,6 +28,7 @@ def connect(retries=10, wait_seconds=3):
                 raise
             print(f"Database not ready (attempt {attempt}/{retries}), retrying in {wait_seconds}s")
             time.sleep(wait_seconds)
+
 
 def run():
     conn = connect()

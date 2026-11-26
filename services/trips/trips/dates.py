@@ -1,5 +1,6 @@
 from datetime import timedelta
 
+
 def dominant_month(start_date, end_date):
     counts = {}
     current = start_date

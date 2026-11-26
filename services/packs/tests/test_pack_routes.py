@@ -1,8 +1,5 @@
-import json
-
-
 def _create_trip(client):
-    return 1 
+    return 1
 
 
 def test_add_item_creates_custom_item(client):
@@ -20,7 +17,7 @@ def test_add_item_creates_custom_item(client):
 
 
 def test_add_item_to_nonexistent_trip_returns_404(client, fake_trips):
-    fake_trips["answer"] = False 
+    fake_trips["answer"] = False
     response = client.post(
         "/trips/999999/items",
         json={"item_name": "Laptop charger"},
@@ -88,20 +85,22 @@ def test_1_endpoints_packs_incasetripsdown(client, fake_trips):
     response = client.post("/trips/1/items", json={"item_name": "Charger"})
     assert response.status_code == 201
 
+
 def test_2_endpoints_packs_replacebutkeepitems(client):
-    client.post("/trips/1/items", json={"item_name": "Computer"})      
+    client.post("/trips/1/items", json={"item_name": "Computer"})
     client.put("/trips/1/items/recommended",
                json=[{"item_name": "T-shirt", "category": "top", "quantity": 3}])
 
     names = [i["item_name"] for i in client.get("/trips/1/items").get_json()]
     assert "Computer" in names
 
-def test_3_endpoints_packs_replacebutkeepticks(client):   
+
+def test_3_endpoints_packs_replacebutkeepticks(client):
     client.put("/trips/1/items/recommended",
                json=[{"item_name": "T-shirt", "category": "top", "quantity": 3}])
     items = client.get("/trips/1/items").get_json()
     tshirt = next(i for i in items if i["item_name"] == "T-shirt")
-    client.patch(f"/items/{tshirt['id']}", json={"packed": True })
+    client.patch(f"/items/{tshirt['id']}", json={"packed": True})
     client.put("/trips/1/items/recommended",
                json=[{"item_name": "T-shirt", "category": "top", "quantity": 3},
                      {"item_name": "Umbrella", "category": "other", "quantity": 1}])
@@ -109,9 +108,11 @@ def test_3_endpoints_packs_replacebutkeepticks(client):
     tshirt_after = next(i for i in items_after if i["item_name"] == "T-shirt")
     assert tshirt_after["packed"] == 1
 
+
 def test_4_endpoints_packs_rejectsnotlist(client):
     response = client.put("/trips/1/items/recommended", json={"item_name": "x"})
     assert response.status_code == 400
+
 
 def test_5_endpoints_packs_deleteitemsremovesall(client):
     client.post("/trips/1/items", json={"item_name": "Charger"})

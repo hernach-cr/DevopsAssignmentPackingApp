@@ -1,3 +1,5 @@
+from packs import trips_client
+from database import migrate
 import os
 
 import pymssql
@@ -8,9 +10,6 @@ from urllib.parse import quote
 SA_PASSWORD = os.environ["MSSQL_SA_PASSWORD"]
 DB_HOST = os.environ.get("TEST_DB_HOST", "localhost")
 os.environ["DATABASE_URL"] = f"mssql://sa:{quote(SA_PASSWORD, safe='')}@{DB_HOST}:1433/packs_test"
-
-from database import migrate 
-from packs import trips_client  
 
 
 @pytest.fixture(scope="session", autouse=True)
