@@ -76,3 +76,11 @@
 | 2026-11-24 | Claude | Asked how to run the unit tests on SQL Server; got new conftest.py files | Accepted | Tests create packs_test / trips_test, run the real migrations once, empty the tables before each test; Madrid's June set to the values the tests expect | ... |
 
 | 2026-11-24 | Claude | Asked for failed tested problem | Accepted | lastrowid returns a Decimal in pymssql, so IDs became text in JSON; wrapped it in int(); renamed the fake test city so it doesn't clash with real data | ... |
+
+| 2026-11-26 | Claude | Asked for the OpenAPI documents of both services | Modified | Claude generated both from my routes; I checked them against the code and added country to the City schema after calling /api/cities | ... |
+
+| 2026-11-26 | Claude | Asked for system.yaml following the provided system.schema.json | Accepted | Values taken from my code (env defaults, calls, timeouts) | ... |
+
+| 2026-11-26 | Claude | Asked for a CI yml | Accepted | ci.yml with validate, test ( flake8, pytest, coverage ≥70%) and integration (build all images, start the stack, integration tests) and throwing away passwords per run | ... |
+
+| 2026-11-26 | Claude | Asked how to fix the flake8 errors from the first CI run | Modified | Ran autopep8 for whitespace Eto deliberate late imports, removed an unused import and deleted a duplicated generate_packing_list after comparing both versions | ... |
