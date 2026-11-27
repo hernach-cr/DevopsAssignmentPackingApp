@@ -9,7 +9,7 @@ ui:
 azure:
   resource_group: rg-hchacon-ieu2024
   container_apps_environment: hchacon-ieu2024-env
-  sql_server: hchacon-ieu2024-sql
+  sql_server:  hchacon-ieu2024-sqldk
   registry: ghcr.io/hernach-cr
 services:
   trips:
