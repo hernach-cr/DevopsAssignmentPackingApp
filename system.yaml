@@ -1,7 +1,7 @@
 
 student: hchacon.ieu2024
 prefix: hchacon-ieu2024
-public_url: https://hchaconieu2024ui.z6.web.core.windows.net   
+public_url: https://hchaconieu2024ui.z1.web.core.windows.net
 ui:
   path: ui
   storage_account: hchaconieu2024ui
@@ -9,7 +9,7 @@ ui:
 azure:
   resource_group: rg-hchacon-ieu2024
   container_apps_environment: hchacon-ieu2024-env
-  sql_server: hchacon-ieu2024-sql
+  sql_server:  hchacon-ieu2024-sqldk
   registry: ghcr.io/hernach-cr
 services:
   trips:
